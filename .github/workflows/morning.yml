@@ -1,0 +1,16 @@
+name: 아침 알림
+
+on:
+  schedule:
+    # 매일 한국시간 오전 6:50 (UTC 21:50). GitHub 사정으로 5~20분 늦게 올 수 있어요.
+    - cron: "50 21 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/morning_push.py
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
