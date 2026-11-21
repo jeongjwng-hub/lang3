@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>하루 세 언어</title>
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16171b" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1 id="title">하루 세 언어</h1>
+  <button id="furi" class="chip" aria-pressed="true" title="후리가나 켜기/끄기">ふりがな</button>
+</header>
+<main id="view" tabindex="-1"></main>
+<nav class="tabs" aria-label="메뉴">
+  <button data-tab="today" class="on"><span>📖</span>오늘</button>
+  <button data-tab="review"><span>🔁</span>복습</button>
+  <button data-tab="drive"><span>🚗</span>드라이브</button>
+  <button data-tab="more"><span>📚</span>전체</button>
+</nav>
+<script src="app.js"></script>
+</body>
+</html>
