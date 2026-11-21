@@ -136,3 +136,9 @@ textarea {
 .tracks { font-size: 14px; }
 .tracks div { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--line); color: var(--sub); }
 .tracks div.cur { color: var(--ink); font-weight: 700; }
+
+/* 타블로 영상 표현 */
+.phrase { font-weight: 800; color: var(--en); font-size: 15px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+mark { background: color-mix(in srgb, var(--en) 22%, transparent); color: inherit; border-radius: 4px; padding: 0 2px; }
+.pill { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 12px; font-size: 13px; color: inherit; text-decoration: none; }
+.mini { border: 0; background: none; padding: 0 4px; font-size: 13px; }
