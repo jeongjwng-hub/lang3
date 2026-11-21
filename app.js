@@ -342,7 +342,7 @@
       <div class="list">${LESSONS.map(L => `<a class="row" href="#lesson/${L.id}"><span class="em">${L.emoji}</span>
         <span class="grow">${L.day}일차 ${esc(L.topic)}<small>${esc(L.ja.grammar.title)} · ${esc(L.en.grammar.title)} · ${esc(L.fr.grammar.title)}</small></span>
         <span class="badge ${S.done[L.id] ? "ok" : ""}">${S.done[L.id] ? "완료" : "예정"}</span></a>`).join("")}</div>
-      <div class="card"><h3>⏰ 아침 알림</h3><p class="muted">매일 아침 6:50쯤 ntfy 앱으로 오늘의 주제와 미리보기 문장이 와요. 알림을 누르면 이 앱이 열려요.</p></div>`;
+      <div class="card"><h3>⏰ 아침 알림</h3><p class="muted">평일 오전 5:30, 주말 오전 8:00쯤 ntfy 앱으로 오늘의 주제와 미리보기 문장이 와요. 알림을 누르면 이 앱이 열려요.</p></div>`;
   }
 
   // ---------- 라우팅 ----------
