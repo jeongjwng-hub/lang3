@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-"""lessons.json 으로 발음 클립과 출퇴근용 오디오를 만듭니다 (macOS say + afconvert).
+"""lessons.json 으로 발음 클립과 출퇴근용 오디오를 만듭니다.
+음성: Microsoft 뉴럴 음성(edge-tts, tools/.venv) → afconvert 로 m4a.
 
 사용법:  python3 tools/build_audio.py
 이미 만든 파일은 내용이 바뀌지 않았으면 건너뜁니다.
 """
-import hashlib, json, os, re, subprocess, tempfile, wave
+import hashlib, json, os, re, subprocess, tempfile, time, wave
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUDIO = os.path.join(ROOT, "audio")
-RATE = 22050
-VOICES = {"ko": "Yuna", "ja": "Kyoko", "en": "Samantha", "fr": "Thomas"}
-NORMAL = {"ko": 185, "ja": 175, "en": 175, "fr": 170}
-SLOW = {"ja": 135, "en": 135, "fr": 130}
+EDGE = os.path.join(ROOT, "tools", ".venv", "bin", "edge-tts")
+ENGINE = "edge1"  # 음성을 바꾸면 이 값을 바꿔서 전부 다시 만들기
+RATE = 24000
+VOICES = {"ko": "ko-KR-SunHiNeural", "ja": "ja-JP-NanamiNeural", "en": "en-US-AvaNeural", "fr": "fr-FR-DeniseNeural"}
+NORMAL = {"ko": "+0%", "ja": "+0%", "en": "+0%", "fr": "+0%"}
+SLOW = {"ja": "-25%", "en": "-25%", "fr": "-25%"}
 LANG_NAMES = {"ja": "일본어", "en": "영어", "fr": "프랑스어"}
 
 TMP = tempfile.mkdtemp(prefix="lang3-")
@@ -30,9 +33,17 @@ def speak(lang, text, rate=None):
     key = (lang, text, rate)
     if key in _seg_cache:
         return _seg_cache[key]
-    path = os.path.join(TMP, hashlib.md5(repr(key).encode()).hexdigest() + ".wav")
-    subprocess.run(["say", "-v", VOICES[lang], "-r", str(rate), "-o", path,
-                    "--file-format=WAVE", f"--data-format=LEI16@{RATE}", text], check=True)
+    base = os.path.join(TMP, hashlib.md5(repr(key).encode()).hexdigest())
+    for attempt in range(4):
+        r = subprocess.run([EDGE, "--voice", VOICES[lang], f"--rate={rate}", "--text", text,
+                            "--write-media", base + ".mp3"], capture_output=True)
+        if r.returncode == 0 and os.path.getsize(base + ".mp3") > 0:
+            break
+        time.sleep(2 + attempt * 3)
+    else:
+        raise RuntimeError(f"음성 생성 실패: {text}\n{r.stderr.decode()[-300:]}")
+    path = base + ".wav"
+    subprocess.run(["afconvert", "-f", "WAVE", "-d", f"LEI16@{RATE}", "-c", "1", base + ".mp3", path], check=True)
     with wave.open(path) as w:
         data = w.readframes(w.getnframes())
     _seg_cache[key] = data
@@ -77,7 +88,7 @@ def main():
             for it in items:
                 t = plain(it)
                 out = os.path.join(AUDIO, "items", it["id"] + ".m4a")
-                manifest["items"][it["id"]] = build(out, f"v1|{lang}|{t}", lambda: silence(0.15) + speak(lang, t) + silence(0.3))
+                manifest["items"][it["id"]] = build(out, f"{ENGINE}|{lang}|{t}", lambda: silence(0.15) + speak(lang, t) + silence(0.3))
 
         # 2) 학습 트랙: 한국어 뜻 → 외국어 → 천천히 → (따라 말하기) → 한 번 더
         def learn():
@@ -107,7 +118,7 @@ def main():
         sig = json.dumps([L["day"], L["topic"], [[plain(i), i["ko"]] for _, its in groups for i in its]], ensure_ascii=False)
         for kind, fn in (("learn", learn), ("quiz", quiz)):
             out = os.path.join(AUDIO, f"{L['id']}-{kind}.m4a")
-            manifest["tracks"][f"{L['id']}-{kind}"] = build(out, f"v1|{kind}|{sig}", fn)
+            manifest["tracks"][f"{L['id']}-{kind}"] = build(out, f"{ENGINE}|{kind}|{sig}", fn)
             print(f"{L['id']}-{kind}: {manifest['tracks'][L['id'] + '-' + kind]}s")
 
     json.dump(manifest, open(os.path.join(AUDIO, "manifest.json"), "w"), indent=1)
