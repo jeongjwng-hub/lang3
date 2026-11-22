@@ -10,14 +10,16 @@
    "summary": "타블로의 팟캐스트에 가수 존박이 게스트로 출연하여 출신지 이야기와 서로에 대한 팬심을 나눈 뒤, 가벼운 밸런스 게임(Would You Rather) 토크를 시작합니다.",
    "expressions": [],
    "detail": {
-    "status": "done",
+    "status": "running",
     "done_sec": 300,
-    "duration": 300,
+    "duration": 0,
     "lines": 76,
     "notes": 25
    },
    "analyzed": "2026-11-22"
   }
  ],
- "queue": []
+ "queue": [
+  "yWAsEGYHsvA"
+ ]
 }
