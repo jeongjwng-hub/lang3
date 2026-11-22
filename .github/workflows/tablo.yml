@@ -32,6 +32,7 @@ jobs:
       - run: python3 tools/tablo_expressions.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}  # 선택: 유튜브 챕터·영상 길이용 (없으면 AI 챕터)
           TABLO_DETAIL: ${{ github.event.inputs.detail }}
           TABLO_VIDEOS: ${{ github.event.inputs.videos }}
       - name: 결과 저장 (중간에 멈춰도 분석한 만큼은 저장)

@@ -170,7 +170,7 @@ def video_info(vid, key=None):
     """영상 길이(초)·제목·챕터. 실패하면 (0, "", []).
     유튜브는 GitHub 서버의 직접 접속을 막아서(403/429), YouTube Data API(googleapis.com)를 먼저 써요.
     같은 구글 프로젝트에서 'YouTube Data API v3'를 켜 두면 Gemini 키로 그대로 돼요."""
-    key = key or os.environ.get("YOUTUBE_API_KEY") or os.environ.get("GEMINI_API_KEY")
+    key = os.environ.get("YOUTUBE_API_KEY") or key or os.environ.get("GEMINI_API_KEY")
     if key:
         try:
             r = json.loads(http(f"https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id={vid}&key={key}"))
