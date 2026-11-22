@@ -278,6 +278,14 @@
     const nx = player.list[i + 1]; if (nx) audioURL(`audio/${nx.id}.m4a`).then(u => u.startsWith("blob:") && URL.revokeObjectURL(u));
     updatePlayerUI();
   }
+  // 10초 앞/뒤: 트랙 끝을 넘으면 다음 트랙으로
+  function seek(sec) {
+    const a = player.audio; if (!a || !player.list.length) return;
+    const t = a.currentTime + sec;
+    if (a.duration && t >= a.duration - 0.3) return loadTrack(player.i + 1, true);
+    a.currentTime = Math.max(0, t);
+    updatePlayerUI();
+  }
   function stopDrive() { if (player.audio) player.audio.pause(); player.mode = null; player.list = []; if (location.hash === "#drive") renderDrive(); }
   if ("mediaSession" in navigator) {
     const ms = navigator.mediaSession;
@@ -285,6 +293,10 @@
     ms.setActionHandler("pause", () => player.audio && player.audio.pause());
     ms.setActionHandler("nexttrack", () => player.list.length && loadTrack(Math.min(player.i + 1, player.list.length - 1), true));
     ms.setActionHandler("previoustrack", () => player.list.length && loadTrack(Math.max(player.i - 1, 0), true));
+    try {
+      ms.setActionHandler("seekbackward", d => seek(-((d && d.seekOffset) || 10)));
+      ms.setActionHandler("seekforward", d => seek((d && d.seekOffset) || 10));
+    } catch (e) {}
   }
   function updatePlayerUI() {
     if (location.hash !== "#drive" || !player.mode) return;
@@ -307,7 +319,7 @@
       ${player.mode ? `<div class="card player">
           <div class="muted" id="kind"></div><div class="now" id="now"></div>
           <div class="bar"><i id="prog"></i></div>
-          <div class="ctrl"><button id="prev" aria-label="이전">⏮</button><button id="pp" class="main" aria-label="재생/일시정지">▶</button><button id="next" aria-label="다음">⏭</button></div>
+          <div class="ctrl"><button id="prev" aria-label="이전 트랙">⏮</button><button id="back10" class="sk" aria-label="10초 뒤로">−10<small>초</small></button><button id="pp" class="main" aria-label="재생/일시정지">▶</button><button id="fwd10" class="sk" aria-label="10초 앞으로">+10<small>초</small></button><button id="next" aria-label="다음 트랙">⏭</button></div>
           <p class="muted" id="left" style="text-align:center;margin:0"></p></div>
         <div class="tracks">${player.list.map(t => `<div><span>${esc(t.title)} · ${t.kind}</span><span>${fmt(t.dur)}</span></div>`).join("")}</div>`
         : `<p class="muted">지금 기준 주제: ${cur.emoji} ${cur.day}일차 ${esc(cur.topic)}. 배운 주제가 늘어날수록 플레이리스트에 복습이 더 많이 섞여요.</p>`}
@@ -320,6 +332,8 @@
       $("#pp").onclick = () => player.audio.paused ? player.audio.play() : player.audio.pause();
       $("#prev").onclick = () => loadTrack(Math.max(player.i - 1, 0), true);
       $("#next").onclick = () => loadTrack(player.i + 1, true);
+      $("#back10").onclick = () => seek(-10);
+      $("#fwd10").onclick = () => seek(10);
       updatePlayerUI();
     }
     $("#offline").onclick = async e => {
