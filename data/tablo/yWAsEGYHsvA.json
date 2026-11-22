@@ -1,0 +1,820 @@
+{
+ "id": "yWAsEGYHsvA",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "Welcome to Hey Tablo.",
+   "lang": "en",
+   "tr": "헤이 타블로에 오신 것을 환영합니다.",
+   "notes": []
+  },
+  {
+   "sec": 2,
+   "time": "0:02",
+   "speaker": "Tablo",
+   "text": "We've been getting many requests from our subscribers and our listeners to re-invite DJ Tukutz.",
+   "lang": "en",
+   "tr": "구독자와 청취자분들로부터 DJ 투컷을 다시 초대해 달라는 요청을 많이 받았는데요.",
+   "notes": []
+  },
+  {
+   "sec": 11,
+   "time": "0:11",
+   "speaker": "Tablo",
+   "text": "But instead, I invited somebody who's intelligent.",
+   "lang": "en",
+   "tr": "하지만 그 대신 똑똑한 분을 모셨습니다.",
+   "notes": []
+  },
+  {
+   "sec": 16,
+   "time": "0:16",
+   "speaker": "Tablo",
+   "text": "We have 존박, John Park.",
+   "lang": "ko",
+   "tr": "We have John Park.",
+   "notes": []
+  },
+  {
+   "sec": 19,
+   "time": "0:19",
+   "speaker": "John Park",
+   "text": "Hey, how's it going?",
+   "lang": "en",
+   "tr": "안녕하세요, 잘 지내셨어요?",
+   "notes": []
+  },
+  {
+   "sec": 25,
+   "time": "0:25",
+   "speaker": "John Park",
+   "text": "It's great to be here. I'm a fan.",
+   "lang": "en",
+   "tr": "여기 나오게 돼서 너무 좋아요. 저 팬이거든요.",
+   "notes": []
+  },
+  {
+   "sec": 27,
+   "time": "0:27",
+   "speaker": "Tablo",
+   "text": "I'm a huge fan too.",
+   "lang": "en",
+   "tr": "저도 엄청 팬이에요.",
+   "notes": []
+  },
+  {
+   "sec": 28,
+   "time": "0:28",
+   "speaker": "John Park",
+   "text": "Thank you.",
+   "lang": "en",
+   "tr": "감사합니다.",
+   "notes": []
+  },
+  {
+   "sec": 29,
+   "time": "0:29",
+   "speaker": "Tablo",
+   "text": "I recently saw you walking down the street singing a song. You were like in Europe, I think?",
+   "lang": "en",
+   "tr": "최근에 길 걸어가면서 노래 부르시는 영상을 봤어요. 유럽이었던 것 같은데요?",
+   "notes": []
+  },
+  {
+   "sec": 34,
+   "time": "0:34",
+   "speaker": "John Park",
+   "text": "Maybe it was a Bruno Mars song?",
+   "lang": "en",
+   "tr": "아마 브루노 마스 노래였을걸요?",
+   "notes": []
+  },
+  {
+   "sec": 36,
+   "time": "0:36",
+   "speaker": "Tablo",
+   "text": "Yes!",
+   "lang": "en",
+   "tr": "맞아요!",
+   "notes": []
+  },
+  {
+   "sec": 36,
+   "time": "0:36",
+   "speaker": "John Park",
+   "text": "On the bridge?",
+   "lang": "en",
+   "tr": "다리 위에서요?",
+   "notes": []
+  },
+  {
+   "sec": 37,
+   "time": "0:37",
+   "speaker": "Tablo",
+   "text": "Yes! Yeah, yeah.",
+   "lang": "en",
+   "tr": "네! 맞아요, 맞아.",
+   "notes": []
+  },
+  {
+   "sec": 38,
+   "time": "0:38",
+   "speaker": "Tablo",
+   "text": "Damn.",
+   "lang": "en",
+   "tr": "진짜 대단하더라고요.",
+   "notes": [
+    {
+     "phrase": "damn",
+     "meaning": "감탄이나 찬사를 나타낼 때 쓰는 구어 감탄사로, '대박', '진짜 끝내준다'는 뉘앙스입니다."
+    }
+   ]
+  },
+  {
+   "sec": 39,
+   "time": "0:39",
+   "speaker": "John Park",
+   "text": "Thank you. Yeah, I have fun with our YouTube channel, which is called 존이냐 박이냐.",
+   "lang": "en",
+   "tr": "감사합니다. 네, '존이냐 박이냐'라는 저희 유튜브 채널에서 재미있게 하고 있어요.",
+   "notes": []
+  },
+  {
+   "sec": 44,
+   "time": "0:44",
+   "speaker": "Tablo",
+   "text": "Is it John or is it Park?",
+   "lang": "en",
+   "tr": "'존'인가요 '박'인가요?",
+   "notes": []
+  },
+  {
+   "sec": 46,
+   "time": "0:46",
+   "speaker": "John Park",
+   "text": "Yeah.",
+   "lang": "en",
+   "tr": "네.",
+   "notes": []
+  },
+  {
+   "sec": 46,
+   "time": "0:46",
+   "speaker": "Tablo",
+   "text": "Because people think your name is actually Park.",
+   "lang": "en",
+   "tr": "사람들이 본명이 진짜 '박'이라고 생각하잖아요.",
+   "notes": []
+  },
+  {
+   "sec": 49,
+   "time": "0:49",
+   "speaker": "John Park",
+   "text": "Right. It was like a meme from 무한도전. Anyways, it's great to be here.",
+   "lang": "en",
+   "tr": "맞아요. 무한도전에서 나온 밈 같은 거였죠. 아무튼 여기 오게 돼서 너무 좋습니다.",
+   "notes": [
+    {
+     "phrase": "meme",
+     "meaning": "인터넷이나 방송 등에서 유행하는 사진, 영상, 유행어를 뜻합니다."
+    }
+   ]
+  },
+  {
+   "sec": 54,
+   "time": "0:54",
+   "speaker": "Tablo",
+   "text": "Where are you from, by the way?",
+   "lang": "en",
+   "tr": "그나저나 고향이 어디세요?",
+   "notes": []
+  },
+  {
+   "sec": 56,
+   "time": "0:56",
+   "speaker": "John Park",
+   "text": "I'm from the suburbs of Chicago.",
+   "lang": "en",
+   "tr": "시카고 교외 출신이에요.",
+   "notes": [
+    {
+     "phrase": "suburbs",
+     "meaning": "대도시 외곽의 주택 지구, 교외 지역을 가리킵니다."
+    }
+   ]
+  },
+  {
+   "sec": 58,
+   "time": "0:58",
+   "speaker": "Tablo",
+   "text": "Where are you really from?",
+   "lang": "en",
+   "tr": "진짜 고향이 어디신데요?",
+   "notes": [
+    {
+     "phrase": "Where are you really from?",
+     "meaning": "미국 등 다인종 사회에서 유색인종에게 '진짜 인종적/혈통적 뿌리가 어디냐'고 묻는 뉘앙스의 질문으로, 타블로가 유머러스하게 패러디한 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 64,
+   "time": "1:04",
+   "speaker": "Tablo",
+   "text": "Suburbs of Chicago.",
+   "lang": "en",
+   "tr": "시카고 교외요.",
+   "notes": []
+  },
+  {
+   "sec": 65,
+   "time": "1:05",
+   "speaker": "John Park",
+   "text": "Yeah. I usually say Chicago, but then people think that I'm from the city, which is a misconception. I'm actually 40 minutes away from downtown.",
+   "lang": "en",
+   "tr": "네. 보통은 시카고라고 하는데, 그러면 사람들이 시내 출신인 줄 오해하더라고요. 사실 다운타운에서 40분 떨어진 곳이거든요.",
+   "notes": [
+    {
+     "phrase": "misconception",
+     "meaning": "잘못된 생각이나 오해를 뜻하는 명사입니다."
+    }
+   ]
+  },
+  {
+   "sec": 75,
+   "time": "1:15",
+   "speaker": "Tablo",
+   "text": "And is it not called Chicago over there?",
+   "lang": "en",
+   "tr": "그쪽 동네는 시카고라고 안 부르나요?",
+   "notes": []
+  },
+  {
+   "sec": 78,
+   "time": "1:18",
+   "speaker": "John Park",
+   "text": "It's a neighborhood called Northbrook.",
+   "lang": "en",
+   "tr": "노스브룩이라는 동네예요.",
+   "notes": []
+  },
+  {
+   "sec": 80,
+   "time": "1:20",
+   "speaker": "Tablo",
+   "text": "By the way, have you ever gotten 'Where are you really from?'",
+   "lang": "en",
+   "tr": "그나저나 '진짜 고향이 어디예요?'라는 질문 받아본 적 있어요?",
+   "notes": []
+  },
+  {
+   "sec": 84,
+   "time": "1:24",
+   "speaker": "John Park",
+   "text": "Never.",
+   "lang": "en",
+   "tr": "전혀 없어요.",
+   "notes": []
+  },
+  {
+   "sec": 85,
+   "time": "1:25",
+   "speaker": "Tablo",
+   "text": "In the States, you've never gotten that?",
+   "lang": "en",
+   "tr": "미국에서 그런 질문 한 번도 안 받아봤어요?",
+   "notes": []
+  },
+  {
+   "sec": 86,
+   "time": "1:26",
+   "speaker": "John Park",
+   "text": "Never. I never got that because...",
+   "lang": "en",
+   "tr": "한 번도요. 왜 안 받았냐면...",
+   "notes": []
+  },
+  {
+   "sec": 88,
+   "time": "1:28",
+   "speaker": "Tablo",
+   "text": "Lucky.",
+   "lang": "en",
+   "tr": "운 좋으시네요.",
+   "notes": []
+  },
+  {
+   "sec": 89,
+   "time": "1:29",
+   "speaker": "John Park",
+   "text": "Yeah, I guess I come off as a Korean American, I think.",
+   "lang": "en",
+   "tr": "제 생각엔 한국계 미국인 느낌이 확 나서 그런 것 같아요.",
+   "notes": [
+    {
+     "phrase": "come off as",
+     "meaning": "~한 인상을 주다, ~처럼 보이다라는 뜻의 구동사입니다."
+    }
+   ]
+  },
+  {
+   "sec": 94,
+   "time": "1:34",
+   "speaker": "Tablo",
+   "text": "I got that all the time because I come off as a Korean.",
+   "lang": "en",
+   "tr": "저는 그냥 한국인 느낌이라 그 질문 맨날 받았어요.",
+   "notes": []
+  },
+  {
+   "sec": 100,
+   "time": "1:40",
+   "speaker": "Tablo",
+   "text": "And my accent is also like, it's really hard to pinpoint where my accent is from because I'm from like Canada, I also spent some of the time in Korea as well.",
+   "lang": "en",
+   "tr": "그리고 제 억양도 캐나다 출신인 데다 한국에서도 시간을 보내서 어디 억양인지 딱 집어내기가 어렵거든요.",
+   "notes": [
+    {
+     "phrase": "pinpoint",
+     "meaning": "정확한 위치, 원인, 특징 등을 '정확히 집어내다/콕 집다'라는 뜻입니다."
+    }
+   ]
+  },
+  {
+   "sec": 111,
+   "time": "1:51",
+   "speaker": "Tablo",
+   "text": "So I got 'Where are you from?' so many times, even when I tell them I'm from Korea.",
+   "lang": "en",
+   "tr": "그래서 한국 출신이라고 말해도 '어디서 왔냐'는 질문을 엄청 많이 들었어요.",
+   "notes": []
+  },
+  {
+   "sec": 117,
+   "time": "1:57",
+   "speaker": "Tablo",
+   "text": "They're like, 'Where are you really from in Korea?' Like North or South?",
+   "lang": "en",
+   "tr": "사람들이 '한국 어디 출신인데요? 북한이요, 남한이요?' 이런 식인 거죠.",
+   "notes": []
+  },
+  {
+   "sec": 120,
+   "time": "2:00",
+   "speaker": "John Park",
+   "text": "What does that even mean? Oh, okay, okay.",
+   "lang": "en",
+   "tr": "그게 대체 무슨 소리예요? 아, 그렇군요.",
+   "notes": []
+  },
+  {
+   "sec": 124,
+   "time": "2:04",
+   "speaker": "Tablo",
+   "text": "And sometimes I'll just say North. Just to make them stop.",
+   "lang": "en",
+   "tr": "그래서 가끔은 그냥 북한이라고 해요. 말 좀 그만하게 만들려고요.",
+   "notes": []
+  },
+  {
+   "sec": 129,
+   "time": "2:09",
+   "speaker": "John Park",
+   "text": "Right, right.",
+   "lang": "en",
+   "tr": "맞아요, 맞아.",
+   "notes": []
+  },
+  {
+   "sec": 130,
+   "time": "2:10",
+   "speaker": "Tablo",
+   "text": "Anyways, today we wanted you and your intelligence, and your sophistication, and your class to simply do 'Would You Rather'.",
+   "lang": "en",
+   "tr": "어쨌든 오늘 존박 씨의 지성과 세련미, 품격을 모시고 그저 '밸런스 게임'을 해보려고 합니다.",
+   "notes": [
+    {
+     "phrase": "sophistication",
+     "meaning": "세련됨, 교양, 지적 세련미를 뜻합니다."
+    },
+    {
+     "phrase": "Would You Rather",
+     "meaning": "'A와 B 중 차라리 무엇을 택하겠는가?'를 묻는 미국의 대표적인 선택 게임(한국의 밸런스 게임)입니다."
+    }
+   ]
+  },
+  {
+   "sec": 143,
+   "time": "2:23",
+   "speaker": "John Park",
+   "text": "Okay.",
+   "lang": "en",
+   "tr": "좋습니다.",
+   "notes": []
+  },
+  {
+   "sec": 144,
+   "time": "2:24",
+   "speaker": "Tablo",
+   "text": "You're going to be using none of your brainpower. Very low stakes.",
+   "lang": "en",
+   "tr": "두뇌 회전은 전혀 안 쓰셔도 돼요. 부담 없는 게임이거든요.",
+   "notes": [
+    {
+     "phrase": "low stakes",
+     "meaning": "걸려 있는 위험이나 판돈이 작아서 부담이 없거나 가벼운 상황을 뜻합니다."
+    }
+   ]
+  },
+  {
+   "sec": 149,
+   "time": "2:29",
+   "speaker": "Tablo",
+   "text": "But these are just jump-off points for us to have a convo. I always wanted to get to know you better.",
+   "lang": "en",
+   "tr": "하지만 이건 대화를 나누기 위한 시작점일 뿐이에요. 늘 존박 씨를 더 잘 알고 싶었거든요.",
+   "notes": [
+    {
+     "phrase": "jump-off point",
+     "meaning": "논의나 대화를 시작하는 출발점, 발판을 뜻합니다."
+    },
+    {
+     "phrase": "convo",
+     "meaning": "conversation(대화)의 줄임말 구어 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 154,
+   "time": "2:34",
+   "speaker": "John Park",
+   "text": "You know, me too, because I'm a fan of your music, but also you as you, because just like...",
+   "lang": "en",
+   "tr": "저도 그래요. 형 음악 팬이기도 하지만, 사람 자체로서의 형 팬이기도 하거든요.",
+   "notes": [
+    {
+     "phrase": "you as you",
+     "meaning": "직업이나 겉모습이 아닌 '있는 그대로의 너'라는 의미입니다."
+    }
+   ]
+  },
+  {
+   "sec": 161,
+   "time": "2:41",
+   "speaker": "Tablo",
+   "text": "Thank you.",
+   "lang": "en",
+   "tr": "고마워요.",
+   "notes": []
+  },
+  {
+   "sec": 162,
+   "time": "2:42",
+   "speaker": "John Park",
+   "text": "Yeah, I mean...",
+   "lang": "en",
+   "tr": "네, 그러니까...",
+   "notes": []
+  },
+  {
+   "sec": 164,
+   "time": "2:44",
+   "speaker": "Tablo",
+   "text": "I don't get that that often.",
+   "lang": "en",
+   "tr": "그런 말 자주 못 듣는데 말이죠.",
+   "notes": []
+  },
+  {
+   "sec": 165,
+   "time": "2:45",
+   "speaker": "John Park",
+   "text": "Just listening to you speak, you're very introspective, but like not that serious. Like you don't take yourself too seriously, and I love that.",
+   "lang": "en",
+   "tr": "형 말씀하시는 걸 들으면 되게 성찰적이면서도 너무 무겁지는 않아요. 스스로를 너무 심각하게 받아들이지 않으셔서 그 점이 참 좋아요.",
+   "notes": [
+    {
+     "phrase": "introspective",
+     "meaning": "자기 성찰적인, 자신의 내면을 깊이 들여다보는 성향을 뜻합니다."
+    },
+    {
+     "phrase": "take oneself seriously",
+     "meaning": "자기 자신을 너무 엄숙하거나 거창하게 여기다, 젠체하다라는 의미입니다."
+    }
+   ]
+  },
+  {
+   "sec": 171,
+   "time": "2:51",
+   "speaker": "Tablo",
+   "text": "I don't. I can't take myself seriously. I try, but like...",
+   "lang": "en",
+   "tr": "안 그래요. 전 스스로를 심각하게 못 보겠더라고요. 노력은 해보지만...",
+   "notes": []
+  },
+  {
+   "sec": 177,
+   "time": "2:57",
+   "speaker": "Tablo",
+   "text": "I have two members making fun of me constantly. I have a wife and daughter who, you know, don't take me that seriously. Yeah, comes with the territory.",
+   "lang": "en",
+   "tr": "맨날 절 놀리는 멤버가 둘이나 있고, 저를 그렇게 진지하게 안 대하는 아내랑 딸도 있거든요. 뭐, 어쩔 수 없는 환경이죠.",
+   "notes": [
+    {
+     "phrase": "make fun of",
+     "meaning": "~를 놀리다, 장난치다라는 관용구입니다."
+    },
+    {
+     "phrase": "come with the territory",
+     "meaning": "어떤 위치나 상황에 당연히 따라붙는 일이다, 감수해야 할 일이다라는 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 188,
+   "time": "3:08",
+   "speaker": "John Park",
+   "text": "Yeah, but I love that, and whenever you give like a piece of advice or you speak your mind, I usually relate to it and I feel in a very similar way.",
+   "lang": "en",
+   "tr": "네, 그래도 전 그게 좋아요. 형이 조언을 해주거나 소신을 밝힐 때마다 전 대체로 공감하고 아주 비슷하게 느끼거든요.",
+   "notes": [
+    {
+     "phrase": "speak one's mind",
+     "meaning": "자신의 솔직한 생각이나 소신을 가감 없이 말하다라는 뜻입니다."
+    },
+    {
+     "phrase": "relate to",
+     "meaning": "~에 공감하다, 깊이 공감대를 형성하다라는 뜻입니다."
+    }
+   ]
+  },
+  {
+   "sec": 198,
+   "time": "3:18",
+   "speaker": "Tablo",
+   "text": "Usually?",
+   "lang": "en",
+   "tr": "'대체로'요?",
+   "notes": []
+  },
+  {
+   "sec": 200,
+   "time": "3:20",
+   "speaker": "John Park",
+   "text": "Mostly.",
+   "lang": "en",
+   "tr": "대부분은요.",
+   "notes": []
+  },
+  {
+   "sec": 200,
+   "time": "3:20",
+   "speaker": "Tablo",
+   "text": "What do you disagree so much with? Like, what are you so against that I said?",
+   "lang": "en",
+   "tr": "도대체 제 말의 어떤 점에 그렇게 반대하시는 건데요? 제가 한 말 중에 뭐가 그렇게 마음에 안 드셨어요?",
+   "notes": [
+    {
+     "phrase": "be against",
+     "meaning": "~에 반대하다, 못마땅하게 여기다라는 의미입니다."
+    }
+   ]
+  },
+  {
+   "sec": 205,
+   "time": "3:25",
+   "speaker": "John Park",
+   "text": "Let's find out.",
+   "lang": "en",
+   "tr": "한번 알아보죠.",
+   "notes": []
+  },
+  {
+   "sec": 206,
+   "time": "3:26",
+   "speaker": "Tablo",
+   "text": "Let's find out. Okay, first 'Would You Rather'—we're going to start kind of soft, kind of easy.",
+   "lang": "en",
+   "tr": "알아봅시다. 자, 첫 번째 밸런스 게임 질문입니다. 가볍고 쉬운 것부터 시작해 볼게요.",
+   "notes": []
+  },
+  {
+   "sec": 214,
+   "time": "3:34",
+   "speaker": "Tablo",
+   "text": "Would you rather have John Park's voice—may I hear just your voice so that our audience...",
+   "lang": "en",
+   "tr": "차라리 존박의 노래 목소리를 갖겠는가—우리 청취자분들을 위해 목소리 한 번만 들려주시겠어요?",
+   "notes": []
+  },
+  {
+   "sec": 220,
+   "time": "3:40",
+   "speaker": "John Park",
+   "text": "Yeah.",
+   "lang": "en",
+   "tr": "네.",
+   "notes": []
+  },
+  {
+   "sec": 225,
+   "time": "3:45",
+   "speaker": "Tablo",
+   "text": "Damn!",
+   "lang": "en",
+   "tr": "와, 대박!",
+   "notes": []
+  },
+  {
+   "sec": 227,
+   "time": "3:47",
+   "speaker": "Tablo",
+   "text": "You can have John Park's voice when you sing, but when you speak, you sound like a mosquito. Or DJ Tukutz, cuz same thing, right?",
+   "lang": "en",
+   "tr": "노래할 땐 존박 목소리를 갖지만 말할 땐 모기 목소리가 난다. 아니면 DJ 투컷 목소리요, 뭐 똑같으니까요.",
+   "notes": []
+  },
+  {
+   "sec": 238,
+   "time": "3:58",
+   "speaker": "Tablo",
+   "text": "Or have a mosquito singing voice, but your normal voice sounds like Tom Hiddleston, Loki. Loki's got a great speaking voice.",
+   "lang": "en",
+   "tr": "아니면 노래할 땐 모기 목소리인데 평소 목소리는 톰 히들스턴, 즉 로키 목소리가 난다. 로키 말하는 목소리 정말 좋잖아요.",
+   "notes": []
+  },
+  {
+   "sec": 248,
+   "time": "4:08",
+   "speaker": "Tablo",
+   "text": "Do we also get his accent? Oh shit, I would kill for that accent.",
+   "lang": "en",
+   "tr": "그 배우 억양까지 같이 얻는 건가요? 와, 나 그 억양 얻으려고 무슨 짓이든 하겠는데.",
+   "notes": [
+    {
+     "phrase": "would kill for",
+     "meaning": "~을 얻기 위해서라면 무슨 짓이든 할 정도로 정말 간절히 원한다는 구어 과장 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 253,
+   "time": "4:13",
+   "speaker": "John Park",
+   "text": "I mean, this, it's...",
+   "lang": "en",
+   "tr": "제 말은, 이건...",
+   "notes": []
+  },
+  {
+   "sec": 254,
+   "time": "4:14",
+   "speaker": "Tablo",
+   "text": "First of all, can you do an English accent?",
+   "lang": "en",
+   "tr": "그나저나 영국 억양 흉내 낼 줄 아세요?",
+   "notes": []
+  },
+  {
+   "sec": 256,
+   "time": "4:16",
+   "speaker": "John Park",
+   "text": "No, no, I can't do it properly, no.",
+   "lang": "en",
+   "tr": "아뇨, 아뇨, 제대로는 못 해요.",
+   "notes": []
+  },
+  {
+   "sec": 259,
+   "time": "4:19",
+   "speaker": "Tablo",
+   "text": "Oh, you can't?",
+   "lang": "en",
+   "tr": "아, 못해요?",
+   "notes": []
+  },
+  {
+   "sec": 260,
+   "time": "4:20",
+   "speaker": "John Park",
+   "text": "I don't think you can either.",
+   "lang": "en",
+   "tr": "형도 못 하실 것 같은데요.",
+   "notes": []
+  },
+  {
+   "sec": 262,
+   "time": "4:22",
+   "speaker": "Tablo",
+   "text": "Are you sure? Would you like a bottle of water?",
+   "lang": "en",
+   "tr": "확실해요? 물 한 병 드릴까요?",
+   "notes": [
+    {
+     "phrase": "bottle of water",
+     "meaning": "영국식 발음(성문 파열음이나 t 탈락 등)의 대표적인 스테레오타입 밈으로 자주 쓰이는 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 266,
+   "time": "4:26",
+   "speaker": "John Park",
+   "text": "Is that right, mate?",
+   "lang": "en",
+   "tr": "진짜 그래, 친구?",
+   "notes": [
+    {
+     "phrase": "mate",
+     "meaning": "영국이나 호주 등에서 친구를 친근하게 부를 때 쓰는 호칭입니다."
+    }
+   ]
+  },
+  {
+   "sec": 268,
+   "time": "4:28",
+   "speaker": "Tablo",
+   "text": "Not bad! Isn't that Australian?",
+   "lang": "en",
+   "tr": "나쁘지 않은데요! 그거 호주 억양 아니에요?",
+   "notes": []
+  },
+  {
+   "sec": 270,
+   "time": "4:30",
+   "speaker": "John Park",
+   "text": "I have no idea.",
+   "lang": "en",
+   "tr": "전혀 모르겠어요.",
+   "notes": []
+  },
+  {
+   "sec": 271,
+   "time": "4:31",
+   "speaker": "Tablo",
+   "text": "I don't either. Yeah, it's a fine line. It's like, Harry Potter!",
+   "lang": "en",
+   "tr": "저도 몰라요. 원래 한 끗 차이잖아요. '해리 포터!' 이런 느낌이죠.",
+   "notes": [
+    {
+     "phrase": "fine line",
+     "meaning": "구별하기 매우 미묘한 작은 차이나 경계선을 의미합니다."
+    }
+   ]
+  },
+  {
+   "sec": 276,
+   "time": "4:36",
+   "speaker": "John Park",
+   "text": "I have enough trouble speaking two languages and that's enough for me.",
+   "lang": "en",
+   "tr": "저는 두 개 언어 하는 것만으로도 벅차서 그걸로 충분해요.",
+   "notes": [
+    {
+     "phrase": "have trouble -ing",
+     "meaning": "~하는 데 어려움을 겪다, 애를 먹다라는 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 281,
+   "time": "4:41",
+   "speaker": "Tablo",
+   "text": "Okay, which would you rather have? Your own voice—so you get to keep your own voice, but when you talk, you sound like a mosquito. You're like on YouTube, you're like 'Hi, I'm John...'",
+   "lang": "en",
+   "tr": "좋아요, 둘 중 어느 쪽을 택하시겠어요? 본인 목소리—노래할 땐 자기 목소리를 유지하지만 말할 땐 모기 소리가 나는 거죠. 유튜브에서 '안녕하세요, 전 존...' 이러면서요.",
+   "notes": []
+  },
+  {
+   "sec": 291,
+   "time": "4:51",
+   "speaker": "Tablo",
+   "text": "Hi, I'm John Park. 저 존박이에요.",
+   "lang": "ko",
+   "tr": "Hi, I'm John Park. I'm John Park.",
+   "notes": []
+  },
+  {
+   "sec": 296,
+   "time": "4:56",
+   "speaker": "Tablo",
+   "text": "Or when you sing, you're like...",
+   "lang": "en",
+   "tr": "아니면 노래할 때...",
+   "notes": []
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 300,
+   "summary": "타블로의 팟캐스트에 가수 존박이 게스트로 출연하여 출신지 이야기와 서로에 대한 팬심을 나눈 뒤, 가벼운 밸런스 게임(Would You Rather) 토크를 시작합니다."
+  }
+ ],
+ "done_sec": 300,
+ "duration": 300,
+ "title": "John Park is like Tukutz but way SMARTER",
+ "url": "https://www.youtube.com/watch?v=yWAsEGYHsvA"
+}
