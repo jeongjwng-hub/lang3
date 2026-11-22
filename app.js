@@ -313,7 +313,7 @@
   function renderDrive() {
     const cur = focusLesson();
     view.innerHTML = `
-      <div class="card"><h3>🚗 드라이브 모드</h3>
+      <div class="card"><h3>🚗 듣기</h3>
         <p class="muted">화면을 꺼도 계속 재생돼요. 한국어 뜻 → 외국어 2번 → <b>따라 말하기</b> → 한 번 더 순서예요. 퀴즈는 한국어를 듣고 먼저 말한 뒤 정답을 들어요.</p></div>
       <div class="modes">${Object.entries(MODES).map(([k, m]) => `<button data-mode="${k}" class="${player.mode === k ? "on" : ""}"><b>${m.label}${m.min ? ` ${m.min}분` : ""}</b><small>${m.desc}</small></button>`).join("")}</div>
       ${player.mode ? `<div class="card player">
@@ -362,6 +362,7 @@
 
   // ---------- 화면: 타블로 영상 표현 (Gemini 분석 → data/tablo.json) ----------
   let TABLO = { videos: [] };
+  let tbHideKo = true; // Tablo 화면은 처음부터 뜻을 가려요
   if (!S.tb) S.tb = {};
   if (!S.tbStar) S.tbStar = {}; // 대사 보기에서 ⭐ 누른 줄 (카드로 외우기)
   const DET = {}; // 영상별 대사 한 줄씩 분석 (data/tablo/<id>.json, 필요할 때 불러와요)
@@ -391,7 +392,7 @@
     return `<div class="item">
       <div class="phrase">${esc(x.phrase)} <span class="badge">${esc(x.level)}</span>${st ? ` <span class="badge ok">복습 ${st.stage}단계</span>` : ""}</div>
       <div class="tx" lang="en">“${mark(x.quote, x.phrase)}”</div>
-      <div class="ko ${hideKo ? "hid" : ""}">${esc(x.ko)}</div>
+      <div class="ko ${tbHideKo ? "hid" : ""}">${esc(x.ko)}</div>
       <div class="play"><button data-say="${esc(x.quote)}">🔊 듣기</button><button data-say="${esc(x.quote)}" data-slow="1">🐢 천천히</button>
         <a class="pill" href="${ytAt(x)}" target="_blank" rel="noopener">▶ 영상${x.time ? ` ${esc(x.time)}` : ""}</a></div>
       <div class="note">${esc(x.meaning)}</div>
@@ -429,7 +430,7 @@
         <span class="acts">${l.lang === "en" ? `<button class="mini" data-say="${esc(l.text)}">🔊</button><button class="mini star ${star ? "on" : ""}" data-star="${esc(id)}" title="카드 학습에 추가">${star ? "⭐" : "☆"}</button>` : ""}
         <button class="mini mk ${mk ? "on" : ""}" data-mark="${i}" title="책갈피">${mk ? "🔖" : "🏷️"}</button></span></div>
       <div class="lt" lang="${l.lang}">${markNotes(l.text, l.notes)}</div>
-      <div class="ko ${hideKo ? "hid" : ""}">${esc(l.tr)}</div>
+      <div class="ko ${tbHideKo ? "hid" : ""}">${esc(l.tr)}</div>
       ${l.notes.length ? `<div class="lnotes">${l.notes.map(n => `<div><b>${esc(n.phrase)}</b> ${esc(n.meaning)}</div>`).join("")}</div>` : ""}
       ${mk && mk.memo ? `<div class="memo">📝 ${esc(mk.memo)}</div>` : ""}
     </div>`;
@@ -511,12 +512,12 @@
       const v = TABLO.videos.find(v => v.id === vid);
       if (v) {
         view.innerHTML = `<div class="hero"><div class="day">${v.date ? esc(v.date) + " · " : ""}@heytablo</div><h2>${esc(v.title)}</h2><p>${esc(v.summary)}</p>
-          <div class="play" style="margin-top:12px"><a class="pill" href="${esc(v.url)}" target="_blank" rel="noopener">▶ 유튜브에서 보기</a><button id="hideko">${hideKo ? "🙈 뜻 보이기" : "🙈 뜻 가리기"}</button></div></div>
+          <div class="play" style="margin-top:12px"><a class="pill" href="${esc(v.url)}" target="_blank" rel="noopener">▶ 유튜브에서 보기</a><button id="hideko">${tbHideKo ? "🙈 뜻 보이기" : "🙈 뜻 가리기"}</button></div></div>
           ${v.expressions.length || !v.detail ? `<section class="lang en"><div class="head">🎬 이 영상의 표현<small>${v.expressions.length}개</small></div>
           <div class="body">${v.expressions.map(x => tbExpHTML({ ...x, video: v })).join("") || `<p class="muted">이 영상에서는 고를 만한 영어 표현이 없었어요.</p>`}</div></section>` : ""}
           ${v.detail ? detailHTML(v, DET[vid]) : ""}
           <a class="btn ghost" href="#tablo">← 영상 목록</a>`;
-        $("#hideko").onclick = () => { hideKo = !hideKo; renderTablo(vid); };
+        $("#hideko").onclick = () => { tbHideKo = !tbHideKo; rerenderDetail(vid); };
         if (v.detail) loadDetail(vid);
         if (tbPanel && !DET[vid]) tbPanel = null;
         return;
@@ -524,7 +525,7 @@
     }
     const due = tbDue().length, nw = tbNew().length, all = tbAll().length;
     view.innerHTML = `
-      <div class="card"><h3>🎬 타블로 영상 표현</h3>
+      <div class="card"><h3>🎬 Tablo 영상 표현</h3>
         <p class="muted">@heytablo 새 영상을 Gemini가 매일 분석해서 실제로 쓰인 영어 표현을 골라 줘요. 카드로 외우면 1→3→7→14→30일 간격으로 다시 나와요.</p>
         <p class="muted">전체 ${all}개 · 새 표현 ${nw}개 · 오늘 복습 ${due}개</p></div>
       ${due || nw ? `<button class="btn" id="tbStart">카드 학습 시작 · 복습 ${due} + 새 표현 ${Math.min(nw, 10)}</button>` : all ? `<p class="muted" style="text-align:center">오늘 할 카드가 없어요 👍</p>` : ""}
@@ -532,7 +533,7 @@
         <span class="grow">${esc(v.title || v.id)}<small>${v.detail ? `📜 대사 ${v.detail.lines}줄 · 표현 노트 ${v.detail.notes}개${v.detail.status === "done" ? "" : v.detail.duration ? ` · 분석 ${Math.round(v.detail.done_sec / v.detail.duration * 100)}%` : " · 분석 대기"}`
           : `${esc(v.date)} · 표현 ${v.expressions.length}개${v.expressions[0] ? ` · ${esc(v.expressions.slice(0, 2).map(x => x.phrase).join(", "))}…` : ""}`}</small></span>
         <span class="badge ${v.detail ? "" : v.expressions.every(x => S.tb[x.id]) && v.expressions.length ? "ok" : ""}">${v.detail ? (v.detail.status === "done" ? "완료" : "분석 중") : `${v.expressions.filter(x => S.tb[x.id]).length}/${v.expressions.length}`}</span></a>`).join("")
-        || `<p class="muted" style="text-align:center">아직 분석한 영상이 없어요. GitHub Actions의 “타블로 영상 표현 정리”가 실행되면 여기에 나타나요.</p>`}</div>`;
+        || `<p class="muted" style="text-align:center">아직 분석한 영상이 없어요. 매일 분석이 돌면 여기에 나타나요.</p>`}</div>`;
     $("#tbStart") && ($("#tbStart").onclick = () => {
       tbSession = { cards: shuffle([...tbDue(), ...tbNew().slice(0, 10)]), i: 0, shown: false, wrong: new Set() };
       renderTbCard();
@@ -557,7 +558,7 @@
         ${c.meaning ? `<p class="muted">힌트: ${esc(c.meaning)}</p>` : ""}
         ${s.shown ? `<div class="ans" lang="en">“${mark(c.quote, c.phrase)}”</div>
           <div class="play" style="justify-content:center"><button data-say="${esc(c.quote)}">🔊 다시 듣기</button><a class="pill" href="${ytAt(c)}" target="_blank" rel="noopener">▶ 영상</a></div>
-          ${c.example ? `<p class="muted" lang="en">${esc(c.example)}</p>` : ""}` : `<p class="muted">타블로가 영어로 뭐라고 했을지 먼저 말해 보세요</p>`}
+          ${c.example ? `<p class="muted" lang="en">${esc(c.example)}</p>` : ""}` : `<p class="muted">Tablo가 영어로 뭐라고 했을지 먼저 말해 보세요</p>`}
       </div>
       ${s.shown ? `<div class="row2"><button class="btn ghost" id="bad">😅 헷갈려요</button><button class="btn" id="good">😊 알았어요</button></div>`
         : `<button class="btn" id="show">정답 보기</button>`}
@@ -623,7 +624,7 @@
         meaning: l.notes.map(n => n.meaning).join(" / "), example: "", example_ko: "", time: l.time, sec: l.sec, level: "" };
       save(); st.classList.toggle("on", !!S.tbStar[id]); st.textContent = S.tbStar[id] ? "⭐" : "☆";
     }
-    const ko = e.target.closest(".ko.hid"); if (ko) ko.classList.remove("hid");
+    const ko = e.target.closest(".ko.hid, .ko.peek"); if (ko) { ko.classList.toggle("hid"); ko.classList.toggle("peek"); }
   });
   view.addEventListener("toggle", e => {
     const dt = e.target; if (!dt.matches || !dt.matches("details.chap")) return;
