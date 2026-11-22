@@ -90,7 +90,7 @@ def main():
                 out = os.path.join(AUDIO, "items", it["id"] + ".m4a")
                 manifest["items"][it["id"]] = build(out, f"{ENGINE}|{lang}|{t}", lambda: silence(0.15) + speak(lang, t) + silence(0.3))
 
-        # 2) 학습 트랙: 한국어 뜻 → 외국어 → 천천히 → (따라 말하기) → 한 번 더
+        # 2) 학습 트랙: 한국어 뜻 → 외국어 → 한 번 더 → (따라 말하기) → 한 번 더 (모두 보통 속도)
         def learn():
             pcm = speak("ko", f"{L['day']}일차. 오늘의 주제는 {L['topic']}입니다.") + silence(1.2)
             for lang, items in groups:
@@ -99,7 +99,7 @@ def main():
                     t = plain(it)
                     pcm += speak("ko", it["ko"]) + silence(0.7)
                     pcm += speak(lang, t) + silence(0.9)
-                    pcm += speak(lang, t, SLOW[lang]) + silence(3.0)
+                    pcm += speak(lang, t) + silence(3.0)  # 2번째도 보통 속도 (사용자 요청)
                     pcm += speak(lang, t) + silence(1.5)
             return pcm + speak("ko", "학습 트랙 끝.") + silence(1.0)
 
@@ -118,7 +118,7 @@ def main():
         sig = json.dumps([L["day"], L["topic"], [[plain(i), i["ko"]] for _, its in groups for i in its]], ensure_ascii=False)
         for kind, fn in (("learn", learn), ("quiz", quiz)):
             out = os.path.join(AUDIO, f"{L['id']}-{kind}.m4a")
-            manifest["tracks"][f"{L['id']}-{kind}"] = build(out, f"{ENGINE}|{kind}|{sig}", fn)
+            manifest["tracks"][f"{L['id']}-{kind}"] = build(out, f"{ENGINE}|{kind}|noslow|{sig}", fn)
             print(f"{L['id']}-{kind}: {manifest['tracks'][L['id'] + '-' + kind]}s")
 
     json.dump(manifest, open(os.path.join(AUDIO, "manifest.json"), "w"), indent=1)
