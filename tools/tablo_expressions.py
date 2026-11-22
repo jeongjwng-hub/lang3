@@ -3,7 +3,7 @@
 외워 둘 만한 영어 표현을 data/tablo.json 에 쌓습니다.
 
 필요:  환경변수 GEMINI_API_KEY  (https://aistudio.google.com/apikey 에서 발급)
-선택:  GEMINI_MODEL  (기본 gemini-flash-latest)
+선택:  GEMINI_MODEL  (쉼표로 여러 개, 앞에서부터 시도 · 기본 gemini-flash-latest → gemini-2.5-flash → gemini-flash-lite-latest)
        TABLO_MAX     (한 번에 분석할 새 영상 수, 기본 1)
        TABLO_VIDEOS  (채널 대신 이 영상 URL/ID만 분석, 쉼표로 구분)
        TABLO_DETAIL  (이 영상을 '대사 한 줄씩 자세히' 대기열 맨 앞에 추가, 쉼표로 구분)
@@ -23,7 +23,9 @@ import xml.etree.ElementTree as ET
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "tablo.json")
 HANDLE = "heytablo"
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
+# 앞 모델이 "사용량 많음(503)"이거나 없는 모델(404)이면 다음 모델로 넘어가요
+MODELS = [m.strip() for m in os.environ.get("GEMINI_MODEL", "gemini-flash-latest,gemini-2.5-flash,gemini-flash-lite-latest").split(",") if m.strip()]
+MODEL = MODELS[0]
 MAX_NEW = int(os.environ.get("TABLO_MAX", "1"))
 CHUNK = 300          # 자세히 모드 구간 길이(초)
 CHUNKS = int(os.environ.get("TABLO_CHUNKS", "4"))
@@ -185,20 +187,34 @@ def analyze(video, key, prompt=PROMPT, schema=SCHEMA, start=None, end=None):
             "mediaResolution": "MEDIA_RESOLUTION_LOW",  # 화면보다 말소리가 중요해서 토큰 절약
         },
     }
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
-    for attempt in range(4):
-        try:
-            raw = http(url, json.dumps(body).encode(), {"Content-Type": "application/json", "x-goog-api-key": key}, timeout=600)
-            break
-        except urllib.error.HTTPError as e:
-            msg = e.read().decode()[-500:]
-            if e.code in (429, 500, 503) and attempt < 3:
-                print(f"  잠시 후 다시 시도 ({e.code}): {msg[-200:]}", flush=True)
-                time.sleep(60 * 2 ** attempt)  # 1분, 2분, 4분
+    raw, last = None, None
+    for rnd in range(2):  # 모든 모델을 두 바퀴까지
+        for model in MODELS:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+            try:
+                raw = http(url, json.dumps(body).encode(), {"Content-Type": "application/json", "x-goog-api-key": key}, timeout=300)
+                analyze.used = model
+                break
+            except urllib.error.HTTPError as e:
+                msg = e.read().decode()[-400:]
+                last = RuntimeError(f"Gemini 오류 {e.code} ({model}): {msg}")
+                last.code = e.code
+                if e.code == 404 or e.code in (429, 500, 503):
+                    print(f"  {model}: {e.code} → 다음 모델", flush=True)
+                    time.sleep(20)
+                    continue
+                raise last  # 400 등은 바로 알려요 (영상 끝을 넘긴 구간 판단에 써요)
+            except (TimeoutError, urllib.error.URLError) as e:
+                last = RuntimeError(f"연결 문제 ({model}): {e}")
+                last.code = 0
+                print(f"  {model}: 시간 초과/연결 문제 → 다음 모델", flush=True)
                 continue
-            err = RuntimeError(f"Gemini 오류 {e.code}: {msg}")
-            err.code = e.code
-            raise err
+        if raw is not None:
+            break
+        print("  모든 모델이 바빠요. 2분 쉬고 한 바퀴 더", flush=True)
+        time.sleep(120)
+    if raw is None:
+        raise last
     res = json.loads(raw)
     try:
         text = "".join(p.get("text", "") for p in res["candidates"][0]["content"]["parts"])
@@ -287,7 +303,7 @@ def run_detail(db, vid, key):
                                "tr": str(x.get("tr", "")).strip(),
                                "notes": [{"phrase": str(o.get("phrase", "")).strip(), "meaning": str(o.get("meaning", "")).strip()}
                                          for o in x.get("notes", []) if o.get("phrase")][:3]})
-        d["sections"].append({"start": a, "end": b, "summary": r.get("summary", "")})
+        d["sections"].append({"start": a, "end": b, "summary": r.get("summary", ""), "model": getattr(analyze, "used", MODEL)})
         d["done_sec"] = b
         if not dur and not lines:  # 길이를 모를 때 빈 구간이면 끝으로 봐요
             d["duration"] = dur = a
@@ -346,7 +362,7 @@ def run_quick(db, key):
             x["sec"] = secs(x["time"])
             exps.append(x)
         db["videos"].append({**v, "summary": r.get("summary", ""), "expressions": exps,
-                             "analyzed": datetime.date.today().isoformat(), "model": MODEL})
+                             "analyzed": datetime.date.today().isoformat(), "model": getattr(analyze, "used", MODEL)})
         save(db)
         print(f"  표현 {len(exps)}개", flush=True)
 
