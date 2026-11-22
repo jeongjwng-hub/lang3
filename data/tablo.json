@@ -17,6 +17,41 @@
     "notes": 323
    },
    "analyzed": "2026-11-22"
+  },
+  {
+   "id": "0gY_UgQUXfo",
+   "title": "Has anybody seen him cry?! #heytablo #podcast #헤이타블로",
+   "date": "2026-11-22",
+   "url": "https://www.youtube.com/watch?v=0gY_UgQUXfo",
+   "summary": "이 영상에서 타블로는 에픽하이 멤버 투컷이 무대 위에서 눈물을 짜내려고 어색하게 흉내 내던 일화를 유쾌하게 폭로합니다. 멤버들이 감동받아 눈물을 흘릴 때 투컷이 억지로 눈물을 짜내려던 모습이 웃음을 자아냅니다.",
+   "expressions": [
+    {
+     "phrase": "shed a tear",
+     "quote": "I saw... once on stage, I saw Tukutz, trying to shed a tear.",
+     "ko": "한 번은 무대에서 투컷을 봤는데 눈물을 흘리려고 애쓰더라고요.",
+     "meaning": "실제로 눈물을 흘리며 울다라는 뜻으로, 슬픔이나 감동 등으로 눈물이 눈가에 맺히거나 떨어지는 상황을 나타냅니다.",
+     "example": "She tried hard not to shed a tear during the emotional graduation speech.",
+     "example_ko": "그녀는 감동적인 졸업식 연설 동안 눈물을 흘리지 않으려고 애썼다.",
+     "time": "0:09",
+     "level": "중급",
+     "id": "tb-0gY_UgQUXfo-1",
+     "sec": 9
+    },
+    {
+     "phrase": "squeeze out",
+     "quote": "trying to squeeze one drop out of there.",
+     "ko": "한 방울이라도 짜내려고요.",
+     "meaning": "액체 등을 쥐어짜다라는 뜻에서 유래하여, 눈물이나 감정 등을 쥐어짜듯 억지로 끌어내는 상황을 표현할 때 씁니다.",
+     "example": "He couldn't squeeze out a single idea for the new project.",
+     "example_ko": "그는 새 프로젝트를 위한 아이디어를 단 하나도 쥐어짜내지 못했다.",
+     "time": "0:25",
+     "level": "고급",
+     "id": "tb-0gY_UgQUXfo-2",
+     "sec": 25
+    }
+   ],
+   "analyzed": "2026-11-22",
+   "model": "gemini-flash-lite-latest"
   }
  ],
  "queue": []
