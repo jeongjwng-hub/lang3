@@ -29,6 +29,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main  # 대기하던 실행도 가장 최신 분석 결과에서 이어서 하도록
       - run: python3 tools/tablo_expressions.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -43,5 +45,5 @@ jobs:
           git add -A data/
           git diff --cached --quiet && exit 0
           git commit -m "타블로 영상 분석 결과 추가"
-          for i in 1 2 3; do git pull --rebase -q origin main && git push && exit 0; sleep 5; done
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && exit 0; git rebase --abort 2>/dev/null; sleep 5; done
           exit 1
