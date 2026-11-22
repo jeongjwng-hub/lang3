@@ -363,7 +363,11 @@
   // ---------- 화면: 타블로 영상 표현 (Gemini 분석 → data/tablo.json) ----------
   let TABLO = { videos: [] };
   if (!S.tb) S.tb = {};
-  const tbAll = () => TABLO.videos.flatMap(v => v.expressions.map(x => ({ ...x, video: v })));
+  if (!S.tbStar) S.tbStar = {}; // 대사 보기에서 ⭐ 누른 줄 (카드로 외우기)
+  const DET = {}; // 영상별 대사 한 줄씩 분석 (data/tablo/<id>.json, 필요할 때 불러와요)
+  const tbVideo = id => TABLO.videos.find(v => v.id === id) || { id, title: "", expressions: [] };
+  const tbAll = () => [...TABLO.videos.flatMap(v => v.expressions.map(x => ({ ...x, video: v }))),
+    ...Object.values(S.tbStar).map(x => ({ ...x, video: tbVideo(x.vid) }))];
   const tbDue = () => tbAll().filter(x => {
     const r = S.tb[x.id]; if (!r) return false;
     return r.stage < INTERVALS.length && daysBetween(r.last, today()) >= INTERVALS[r.stage];
@@ -394,17 +398,60 @@
       <div class="simple">예문 <b lang="en">${esc(x.example)}</b> <button class="mini" data-say="${esc(x.example)}">🔊</button><br>${esc(x.example_ko)}</div>
     </div>`;
   }
+  const fmtT = s => s >= 3600 ? `${Math.floor(s / 3600)}:${String(Math.floor(s / 60) % 60).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}` : `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+  const lineId = (vid, l) => `tl-${vid}-${l.sec}-${l.text.length}`;
+  const spkClass = sp => "sp" + ([...sp].reduce((n, c) => n + c.charCodeAt(0), 0) % 4);
+  function markNotes(text, notes) {
+    let h = esc(text);
+    notes.forEach(n => { const p = esc(n.phrase); const i = h.toLowerCase().indexOf(p.toLowerCase()); if (p && i >= 0) h = h.slice(0, i) + `<mark>${h.slice(i, i + p.length)}</mark>` + h.slice(i + p.length); });
+    return h;
+  }
+  function detailHTML(v, d) {
+    const prog = v.detail || {};
+    const head = `<div class="head">📜 대사 한 줄씩<small>${d ? `${d.lines.length}줄` : ""}${prog.status !== "done" && prog.duration ? ` · 분석 ${fmtT(prog.done_sec)} / ${fmtT(prog.duration)}` : prog.status === "queued" ? " · 분석 대기 중" : ""}</small></div>`;
+    if (!d) return `<section class="lang en script">${head}<div class="body"><p class="muted">${prog.status === "queued" ? "곧 분석을 시작해요. 5분 구간씩 차례로 채워져요." : "불러오는 중…"}</p></div></section>`;
+    let html = "", si = 0;
+    const secs = d.sections || [];
+    d.lines.forEach(l => {
+      while (si < secs.length && l.sec >= secs[si].start) {
+        html += `<div class="sec">${fmtT(secs[si].start)}~${fmtT(secs[si].end)} · ${esc(secs[si].summary)}</div>`; si++;
+      }
+      const id = lineId(v.id, l), star = !!S.tbStar[id];
+      html += `<div class="line ${l.lang}">
+        <div class="lh"><a class="t" href="https://www.youtube.com/watch?v=${v.id}&t=${l.sec}s" target="_blank" rel="noopener">${esc(l.time)}</a>
+          <span class="spk ${spkClass(l.speaker)}">${esc(l.speaker)}</span>
+          ${l.lang === "en" ? `<button class="mini" data-say="${esc(l.text)}">🔊</button><button class="mini star ${star ? "on" : ""}" data-star="${esc(id)}">${star ? "⭐" : "☆"}</button>` : ""}</div>
+        <div class="lt" lang="${l.lang}">${markNotes(l.text, l.notes)}</div>
+        <div class="ko ${hideKo ? "hid" : ""}">${esc(l.tr)}</div>
+        ${l.notes.length ? `<div class="lnotes">${l.notes.map(n => `<div><b>${esc(n.phrase)}</b> ${esc(n.meaning)}</div>`).join("")}</div>` : ""}
+      </div>`;
+    });
+    return `<section class="lang en script">${head}<div class="body">
+      <p class="muted">☆를 누르면 그 대사가 카드 학습에 들어가요. 시각을 누르면 그 장면부터 재생돼요.</p>${html}
+      ${prog.status !== "done" ? `<p class="muted" style="text-align:center">나머지 구간은 분석되는 대로 계속 채워져요.</p>` : ""}</div></section>`;
+  }
+  function loadDetail(vid) {
+    if (DET[vid] !== undefined) return;
+    DET[vid] = null;
+    fetch(`data/tablo/${vid}.json`, { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(d => {
+      if (!d) { delete DET[vid]; return; }
+      DET[vid] = d;
+      if (location.hash === `#tablo/${vid}`) { const y = scrollY; renderTablo(vid); scrollTo(0, y); }
+    }).catch(() => { delete DET[vid]; });
+  }
   function renderTablo(vid) {
     if (tbSession) return renderTbCard();
     if (vid) {
       const v = TABLO.videos.find(v => v.id === vid);
       if (v) {
-        view.innerHTML = `<div class="hero"><div class="day">${esc(v.date)} · @heytablo</div><h2>${esc(v.title)}</h2><p>${esc(v.summary)}</p>
+        view.innerHTML = `<div class="hero"><div class="day">${v.date ? esc(v.date) + " · " : ""}@heytablo</div><h2>${esc(v.title)}</h2><p>${esc(v.summary)}</p>
           <div class="play" style="margin-top:12px"><a class="pill" href="${esc(v.url)}" target="_blank" rel="noopener">▶ 유튜브에서 보기</a><button id="hideko">${hideKo ? "🙈 뜻 보이기" : "🙈 뜻 가리기"}</button></div></div>
-          <section class="lang en"><div class="head">🎬 이 영상의 표현<small>${v.expressions.length}개</small></div>
-          <div class="body">${v.expressions.map(x => tbExpHTML({ ...x, video: v })).join("") || `<p class="muted">이 영상에서는 고를 만한 영어 표현이 없었어요.</p>`}</div></section>
+          ${v.expressions.length || !v.detail ? `<section class="lang en"><div class="head">🎬 이 영상의 표현<small>${v.expressions.length}개</small></div>
+          <div class="body">${v.expressions.map(x => tbExpHTML({ ...x, video: v })).join("") || `<p class="muted">이 영상에서는 고를 만한 영어 표현이 없었어요.</p>`}</div></section>` : ""}
+          ${v.detail ? detailHTML(v, DET[vid]) : ""}
           <a class="btn ghost" href="#tablo">← 영상 목록</a>`;
         $("#hideko").onclick = () => { hideKo = !hideKo; renderTablo(vid); };
+        if (v.detail) loadDetail(vid);
         return;
       }
     }
@@ -415,8 +462,9 @@
         <p class="muted">전체 ${all}개 · 새 표현 ${nw}개 · 오늘 복습 ${due}개</p></div>
       ${due || nw ? `<button class="btn" id="tbStart">카드 학습 시작 · 복습 ${due} + 새 표현 ${Math.min(nw, 10)}</button>` : all ? `<p class="muted" style="text-align:center">오늘 할 카드가 없어요 👍</p>` : ""}
       <div class="list">${TABLO.videos.map(v => `<a class="row" href="#tablo/${v.id}"><span class="em">🎬</span>
-        <span class="grow">${esc(v.title)}<small>${esc(v.date)} · 표현 ${v.expressions.length}개${v.expressions[0] ? ` · ${esc(v.expressions.slice(0, 2).map(x => x.phrase).join(", "))}…` : ""}</small></span>
-        <span class="badge ${v.expressions.every(x => S.tb[x.id]) && v.expressions.length ? "ok" : ""}">${v.expressions.filter(x => S.tb[x.id]).length}/${v.expressions.length}</span></a>`).join("")
+        <span class="grow">${esc(v.title || v.id)}<small>${v.detail ? `📜 대사 ${v.detail.lines}줄 · 표현 노트 ${v.detail.notes}개${v.detail.status === "done" ? "" : v.detail.duration ? ` · 분석 ${Math.round(v.detail.done_sec / v.detail.duration * 100)}%` : " · 분석 대기"}`
+          : `${esc(v.date)} · 표현 ${v.expressions.length}개${v.expressions[0] ? ` · ${esc(v.expressions.slice(0, 2).map(x => x.phrase).join(", "))}…` : ""}`}</small></span>
+        <span class="badge ${v.detail ? "" : v.expressions.every(x => S.tb[x.id]) && v.expressions.length ? "ok" : ""}">${v.detail ? (v.detail.status === "done" ? "완료" : "분석 중") : `${v.expressions.filter(x => S.tb[x.id]).length}/${v.expressions.length}`}</span></a>`).join("")
         || `<p class="muted" style="text-align:center">아직 분석한 영상이 없어요. GitHub Actions의 “타블로 영상 표현 정리”가 실행되면 여기에 나타나요.</p>`}</div>`;
     $("#tbStart") && ($("#tbStart").onclick = () => {
       tbSession = { cards: shuffle([...tbDue(), ...tbNew().slice(0, 10)]), i: 0, shown: false, wrong: new Set() };
@@ -437,12 +485,12 @@
       <p class="muted">${s.i + 1} / ${s.cards.length}</p>
       <div class="bar" style="margin-bottom:14px"><i style="width:${(s.i / s.cards.length) * 100}%"></i></div>
       <div class="card flash">
-        <div><span class="tag en">🎬 ${esc(c.video.title.slice(0, 30))}</span></div>
+        <div><span class="tag en">🎬 ${esc((c.video.title || "").slice(0, 30))}${c.speaker ? ` · ${esc(c.speaker)}` : ""}</span></div>
         <div class="ko" style="margin-top:12px">${esc(c.ko)}</div>
-        <p class="muted">힌트: ${esc(c.meaning)}</p>
+        ${c.meaning ? `<p class="muted">힌트: ${esc(c.meaning)}</p>` : ""}
         ${s.shown ? `<div class="ans" lang="en">“${mark(c.quote, c.phrase)}”</div>
           <div class="play" style="justify-content:center"><button data-say="${esc(c.quote)}">🔊 다시 듣기</button><a class="pill" href="${ytAt(c)}" target="_blank" rel="noopener">▶ 영상</a></div>
-          <p class="muted" lang="en">${esc(c.example)}</p>` : `<p class="muted">타블로가 영어로 뭐라고 했을지 먼저 말해 보세요</p>`}
+          ${c.example ? `<p class="muted" lang="en">${esc(c.example)}</p>` : ""}` : `<p class="muted">타블로가 영어로 뭐라고 했을지 먼저 말해 보세요</p>`}
       </div>
       ${s.shown ? `<div class="row2"><button class="btn ghost" id="bad">😅 헷갈려요</button><button class="btn" id="good">😊 알았어요</button></div>`
         : `<button class="btn" id="show">정답 보기</button>`}
@@ -483,6 +531,15 @@
     const b = e.target.closest("[data-clip]");
     if (b) playClip(b.dataset.clip, !!b.dataset.slow, b);
     const sb = e.target.closest("[data-say]"); if (sb) speak(sb.dataset.say, sb);
+    const st = e.target.closest("[data-star]");
+    if (st) {
+      const id = st.dataset.star, vid = location.hash.split("/")[1], d = DET[vid];
+      const l = d && d.lines.find(l => lineId(vid, l) === id);
+      if (S.tbStar[id]) delete S.tbStar[id];
+      else if (l) S.tbStar[id] = { id, vid, phrase: l.notes[0] ? l.notes[0].phrase : "", quote: l.text, ko: l.tr, speaker: l.speaker,
+        meaning: l.notes.map(n => n.meaning).join(" / "), example: "", example_ko: "", time: l.time, sec: l.sec, level: "" };
+      save(); st.classList.toggle("on", !!S.tbStar[id]); st.textContent = S.tbStar[id] ? "⭐" : "☆";
+    }
     const ko = e.target.closest(".ko.hid"); if (ko) ko.classList.remove("hid");
   });
   view.addEventListener("input", e => {

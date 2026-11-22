@@ -4,8 +4,15 @@
 
 필요:  환경변수 GEMINI_API_KEY  (https://aistudio.google.com/apikey 에서 발급)
 선택:  GEMINI_MODEL  (기본 gemini-flash-latest)
-       TABLO_MAX     (한 번에 분석할 새 영상 수, 기본 3)
+       TABLO_MAX     (한 번에 분석할 새 영상 수, 기본 1)
        TABLO_VIDEOS  (채널 대신 이 영상 URL/ID만 분석, 쉼표로 구분)
+       TABLO_DETAIL  (이 영상을 '대사 한 줄씩 자세히' 대기열 맨 앞에 추가, 쉼표로 구분)
+       TABLO_CHUNKS  (자세히 모드에서 한 번에 분석할 5분 구간 수, 기본 4)
+
+실행할 때마다:
+  1) 자세히 대기열(queue)에 영상이 있으면 → 그 영상을 5분씩 이어서 대사 한 줄씩 분석
+     (data/tablo/<영상ID>.json, 구간마다 저장해서 중간에 멈춰도 다음에 이어서 해요)
+  2) 대기열이 비었으면 → 채널 새 영상 1개를 핵심 표현 위주로 분석 (긴 영상은 앞 15분만)
 
 사용법:  GEMINI_API_KEY=... python3 tools/tablo_expressions.py
 이미 분석한 영상은 건너뜁니다. 외부 패키지 없이 파이썬 기본 라이브러리만 씁니다.
@@ -17,7 +24,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "tablo.json")
 HANDLE = "heytablo"
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
-MAX_NEW = int(os.environ.get("TABLO_MAX", "3"))
+MAX_NEW = int(os.environ.get("TABLO_MAX", "1"))
+CHUNK = 300          # 자세히 모드 구간 길이(초)
+CHUNKS = int(os.environ.get("TABLO_CHUNKS", "4"))
+QUICK_LIMIT = 900    # 일반 모드에서 긴 영상은 앞 15분만
+DETAIL_DIR = os.path.join(ROOT, "data", "tablo")
 UA = {"User-Agent": "Mozilla/5.0 (lang3 study app)", "Accept-Language": "en-US,en;q=0.8"}
 
 PROMPT = """너는 한국인 영어 학습자를 돕는 원어민 영어 코치야.
@@ -61,6 +72,47 @@ SCHEMA = {
 }
 
 
+DETAIL_PROMPT = """너는 한국인 영어 학습자를 돕는 원어민 영어 코치야.
+이 영상은 타블로(Tablo)의 유튜브 영상이고, 지금 보는 건 전체 영상 중 {start}~{end} 구간이야.
+이 구간에서 들리는 대사를 처음부터 끝까지 빠짐없이, 말한 순서대로 한 줄씩 받아 적고 분석해 줘.
+
+규칙:
+- 한 줄 = 한 사람이 이어서 말한 한두 문장. 너무 길면 문장 단위로 나눠.
+- time: 그 줄이 시작되는 시각. **전체 영상 기준** "m:ss" 또는 "h:mm:ss" (구간 시작이 {start}이야)
+- speaker: 말한 사람 이름 (예: Tablo, John Park). 모르면 "?"
+- text: 들린 그대로 (영어는 영어로, 한국어는 한국어로). 추임새(um, uh)는 빼도 돼.
+- lang: "en" 또는 "ko"
+- tr: 영어 줄이면 자연스러운 한국어 번역, 한국어 줄이면 자연스러운 영어 번역
+- notes: 그 줄에서 배울 만한 표현(구어, 슬랭, 관용구, 구동사, 문법 포인트, 문화 맥락)을
+  0~3개. phrase(원문 그대로의 표현) + meaning(한국어로 뜻·뉘앙스·쓰임 1~2문장).
+  흔한 쉬운 표현은 빼.
+- 노래·음악만 나오는 부분은 건너뛰어.
+- 들리지 않는 말을 지어내지 마.
+summary 에는 이 구간 내용을 한국어 1~2문장으로 요약해."""
+
+DETAIL_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "summary": {"type": "STRING"},
+        "lines": {
+            "type": "ARRAY",
+            "items": {
+                "type": "OBJECT",
+                "properties": {
+                    "time": {"type": "STRING"}, "speaker": {"type": "STRING"}, "text": {"type": "STRING"},
+                    "lang": {"type": "STRING"}, "tr": {"type": "STRING"},
+                    "notes": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
+                        "phrase": {"type": "STRING"}, "meaning": {"type": "STRING"}}, "required": ["phrase", "meaning"]}},
+                },
+                "required": ["time", "speaker", "text", "lang", "tr", "notes"],
+                "propertyOrdering": ["time", "speaker", "text", "lang", "tr", "notes"],
+            },
+        },
+    },
+    "required": ["summary", "lines"],
+}
+
+
 def http(url, data=None, headers=None, timeout=60):
     req = urllib.request.Request(url, data=data, headers={**UA, **(headers or {})})
     with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -95,15 +147,33 @@ def video_from_arg(s):
     return {"id": vid, "title": "", "date": "", "url": f"https://www.youtube.com/watch?v={vid}"}
 
 
-def analyze(video, key):
+def video_info(vid):
+    """유튜브 영상 페이지에서 길이(초)와 제목. 실패하면 (0, "")."""
+    try:
+        html = http(f"https://www.youtube.com/watch?v={vid}")
+    except Exception as e:
+        print(f"  영상 정보 못 가져옴: {e}", flush=True)
+        return 0, ""
+    m = re.search(r'"lengthSeconds":"(\d+)"', html)
+    t = re.search(r'<meta name="title" content="([^"]*)"', html) or re.search(r"<title>(.*?)(?: - YouTube)?</title>", html)
+    import html as H
+    return (int(m.group(1)) if m else 0), (H.unescape(t.group(1)) if t else "")
+
+
+def hms(sec):
+    sec = int(sec)
+    return f"{sec // 3600}:{sec // 60 % 60:02d}:{sec % 60:02d}" if sec >= 3600 else f"{sec // 60}:{sec % 60:02d}"
+
+
+def analyze(video, key, prompt=PROMPT, schema=SCHEMA, start=None, end=None):
+    part = {"file_data": {"file_uri": video["url"], "mime_type": "video/*"}}
+    if start is not None or end is not None:
+        part["video_metadata"] = {k: f"{v}s" for k, v in (("start_offset", start), ("end_offset", end)) if v is not None}
     body = {
-        "contents": [{"parts": [
-            {"file_data": {"file_uri": video["url"], "mime_type": "video/*"}},
-            {"text": PROMPT},
-        ]}],
+        "contents": [{"parts": [part, {"text": prompt}]}],
         "generationConfig": {
             "responseMimeType": "application/json",
-            "responseSchema": SCHEMA,
+            "responseSchema": schema,
             "temperature": 0.3,
             "mediaResolution": "MEDIA_RESOLUTION_LOW",  # 화면보다 말소리가 중요해서 토큰 절약
         },
@@ -116,8 +186,8 @@ def analyze(video, key):
         except urllib.error.HTTPError as e:
             msg = e.read().decode()[-500:]
             if e.code in (429, 500, 503) and attempt < 3:
-                print(f"  잠시 후 다시 시도 ({e.code})", flush=True)
-                time.sleep(20 * (attempt + 1))
+                print(f"  잠시 후 다시 시도 ({e.code}): {msg[-200:]}", flush=True)
+                time.sleep(30 * (attempt + 1))
                 continue
             raise RuntimeError(f"Gemini 오류 {e.code}: {msg}")
     res = json.loads(raw)
@@ -138,18 +208,106 @@ def secs(t):
 
 def load():
     try:
-        return json.load(open(OUT, encoding="utf-8"))
+        db = json.load(open(OUT, encoding="utf-8"))
     except FileNotFoundError:
-        return {"version": 1, "channel": f"@{HANDLE}", "videos": []}
+        db = {"version": 1, "channel": f"@{HANDLE}", "videos": []}
+    db.setdefault("queue", [])
+    return db
 
 
-def main():
-    key = os.environ.get("GEMINI_API_KEY")
-    if not key:
-        sys.exit("GEMINI_API_KEY 환경변수가 필요해요 (https://aistudio.google.com/apikey)")
-    db = load()
+def save(db):
+    db["videos"].sort(key=lambda v: v.get("date") or v.get("analyzed", ""), reverse=True)
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as f:
+        json.dump(db, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+
+
+def entry(db, vid):
+    for v in db["videos"]:
+        if v["id"] == vid:
+            return v
+    v = {"id": vid, "title": "", "date": "", "url": f"https://www.youtube.com/watch?v={vid}", "summary": "", "expressions": []}
+    db["videos"].append(v)
+    return v
+
+
+def run_detail(db, vid, key):
+    """대기열 맨 앞 영상을 5분 구간씩 이어서 분석. 다 끝나면 대기열에서 빼요."""
+    v = entry(db, vid)
+    path = os.path.join(DETAIL_DIR, f"{vid}.json")
+    try:
+        d = json.load(open(path, encoding="utf-8"))
+    except FileNotFoundError:
+        d = {"id": vid, "lines": [], "sections": [], "done_sec": 0, "duration": 0}
+    if not d["duration"] or not v["title"]:
+        dur, title = video_info(vid)
+        d["duration"] = d["duration"] or dur
+        v["title"] = v["title"] or title or vid
+    d["title"], d["url"] = v["title"], v["url"]
+    dur = d["duration"]
+    print(f"자세히 분석: {v['title']} ({hms(d['done_sec'])} / {hms(dur) if dur else '길이 모름'})", flush=True)
+
+    for n in range(CHUNKS):
+        a = d["done_sec"]
+        if dur and a >= dur:
+            break
+        b = a + CHUNK if not dur else min(a + CHUNK, dur)
+        print(f"  구간 {hms(a)}~{hms(b)}", flush=True)
+        try:
+            r = analyze(v, key, DETAIL_PROMPT.format(start=hms(a), end=hms(b)), DETAIL_SCHEMA, a, b)
+        except Exception as e:
+            print(f"  실패: {e}", flush=True)
+            if not dur and d["lines"]:  # 길이를 모를 때 영상 끝을 넘으면 오류가 날 수 있어요
+                d["duration"] = dur = a
+            break
+        lines = r.get("lines", [])
+        secs_raw = [secs(x.get("time", "")) for x in lines]
+        # 모델이 구간 기준 시각을 줬으면 구간 시작만큼 더해요
+        rel = a > 0 and secs_raw and max(secs_raw) < a - 5
+        for x, sc in zip(lines, secs_raw):
+            text = str(x.get("text", "")).strip()
+            if not text:
+                continue
+            sc = sc + a if rel else sc
+            sc = min(max(sc, a), b)
+            d["lines"].append({"sec": sc, "time": hms(sc), "speaker": str(x.get("speaker", "")).strip() or "?",
+                               "text": text, "lang": "ko" if x.get("lang") == "ko" else "en",
+                               "tr": str(x.get("tr", "")).strip(),
+                               "notes": [{"phrase": str(o.get("phrase", "")).strip(), "meaning": str(o.get("meaning", "")).strip()}
+                                         for o in x.get("notes", []) if o.get("phrase")][:3]})
+        d["sections"].append({"start": a, "end": b, "summary": r.get("summary", "")})
+        d["done_sec"] = b
+        if not dur and not lines:  # 길이를 모를 때 빈 구간이면 끝으로 봐요
+            d["duration"] = dur = a
+        print(f"  대사 {len(lines)}줄", flush=True)
+        write_detail(path, d, v, db)
+        time.sleep(15)
+
+    if dur and d["done_sec"] >= dur:
+        print("  이 영상 분석 완료!", flush=True)
+        db["queue"] = [q for q in db["queue"] if q != vid]
+        v["detail"]["status"] = "done"
+    write_detail(path, d, v, db)
+
+
+def write_detail(path, d, v, db):
+    d["lines"].sort(key=lambda x: x["sec"])
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(d, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    old = v.get("detail") or {}
+    v["detail"] = {"status": "done" if old.get("status") == "done" else "running", "done_sec": d["done_sec"], "duration": d["duration"],
+                   "lines": len(d["lines"]), "notes": sum(len(x["notes"]) for x in d["lines"])}
+    if not v.get("summary") and d["sections"]:
+        v["summary"] = " ".join(s["summary"] for s in d["sections"][:2])
+    v.setdefault("analyzed", datetime.date.today().isoformat())
+    save(db)
+
+
+def run_quick(db, key):
     seen = {v["id"] for v in db["videos"]}
-
     if os.environ.get("TABLO_VIDEOS"):
         cands = [video_from_arg(s) for s in os.environ["TABLO_VIDEOS"].split(",") if s.strip()]
     else:
@@ -158,12 +316,13 @@ def main():
     if not todo:
         print("새 영상이 없어요")
         return
-
-    added = 0
     for v in todo:
-        print(f"분석 중: {v['title'] or v['id']}", flush=True)
+        dur, title = video_info(v["id"])
+        v["title"] = v["title"] or title or v["id"]
+        end = QUICK_LIMIT if dur > QUICK_LIMIT else None
+        print(f"분석 중: {v['title']}" + (f" (앞 {QUICK_LIMIT // 60}분만)" if end else ""), flush=True)
         try:
-            r = analyze(v, key)
+            r = analyze(v, key, start=0 if end else None, end=end)
         except Exception as e:  # 한 영상이 실패해도 나머지는 계속
             print(f"  실패: {e}", flush=True)
             continue
@@ -175,17 +334,29 @@ def main():
             x["id"] = f"tb-{v['id']}-{i}"
             x["sec"] = secs(x["time"])
             exps.append(x)
-        db["videos"].insert(0, {**v, "summary": r.get("summary", ""), "expressions": exps,
-                                "analyzed": datetime.date.today().isoformat(), "model": MODEL})
-        added += 1
+        db["videos"].append({**v, "summary": r.get("summary", ""), "expressions": exps,
+                             "analyzed": datetime.date.today().isoformat(), "model": MODEL})
+        save(db)
         print(f"  표현 {len(exps)}개", flush=True)
 
-    db["videos"].sort(key=lambda v: v.get("date") or v["analyzed"], reverse=True)
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(db, f, ensure_ascii=False, indent=1)
-        f.write("\n")
-    print(f"완료: 새 영상 {added}개 → {os.path.relpath(OUT, ROOT)}")
+
+def main():
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:
+        sys.exit("GEMINI_API_KEY 환경변수가 필요해요 (https://aistudio.google.com/apikey)")
+    db = load()
+    add = [video_from_arg(s)["id"] for s in os.environ.get("TABLO_DETAIL", "").split(",") if s.strip()]
+    if add:
+        db["queue"] = add + [q for q in db["queue"] if q not in add]
+        for vid in add:
+            e = entry(db, vid)
+            e.setdefault("detail", {"status": "queued", "done_sec": 0, "duration": 0, "lines": 0, "notes": 0})
+        save(db)
+    if db["queue"]:
+        run_detail(db, db["queue"][0], key)
+    else:
+        run_quick(db, key)
+    print("완료")
 
 
 if __name__ == "__main__":
