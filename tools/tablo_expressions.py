@@ -29,7 +29,7 @@ CHUNK = 300          # 자세히 모드 구간 길이(초)
 CHUNKS = int(os.environ.get("TABLO_CHUNKS", "4"))
 QUICK_LIMIT = 900    # 일반 모드에서 긴 영상은 앞 15분만
 DETAIL_DIR = os.path.join(ROOT, "data", "tablo")
-UA = {"User-Agent": "Mozilla/5.0 (lang3 study app)", "Accept-Language": "en-US,en;q=0.8"}
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "Accept-Language": "en-US,en;q=0.8"}
 
 PROMPT = """너는 한국인 영어 학습자를 돕는 원어민 영어 코치야.
 이 유튜브 영상은 타블로(Tablo)의 채널 영상이야. 영상에서 실제로 말한 영어 중에서
@@ -154,7 +154,14 @@ def video_info(vid):
     except Exception as e:
         print(f"  영상 정보 못 가져옴: {e}", flush=True)
         return 0, ""
-    m = re.search(r'"lengthSeconds":"(\d+)"', html)
+    m = (re.search(r'"lengthSeconds":"(\d+)"', html) or re.search(r'"approxDurationMs":"(\d+)\d{3}"', html))
+    if not m:
+        iso = re.search(r'itemprop="duration" content="PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?"', html)
+        if iso:
+            h, mi, se = (int(x or 0) for x in iso.groups())
+            m = re.match(r"(\d+)", str(h * 3600 + mi * 60 + se))
+    if not m:
+        print(f"  영상 길이를 페이지에서 못 찾았어요 (페이지 {len(html)}자)", flush=True)
     t = re.search(r'<meta name="title" content="([^"]*)"', html) or re.search(r"<title>(.*?)(?: - YouTube)?</title>", html)
     import html as H
     return (int(m.group(1)) if m else 0), (H.unescape(t.group(1)) if t else "")
@@ -187,9 +194,11 @@ def analyze(video, key, prompt=PROMPT, schema=SCHEMA, start=None, end=None):
             msg = e.read().decode()[-500:]
             if e.code in (429, 500, 503) and attempt < 3:
                 print(f"  잠시 후 다시 시도 ({e.code}): {msg[-200:]}", flush=True)
-                time.sleep(30 * (attempt + 1))
+                time.sleep(60 * 2 ** attempt)  # 1분, 2분, 4분
                 continue
-            raise RuntimeError(f"Gemini 오류 {e.code}: {msg}")
+            err = RuntimeError(f"Gemini 오류 {e.code}: {msg}")
+            err.code = e.code
+            raise err
     res = json.loads(raw)
     try:
         text = "".join(p.get("text", "") for p in res["candidates"][0]["content"]["parts"])
@@ -258,7 +267,9 @@ def run_detail(db, vid, key):
             r = analyze(v, key, DETAIL_PROMPT.format(start=hms(a), end=hms(b)), DETAIL_SCHEMA, a, b)
         except Exception as e:
             print(f"  실패: {e}", flush=True)
-            if not dur and d["lines"]:  # 길이를 모를 때 영상 끝을 넘으면 오류가 날 수 있어요
+            # 길이를 모를 때 영상 끝을 넘긴 구간은 400(잘못된 요청)으로 와요. 그때만 끝으로 봐요.
+            # 503(사용량 많음) 같은 일시적 오류는 다음 실행에서 이 구간부터 다시 해요.
+            if not dur and d["lines"] and getattr(e, "code", 0) == 400:
                 d["duration"] = dur = a
             break
         lines = r.get("lines", [])
