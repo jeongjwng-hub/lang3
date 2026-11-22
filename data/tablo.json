@@ -11,10 +11,10 @@
    "expressions": [],
    "detail": {
     "status": "running",
-    "done_sec": 300,
+    "done_sec": 1200,
     "duration": 0,
-    "lines": 76,
-    "notes": 25
+    "lines": 284,
+    "notes": 97
    },
    "analyzed": "2026-11-22"
   }
