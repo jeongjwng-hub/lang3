@@ -314,7 +314,7 @@
     const cur = focusLesson();
     view.innerHTML = `
       <div class="card"><h3>🚗 드라이브 모드</h3>
-        <p class="muted">화면을 꺼도 계속 재생돼요. 한국어 뜻 → 외국어 → 천천히 → <b>따라 말하기</b> 순서예요. 퀴즈는 한국어를 듣고 먼저 말한 뒤 정답을 들어요.</p></div>
+        <p class="muted">화면을 꺼도 계속 재생돼요. 한국어 뜻 → 외국어 2번 → <b>따라 말하기</b> → 한 번 더 순서예요. 퀴즈는 한국어를 듣고 먼저 말한 뒤 정답을 들어요.</p></div>
       <div class="modes">${Object.entries(MODES).map(([k, m]) => `<button data-mode="${k}" class="${player.mode === k ? "on" : ""}"><b>${m.label}${m.min ? ` ${m.min}분` : ""}</b><small>${m.desc}</small></button>`).join("")}</div>
       ${player.mode ? `<div class="card player">
           <div class="muted" id="kind"></div><div class="now" id="now"></div>
