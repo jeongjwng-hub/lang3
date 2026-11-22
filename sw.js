@@ -1,6 +1,6 @@
 // 앱 화면 파일을 저장해 인터넷 없이도 열리게 합니다. (오디오는 앱이 따로 저장)
-const SHELL = "lang3-shell-v7";
-const FILES = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "data/lessons.json", "audio/manifest.json", "icons/icon-192.png", "icons/icon-512.png"];
+const SHELL = "lang3-shell-v8";
+const FILES = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "data/lessons.json", "data/tablo.json", "audio/manifest.json", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(SHELL).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

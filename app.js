@@ -360,26 +360,129 @@
       <div class="card"><h3>⏰ 아침 알림</h3><p class="muted">평일 오전 5:30, 주말 오전 8:00쯤 ntfy 앱으로 오늘의 주제와 미리보기 문장이 와요. 알림을 누르면 이 앱이 열려요.</p></div>`;
   }
 
+  // ---------- 화면: 타블로 영상 표현 (Gemini 분석 → data/tablo.json) ----------
+  let TABLO = { videos: [] };
+  if (!S.tb) S.tb = {};
+  const tbAll = () => TABLO.videos.flatMap(v => v.expressions.map(x => ({ ...x, video: v })));
+  const tbDue = () => tbAll().filter(x => {
+    const r = S.tb[x.id]; if (!r) return false;
+    return r.stage < INTERVALS.length && daysBetween(r.last, today()) >= INTERVALS[r.stage];
+  });
+  const tbNew = () => tbAll().filter(x => !S.tb[x.id]);
+  const mark = (q, p) => {
+    const i = q.toLowerCase().indexOf(p.toLowerCase());
+    return i < 0 ? esc(q) : esc(q.slice(0, i)) + `<mark>${esc(q.slice(i, i + p.length))}</mark>` + esc(q.slice(i + p.length));
+  };
+  const ytAt = x => `https://www.youtube.com/watch?v=${x.video.id}${x.sec ? `&t=${x.sec}s` : ""}`;
+  function speak(text, btn) {
+    if (!("speechSynthesis" in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text); u.lang = "en-US"; u.rate = btn && btn.dataset.slow ? 0.75 : 1;
+    const v = speechSynthesis.getVoices().find(v => /^en[-_]US/.test(v.lang) && /natural|neural|samantha|google/i.test(v.name)); if (v) u.voice = v;
+    btn && btn.classList.add("busy"); u.onend = () => btn && btn.classList.remove("busy");
+    speechSynthesis.speak(u);
+  }
+  function tbExpHTML(x) {
+    const st = S.tb[x.id];
+    return `<div class="item">
+      <div class="phrase">${esc(x.phrase)} <span class="badge">${esc(x.level)}</span>${st ? ` <span class="badge ok">복습 ${st.stage}단계</span>` : ""}</div>
+      <div class="tx" lang="en">“${mark(x.quote, x.phrase)}”</div>
+      <div class="ko ${hideKo ? "hid" : ""}">${esc(x.ko)}</div>
+      <div class="play"><button data-say="${esc(x.quote)}">🔊 듣기</button><button data-say="${esc(x.quote)}" data-slow="1">🐢 천천히</button>
+        <a class="pill" href="${ytAt(x)}" target="_blank" rel="noopener">▶ 영상${x.time ? ` ${esc(x.time)}` : ""}</a></div>
+      <div class="note">${esc(x.meaning)}</div>
+      <div class="simple">예문 <b lang="en">${esc(x.example)}</b> <button class="mini" data-say="${esc(x.example)}">🔊</button><br>${esc(x.example_ko)}</div>
+    </div>`;
+  }
+  function renderTablo(vid) {
+    if (tbSession) return renderTbCard();
+    if (vid) {
+      const v = TABLO.videos.find(v => v.id === vid);
+      if (v) {
+        view.innerHTML = `<div class="hero"><div class="day">${esc(v.date)} · @heytablo</div><h2>${esc(v.title)}</h2><p>${esc(v.summary)}</p>
+          <div class="play" style="margin-top:12px"><a class="pill" href="${esc(v.url)}" target="_blank" rel="noopener">▶ 유튜브에서 보기</a><button id="hideko">${hideKo ? "🙈 뜻 보이기" : "🙈 뜻 가리기"}</button></div></div>
+          <section class="lang en"><div class="head">🎬 이 영상의 표현<small>${v.expressions.length}개</small></div>
+          <div class="body">${v.expressions.map(x => tbExpHTML({ ...x, video: v })).join("") || `<p class="muted">이 영상에서는 고를 만한 영어 표현이 없었어요.</p>`}</div></section>
+          <a class="btn ghost" href="#tablo">← 영상 목록</a>`;
+        $("#hideko").onclick = () => { hideKo = !hideKo; renderTablo(vid); };
+        return;
+      }
+    }
+    const due = tbDue().length, nw = tbNew().length, all = tbAll().length;
+    view.innerHTML = `
+      <div class="card"><h3>🎬 타블로 영상 표현</h3>
+        <p class="muted">@heytablo 새 영상을 Gemini가 매일 분석해서 실제로 쓰인 영어 표현을 골라 줘요. 카드로 외우면 1→3→7→14→30일 간격으로 다시 나와요.</p>
+        <p class="muted">전체 ${all}개 · 새 표현 ${nw}개 · 오늘 복습 ${due}개</p></div>
+      ${due || nw ? `<button class="btn" id="tbStart">카드 학습 시작 · 복습 ${due} + 새 표현 ${Math.min(nw, 10)}</button>` : all ? `<p class="muted" style="text-align:center">오늘 할 카드가 없어요 👍</p>` : ""}
+      <div class="list">${TABLO.videos.map(v => `<a class="row" href="#tablo/${v.id}"><span class="em">🎬</span>
+        <span class="grow">${esc(v.title)}<small>${esc(v.date)} · 표현 ${v.expressions.length}개${v.expressions[0] ? ` · ${esc(v.expressions.slice(0, 2).map(x => x.phrase).join(", "))}…` : ""}</small></span>
+        <span class="badge ${v.expressions.every(x => S.tb[x.id]) && v.expressions.length ? "ok" : ""}">${v.expressions.filter(x => S.tb[x.id]).length}/${v.expressions.length}</span></a>`).join("")
+        || `<p class="muted" style="text-align:center">아직 분석한 영상이 없어요. GitHub Actions의 “타블로 영상 표현 정리”가 실행되면 여기에 나타나요.</p>`}</div>`;
+    $("#tbStart") && ($("#tbStart").onclick = () => {
+      tbSession = { cards: shuffle([...tbDue(), ...tbNew().slice(0, 10)]), i: 0, shown: false, wrong: new Set() };
+      renderTbCard();
+    });
+  }
+  let tbSession = null;
+  function renderTbCard() {
+    const s = tbSession, c = s.cards[s.i];
+    if (!c) {
+      tbSession = null;
+      view.innerHTML = `<div class="done-banner"><div class="big">🎤</div><h2 style="margin:6px 0">카드 끝!</h2>
+        <p class="muted">${s.wrong.size ? `헷갈린 ${s.wrong.size}개는 내일 다시 나와요.` : "모두 기억했어요. 다음 복습은 더 나중에 나와요."}</p></div>
+        <a class="btn" href="#tablo">목록으로</a>`;
+      return;
+    }
+    view.innerHTML = `
+      <p class="muted">${s.i + 1} / ${s.cards.length}</p>
+      <div class="bar" style="margin-bottom:14px"><i style="width:${(s.i / s.cards.length) * 100}%"></i></div>
+      <div class="card flash">
+        <div><span class="tag en">🎬 ${esc(c.video.title.slice(0, 30))}</span></div>
+        <div class="ko" style="margin-top:12px">${esc(c.ko)}</div>
+        <p class="muted">힌트: ${esc(c.meaning)}</p>
+        ${s.shown ? `<div class="ans" lang="en">“${mark(c.quote, c.phrase)}”</div>
+          <div class="play" style="justify-content:center"><button data-say="${esc(c.quote)}">🔊 다시 듣기</button><a class="pill" href="${ytAt(c)}" target="_blank" rel="noopener">▶ 영상</a></div>
+          <p class="muted" lang="en">${esc(c.example)}</p>` : `<p class="muted">타블로가 영어로 뭐라고 했을지 먼저 말해 보세요</p>`}
+      </div>
+      ${s.shown ? `<div class="row2"><button class="btn ghost" id="bad">😅 헷갈려요</button><button class="btn" id="good">😊 알았어요</button></div>`
+        : `<button class="btn" id="show">정답 보기</button>`}
+      <button class="btn ghost" id="quit">그만하기</button>`;
+    const grade = ok => {
+      const r = S.tb[c.id];
+      S.tb[c.id] = { stage: ok ? (r ? r.stage + 1 : 1) : 0, last: today() }; save();
+      if (!ok) { s.wrong.add(c.id); }
+      s.i++; s.shown = false; renderTbCard();
+    };
+    if (s.shown) {
+      speak(c.quote);
+      $("#good").onclick = () => grade(true);
+      $("#bad").onclick = () => grade(false);
+    } else $("#show").onclick = () => { s.shown = true; renderTbCard(); };
+    $("#quit").onclick = () => { tbSession = null; renderTablo(); };
+  }
+
   // ---------- 라우팅 ----------
   function render() {
     const h = location.hash || "#today";
-    const tab = h.startsWith("#lesson") ? "more" : h.slice(1);
+    const tab = h.startsWith("#lesson") ? "more" : h.startsWith("#tablo") ? "tablo" : h.slice(1);
     document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab || (h === "#today" && b.dataset.tab === "today")));
     if (h.startsWith("#lesson/")) {
       const L = byId(h.split("/")[1]);
       if (L) return renderLesson(L, { footer: `<a class="btn ghost" href="#today">← 오늘 화면으로</a>` });
     }
+    if (h.startsWith("#tablo")) return renderTablo(h.split("/")[1]);
     if (h === "#review") return renderReview();
     if (h === "#drive") return renderDrive();
     if (h === "#more") return renderMore();
     return renderToday();
   }
-  window.addEventListener("hashchange", () => { if (location.hash !== "#review") session = null; render(); window.scrollTo(0, 0); });
+  window.addEventListener("hashchange", () => { if (location.hash !== "#review") session = null; if (location.hash !== "#tablo") tbSession = null; render(); window.scrollTo(0, 0); });
   document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => { location.hash = "#" + b.dataset.tab; });
 
   view.addEventListener("click", e => {
     const b = e.target.closest("[data-clip]");
     if (b) playClip(b.dataset.clip, !!b.dataset.slow, b);
+    const sb = e.target.closest("[data-say]"); if (sb) speak(sb.dataset.say, sb);
     const ko = e.target.closest(".ko.hid"); if (ko) ko.classList.remove("hid");
   });
   view.addEventListener("input", e => {
@@ -394,7 +497,8 @@
   Promise.all([
     fetch("data/lessons.json", { cache: "no-cache" }).then(r => r.json()),
     fetch("audio/manifest.json", { cache: "no-cache" }).then(r => r.json()).catch(() => MAN),
-  ]).then(([d, m]) => { LESSONS = d.lessons; MAN = m; render(); })
+    fetch("data/tablo.json", { cache: "no-cache" }).then(r => r.json()).catch(() => TABLO),
+  ]).then(([d, m, t]) => { LESSONS = d.lessons; MAN = m; TABLO = t; render(); })
     .catch(() => { view.innerHTML = `<p class="muted">학습 데이터를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.</p>`; });
 
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
