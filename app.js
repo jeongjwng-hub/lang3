@@ -413,7 +413,7 @@
   // 챕터: 유튜브 챕터가 있으면 그것, 없으면 5분 구간
   function chaptersOf(d) {
     const end = Math.max(d.done_sec || 0, ...d.lines.map(l => l.sec + 1));
-    const yt = (d.chapters || []).filter(c => c.sec < end);
+    const yt = ((d.chapters || []).length ? d.chapters : d.ai_chapters || []).filter(c => c.sec < end);
     const base = yt.length ? yt.map(c => ({ sec: c.sec, title: c.title }))
       : (d.sections || []).map(x => ({ sec: x.start, title: x.summary, range: true }));
     if (!base.length) base.push({ sec: 0, title: "전체" });
@@ -445,7 +445,7 @@
     const open = tbOpen[v.id];
     const byChap = chs.map(() => []);
     d.lines.forEach((l, i) => byChap[chapIndex(chs, l.sec)].push(i));
-    const ytChap = !!(d.chapters || []).length, secs = d.sections || [];
+    const ytChap = !!((d.chapters || []).length || (d.ai_chapters || []).length), secs = d.sections || [];
     const markList = Object.entries(marks).filter(([id]) => idx[id] != null).sort((a, b) => idx[a[0]] - idx[b[0]]);
     const panel = tbPanel === "chap" ? `<div class="sheet">${chs.map((c, k) => `<button data-jump-chap="${k}"><span class="t">${fmtT(c.sec)}</span><span class="grow">${esc(c.range ? `${fmtT(c.sec)}~${fmtT(c.end)} · ${c.title}` : c.title)}</span><small>${byChap[k].length}줄</small></button>`).join("")}</div>`
       : tbPanel === "mark" ? `<div class="sheet">${markList.length ? markList.map(([id, m]) => `<div class="mrow"><button data-jump="${idx[id]}"><span class="t">${esc(m.time)}</span><span class="grow">${esc(m.text)}</span></button>
