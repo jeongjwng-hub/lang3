@@ -149,24 +149,44 @@ def video_from_arg(s):
     return {"id": vid, "title": "", "date": "", "url": f"https://www.youtube.com/watch?v={vid}"}
 
 
+def parse_chapters(desc):
+    """영상 설명의 '0:00 제목' 줄들 → [{sec, title}] (유튜브 챕터 규칙: 0:00부터 시작, 3개 이상)"""
+    out = []
+    for line in (desc or "").splitlines():
+        m = re.match(r"^\s*[\[(]?((?:\d{1,2}:)?\d{1,2}:\d{2})[\])]?\s*[-–—:|·]?\s*(.+?)\s*$", line)
+        if m:
+            out.append({"sec": secs(m.group(1)), "title": m.group(2)})
+    out.sort(key=lambda c: c["sec"])
+    return out if len(out) >= 3 and out[0]["sec"] == 0 else []
+
+
 def video_info(vid):
-    """유튜브 영상 페이지에서 길이(초)와 제목. 실패하면 (0, "")."""
+    """영상 길이(초)·제목·챕터. 유튜브 플레이어 API → 안 되면 영상 페이지. 실패하면 (0, "", [])."""
+    try:
+        body = {"context": {"client": {"clientName": "WEB", "clientVersion": "2.20241120.01.00", "hl": "en"}}, "videoId": vid}
+        r = json.loads(http("https://www.youtube.com/youtubei/v1/player?prettyPrint=false", json.dumps(body).encode(),
+                            {"Content-Type": "application/json"}))
+        vd = r.get("videoDetails") or {}
+        if vd.get("lengthSeconds"):
+            ch = parse_chapters(vd.get("shortDescription", ""))
+            print(f"  영상 정보: {vd.get('lengthSeconds')}초, 챕터 {len(ch)}개", flush=True)
+            return int(vd["lengthSeconds"]), vd.get("title", ""), ch
+        print(f"  플레이어 API에 영상 정보가 없어요: {str(r.get('playabilityStatus'))[:200]}", flush=True)
+    except Exception as e:
+        print(f"  플레이어 API 실패: {e}", flush=True)
     try:
         html = http(f"https://www.youtube.com/watch?v={vid}")
     except Exception as e:
-        print(f"  영상 정보 못 가져옴: {e}", flush=True)
-        return 0, ""
+        print(f"  영상 페이지 실패: {e}", flush=True)
+        return 0, "", []
     m = (re.search(r'"lengthSeconds":"(\d+)"', html) or re.search(r'"approxDurationMs":"(\d+)\d{3}"', html))
     if not m:
-        iso = re.search(r'itemprop="duration" content="PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?"', html)
-        if iso:
-            h, mi, se = (int(x or 0) for x in iso.groups())
-            m = re.match(r"(\d+)", str(h * 3600 + mi * 60 + se))
-    if not m:
         print(f"  영상 길이를 페이지에서 못 찾았어요 (페이지 {len(html)}자)", flush=True)
-    t = re.search(r'<meta name="title" content="([^"]*)"', html) or re.search(r"<title>(.*?)(?: - YouTube)?</title>", html)
+    t = re.search(r'<meta name="title" content="([^"]*)"', html)
+    dm = re.search(r'"shortDescription":"((?:[^"\\]|\\.)*)"', html)
+    desc = json.loads(f'"{dm.group(1)}"') if dm else ""
     import html as H
-    return (int(m.group(1)) if m else 0), (H.unescape(t.group(1)) if t else "")
+    return (int(m.group(1)) if m else 0), (H.unescape(t.group(1)) if t else ""), parse_chapters(desc)
 
 
 def hms(sec):
@@ -265,9 +285,11 @@ def run_detail(db, vid, key):
         d = json.load(open(path, encoding="utf-8"))
     except FileNotFoundError:
         d = {"id": vid, "lines": [], "sections": [], "done_sec": 0, "duration": 0}
-    if not d["duration"] or not v["title"]:
-        dur, title = video_info(vid)
+    if not d["duration"] or not v["title"] or "chapters" not in d:
+        dur, title, chs = video_info(vid)
         d["duration"] = d["duration"] or dur
+        if chs or "chapters" not in d:
+            d["chapters"] = chs
         v["title"] = v["title"] or title or vid
     d["title"], d["url"] = v["title"], v["url"]
     dur = d["duration"]
@@ -344,7 +366,7 @@ def run_quick(db, key):
         print("새 영상이 없어요")
         return
     for v in todo:
-        dur, title = video_info(v["id"])
+        dur, title, _ = video_info(v["id"])
         v["title"] = v["title"] or title or v["id"]
         end = QUICK_LIMIT if dur > QUICK_LIMIT else None
         print(f"분석 중: {v['title']}" + (f" (앞 {QUICK_LIMIT // 60}분만)" if end else ""), flush=True)
