@@ -406,30 +406,96 @@
     notes.forEach(n => { const p = esc(n.phrase); const i = h.toLowerCase().indexOf(p.toLowerCase()); if (p && i >= 0) h = h.slice(0, i) + `<mark>${h.slice(i, i + p.length)}</mark>` + h.slice(i + p.length); });
     return h;
   }
+  if (!S.tbMark) S.tbMark = {}; // 영상별 책갈피 { vid: { lineId: { time, sec, text, memo } } }
+  if (!S.tbPos) S.tbPos = {};   // 영상별 마지막으로 보던 대사 lineId
+  const tbOpen = {};            // 영상별 펼친 챕터 번호 (Set)
+  let tbPanel = null;           // "chap" | "mark" | null
+  // 챕터: 유튜브 챕터가 있으면 그것, 없으면 5분 구간
+  function chaptersOf(d) {
+    const end = Math.max(d.done_sec || 0, ...d.lines.map(l => l.sec + 1));
+    const yt = (d.chapters || []).filter(c => c.sec < end);
+    const base = yt.length ? yt.map(c => ({ sec: c.sec, title: c.title }))
+      : (d.sections || []).map(x => ({ sec: x.start, title: x.summary, range: true }));
+    if (!base.length) base.push({ sec: 0, title: "전체" });
+    if (base[0].sec > 0) base.unshift({ sec: 0, title: "시작" });
+    return base.map((c, i) => ({ ...c, end: i + 1 < base.length ? base[i + 1].sec : end }));
+  }
+  const chapIndex = (chs, sec) => { let k = 0; chs.forEach((c, i) => { if (sec >= c.sec) k = i; }); return k; };
+  function lineHTML(v, l, i, marks) {
+    const id = lineId(v.id, l), star = !!S.tbStar[id], mk = marks[id];
+    return `<div class="line ${l.lang} ${mk ? "marked" : ""}" id="L${i}" data-lid="${esc(id)}">
+      <div class="lh"><a class="t" href="https://www.youtube.com/watch?v=${v.id}&t=${l.sec}s" target="_blank" rel="noopener">${esc(l.time)}</a>
+        <span class="spk ${spkClass(l.speaker)}">${esc(l.speaker)}</span>
+        <span class="acts">${l.lang === "en" ? `<button class="mini" data-say="${esc(l.text)}">🔊</button><button class="mini star ${star ? "on" : ""}" data-star="${esc(id)}" title="카드 학습에 추가">${star ? "⭐" : "☆"}</button>` : ""}
+        <button class="mini mk ${mk ? "on" : ""}" data-mark="${i}" title="책갈피">${mk ? "🔖" : "🏷️"}</button></span></div>
+      <div class="lt" lang="${l.lang}">${markNotes(l.text, l.notes)}</div>
+      <div class="ko ${hideKo ? "hid" : ""}">${esc(l.tr)}</div>
+      ${l.notes.length ? `<div class="lnotes">${l.notes.map(n => `<div><b>${esc(n.phrase)}</b> ${esc(n.meaning)}</div>`).join("")}</div>` : ""}
+      ${mk && mk.memo ? `<div class="memo">📝 ${esc(mk.memo)}</div>` : ""}
+    </div>`;
+  }
   function detailHTML(v, d) {
     const prog = v.detail || {};
-    const head = `<div class="head">📜 대사 한 줄씩<small>${d ? `${d.lines.length}줄` : ""}${prog.status !== "done" && prog.duration ? ` · 분석 ${fmtT(prog.done_sec)} / ${fmtT(prog.duration)}` : prog.status === "queued" ? " · 분석 대기 중" : ""}</small></div>`;
+    const head = `<div class="head">📜 대사 한 줄씩<small>${d ? `${d.lines.length}줄` : ""}${prog.status !== "done" && prog.duration ? ` · 분석 ${fmtT(prog.done_sec)} / ${fmtT(prog.duration)}` : prog.status === "queued" ? " · 분석 대기 중" : prog.status !== "done" ? ` · ${fmtT(prog.done_sec || 0)}까지 분석` : ""}</small></div>`;
     if (!d) return `<section class="lang en script">${head}<div class="body"><p class="muted">${prog.status === "queued" ? "곧 분석을 시작해요. 5분 구간씩 차례로 채워져요." : "불러오는 중…"}</p></div></section>`;
-    let html = "", si = 0;
-    const secs = d.sections || [];
-    d.lines.forEach(l => {
-      while (si < secs.length && l.sec >= secs[si].start) {
-        html += `<div class="sec">${fmtT(secs[si].start)}~${fmtT(secs[si].end)} · ${esc(secs[si].summary)}</div>`; si++;
+    const chs = chaptersOf(d), marks = S.tbMark[v.id] || {};
+    const idx = Object.fromEntries(d.lines.map((l, i) => [lineId(v.id, l), i]));
+    const pos = idx[S.tbPos[v.id]];
+    if (!tbOpen[v.id]) tbOpen[v.id] = new Set([pos != null ? chapIndex(chs, d.lines[pos].sec) : 0]);
+    const open = tbOpen[v.id];
+    const byChap = chs.map(() => []);
+    d.lines.forEach((l, i) => byChap[chapIndex(chs, l.sec)].push(i));
+    const ytChap = !!(d.chapters || []).length, secs = d.sections || [];
+    const markList = Object.entries(marks).filter(([id]) => idx[id] != null).sort((a, b) => idx[a[0]] - idx[b[0]]);
+    const panel = tbPanel === "chap" ? `<div class="sheet">${chs.map((c, k) => `<button data-jump-chap="${k}"><span class="t">${fmtT(c.sec)}</span><span class="grow">${esc(c.range ? `${fmtT(c.sec)}~${fmtT(c.end)} · ${c.title}` : c.title)}</span><small>${byChap[k].length}줄</small></button>`).join("")}</div>`
+      : tbPanel === "mark" ? `<div class="sheet">${markList.length ? markList.map(([id, m]) => `<div class="mrow"><button data-jump="${idx[id]}"><span class="t">${esc(m.time)}</span><span class="grow">${esc(m.text)}</span></button>
+          <input data-memo="${esc(id)}" placeholder="메모 (자동 저장)" value="${esc(m.memo || "")}"></div>`).join("")
+          : `<p class="muted">대사 오른쪽의 🏷️를 누르면 책갈피가 생겨요.</p>`}</div>` : "";
+    const body = chs.map((c, k) => {
+      const ids = byChap[k], nMark = ids.filter(i => marks[lineId(v.id, d.lines[i])]).length;
+      let inner = "";
+      if (open.has(k)) {
+        let si = 0;
+        ids.forEach(i => {
+          const l = d.lines[i];
+          if (ytChap) while (si < secs.length && secs[si].start <= l.sec) { if (secs[si].start >= c.sec) inner += `<div class="sec">${fmtT(secs[si].start)}~ · ${esc(secs[si].summary)}</div>`; si++; }
+          inner += lineHTML(v, l, i, marks);
+        });
       }
-      const id = lineId(v.id, l), star = !!S.tbStar[id];
-      html += `<div class="line ${l.lang}">
-        <div class="lh"><a class="t" href="https://www.youtube.com/watch?v=${v.id}&t=${l.sec}s" target="_blank" rel="noopener">${esc(l.time)}</a>
-          <span class="spk ${spkClass(l.speaker)}">${esc(l.speaker)}</span>
-          ${l.lang === "en" ? `<button class="mini" data-say="${esc(l.text)}">🔊</button><button class="mini star ${star ? "on" : ""}" data-star="${esc(id)}">${star ? "⭐" : "☆"}</button>` : ""}</div>
-        <div class="lt" lang="${l.lang}">${markNotes(l.text, l.notes)}</div>
-        <div class="ko ${hideKo ? "hid" : ""}">${esc(l.tr)}</div>
-        ${l.notes.length ? `<div class="lnotes">${l.notes.map(n => `<div><b>${esc(n.phrase)}</b> ${esc(n.meaning)}</div>`).join("")}</div>` : ""}
-      </div>`;
-    });
-    return `<section class="lang en script">${head}<div class="body">
-      <p class="muted">☆를 누르면 그 대사가 카드 학습에 들어가요. 시각을 누르면 그 장면부터 재생돼요.</p>${html}
+      return `<details class="chap" data-chap="${k}" ${open.has(k) ? "open" : ""}>
+        <summary><span class="t">${fmtT(c.sec)}</span><span class="grow">${esc(c.range ? `${fmtT(c.sec)}~${fmtT(c.end)}` : c.title)}${c.range ? `<small>${esc(c.title)}</small>` : ""}</span>
+          <span class="cnt">${ids.length}줄${nMark ? ` · 🔖${nMark}` : ""}</span></summary>
+        <div class="cbody">${inner}</div></details>`;
+    }).join("");
+    return `<section class="lang en script">${head}
+      <div class="stick"><div class="sbar"><button data-panel="chap" class="${tbPanel === "chap" ? "on" : ""}">📑 챕터 ${chs.length}</button>
+        <button data-panel="mark" class="${tbPanel === "mark" ? "on" : ""}">🔖 책갈피 ${markList.length}</button>
+        ${pos != null ? `<button data-jump="${pos}">📍 이어 보기 ${esc(d.lines[pos].time)}</button>` : ""}
+        <button data-fold="1">접기</button></div>${panel}</div>
+      <div class="body"><p class="muted">챕터를 눌러 펼치세요. 🏷️ 책갈피 · ☆ 카드 학습 · 시각을 누르면 그 장면부터 재생돼요.</p>${body}
       ${prog.status !== "done" ? `<p class="muted" style="text-align:center">나머지 구간은 분석되는 대로 계속 채워져요.</p>` : ""}</div></section>`;
   }
+  // 펼침 상태·스크롤을 유지한 채 다시 그리기
+  function rerenderDetail(vid, jump) {
+    const y = scrollY; renderTablo(vid);
+    if (jump == null) return scrollTo(0, y);
+    const el = document.getElementById("L" + jump);
+    if (el) { el.scrollIntoView({ block: "start" }); el.classList.add("hl"); setTimeout(() => el.classList.remove("hl"), 1600); }
+  }
+  function jumpTo(vid, i) {
+    const d = DET[vid]; if (!d || !d.lines[i]) return;
+    const chs = chaptersOf(d); tbOpen[vid].add(chapIndex(chs, d.lines[i].sec)); tbPanel = null;
+    rerenderDetail(vid, i);
+  }
+  let posTimer = 0;
+  window.addEventListener("scroll", () => {
+    clearTimeout(posTimer);
+    posTimer = setTimeout(() => {
+      const m = location.hash.match(/^#tablo\/(.+)/); if (!m) return;
+      const first = [...document.querySelectorAll(".line")].find(el => el.getBoundingClientRect().top > 100);
+      if (first && S.tbPos[m[1]] !== first.dataset.lid) { S.tbPos[m[1]] = first.dataset.lid; save(); }
+    }, 600);
+  }, { passive: true });
   function loadDetail(vid) {
     if (DET[vid] !== undefined) return;
     DET[vid] = null;
@@ -452,6 +518,7 @@
           <a class="btn ghost" href="#tablo">← 영상 목록</a>`;
         $("#hideko").onclick = () => { hideKo = !hideKo; renderTablo(vid); };
         if (v.detail) loadDetail(vid);
+        if (tbPanel && !DET[vid]) tbPanel = null;
         return;
       }
     }
@@ -531,6 +598,22 @@
     const b = e.target.closest("[data-clip]");
     if (b) playClip(b.dataset.clip, !!b.dataset.slow, b);
     const sb = e.target.closest("[data-say]"); if (sb) speak(sb.dataset.say, sb);
+    const tm = location.hash.match(/^#tablo\/(.+)/), tvid = tm && tm[1];
+    if (tvid && DET[tvid]) {
+      const d = DET[tvid];
+      const pn = e.target.closest("[data-panel]"); if (pn) { tbPanel = tbPanel === pn.dataset.panel ? null : pn.dataset.panel; return rerenderDetail(tvid); }
+      const jc = e.target.closest("[data-jump-chap]");
+      if (jc) { const k = +jc.dataset.jumpChap, chs = chaptersOf(d), i = d.lines.findIndex(l => chapIndex(chs, l.sec) === k); if (i >= 0) jumpTo(tvid, i); return; }
+      const jp = e.target.closest("[data-jump]"); if (jp) return jumpTo(tvid, +jp.dataset.jump);
+      if (e.target.closest("[data-fold]")) { tbOpen[tvid] = new Set(); tbPanel = null; return rerenderDetail(tvid); }
+      const mb = e.target.closest("[data-mark]");
+      if (mb) {
+        const l = d.lines[+mb.dataset.mark], id = lineId(tvid, l), mk = S.tbMark[tvid] = S.tbMark[tvid] || {};
+        if (mk[id]) { if (!mk[id].memo || confirm("메모가 있는 책갈피예요. 지울까요?")) delete mk[id]; }
+        else mk[id] = { time: l.time, sec: l.sec, text: l.text, memo: "" };
+        save(); return rerenderDetail(tvid);
+      }
+    }
     const st = e.target.closest("[data-star]");
     if (st) {
       const id = st.dataset.star, vid = location.hash.split("/")[1], d = DET[vid];
@@ -542,7 +625,16 @@
     }
     const ko = e.target.closest(".ko.hid"); if (ko) ko.classList.remove("hid");
   });
+  view.addEventListener("toggle", e => {
+    const dt = e.target; if (!dt.matches || !dt.matches("details.chap")) return;
+    const vid = location.hash.split("/")[1], set = tbOpen[vid] = tbOpen[vid] || new Set(), k = +dt.dataset.chap;
+    if (dt.open === set.has(k)) return;
+    dt.open ? set.add(k) : set.delete(k);
+    if (dt.open && !dt.querySelector(".line")) rerenderDetail(vid);
+  }, true);
   view.addEventListener("input", e => {
+    const mm = e.target.closest("[data-memo]");
+    if (mm) { const vid = location.hash.split("/")[1], m = (S.tbMark[vid] || {})[mm.dataset.memo]; if (m) { m.memo = mm.value; save(); } return; }
     const t = e.target.closest("[data-note]"); if (!t) return;
     S.notes[t.dataset.note] = t.value; save();
   });
