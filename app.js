@@ -7,7 +7,7 @@
   ];
   const LNAME = Object.fromEntries(LANGS.map(l => [l.key, l]));
   const INTERVALS = [1, 3, 7, 14, 30]; // 복습 간격(일)
-  const AUDIO_CACHE = "lang3-audio-v2"; // 음성을 새로 만들면 숫자 올리기
+  const AUDIO_CACHE = "lang3-audio-v3"; // 음성을 새로 만들면 숫자 올리기
   try { caches.keys().then(ks => ks.filter(k => k.startsWith("lang3-audio") && k !== AUDIO_CACHE).forEach(k => caches.delete(k))); } catch (e) {}
   const $ = s => document.querySelector(s);
   const view = $("#view");
