@@ -160,8 +160,33 @@ def parse_chapters(desc):
     return out if len(out) >= 3 and out[0]["sec"] == 0 else []
 
 
-def video_info(vid):
-    """영상 길이(초)·제목·챕터. 유튜브 플레이어 API → 안 되면 영상 페이지. 실패하면 (0, "", [])."""
+def iso_dur(t):
+    m = re.match(r"P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?", t or "")
+    d, h, mi, se = (int(x or 0) for x in m.groups()) if m else (0, 0, 0, 0)
+    return d * 86400 + h * 3600 + mi * 60 + se
+
+
+def video_info(vid, key=None):
+    """영상 길이(초)·제목·챕터. 실패하면 (0, "", []).
+    유튜브는 GitHub 서버의 직접 접속을 막아서(403/429), YouTube Data API(googleapis.com)를 먼저 써요.
+    같은 구글 프로젝트에서 'YouTube Data API v3'를 켜 두면 Gemini 키로 그대로 돼요."""
+    key = key or os.environ.get("YOUTUBE_API_KEY") or os.environ.get("GEMINI_API_KEY")
+    if key:
+        try:
+            r = json.loads(http(f"https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id={vid}&key={key}"))
+            it = (r.get("items") or [{}])[0]
+            dur = iso_dur(it.get("contentDetails", {}).get("duration"))
+            if dur:
+                ch = parse_chapters(it.get("snippet", {}).get("description", ""))
+                print(f"  영상 정보(YouTube Data API): {dur}초, 챕터 {len(ch)}개", flush=True)
+                return dur, it["snippet"].get("title", ""), ch
+            print(f"  YouTube Data API: 영상 정보 없음 {str(r)[:200]}", flush=True)
+        except urllib.error.HTTPError as e:
+            msg = e.read().decode()
+            hint = " → Google Cloud에서 'YouTube Data API v3'를 사용 설정해 주세요" if "has not been used" in msg or "disabled" in msg or "blocked" in msg else ""
+            print(f"  YouTube Data API 실패 {e.code}{hint}: {msg[:300]}", flush=True)
+        except Exception as e:
+            print(f"  YouTube Data API 실패: {e}", flush=True)
     try:
         body = {"context": {"client": {"clientName": "WEB", "clientVersion": "2.20241120.01.00", "hl": "en"}}, "videoId": vid}
         r = json.loads(http("https://www.youtube.com/youtubei/v1/player?prettyPrint=false", json.dumps(body).encode(),
@@ -195,11 +220,15 @@ def hms(sec):
 
 
 def analyze(video, key, prompt=PROMPT, schema=SCHEMA, start=None, end=None):
-    part = {"file_data": {"file_uri": video["url"], "mime_type": "video/*"}}
-    if start is not None or end is not None:
-        part["video_metadata"] = {k: f"{v}s" for k, v in (("start_offset", start), ("end_offset", end)) if v is not None}
+    """video 가 None 이면 글만 보내요 (챕터 나누기 등)"""
+    parts = []
+    if video:
+        part = {"file_data": {"file_uri": video["url"], "mime_type": "video/*"}}
+        if start is not None or end is not None:
+            part["video_metadata"] = {k: f"{v}s" for k, v in (("start_offset", start), ("end_offset", end)) if v is not None}
+        parts.append(part)
     body = {
-        "contents": [{"parts": [part, {"text": prompt}]}],
+        "contents": [{"parts": parts + [{"text": prompt}]}],
         "generationConfig": {
             "responseMimeType": "application/json",
             "responseSchema": schema,
@@ -285,8 +314,8 @@ def run_detail(db, vid, key):
         d = json.load(open(path, encoding="utf-8"))
     except FileNotFoundError:
         d = {"id": vid, "lines": [], "sections": [], "done_sec": 0, "duration": 0}
-    if not d["duration"] or not v["title"] or "chapters" not in d:
-        dur, title, chs = video_info(vid)
+    if not d["duration"] or not v["title"] or not d.get("chapters"):
+        dur, title, chs = video_info(vid, key)
         d["duration"] = d["duration"] or dur
         if chs or "chapters" not in d:
             d["chapters"] = chs
@@ -333,11 +362,46 @@ def run_detail(db, vid, key):
         write_detail(path, d, v, db)
         time.sleep(15)
 
+    if not d.get("chapters") and d["lines"] and d.get("ai_ch_upto", 0) < d["done_sec"]:
+        make_ai_chapters(d, key)
     if dur and d["done_sec"] >= dur:
         print("  이 영상 분석 완료!", flush=True)
         db["queue"] = [q for q in db["queue"] if q != vid]
         v["detail"]["status"] = "done"
     write_detail(path, d, v, db)
+
+
+CHAPTER_PROMPT = """아래는 타블로 유튜브 영상의 대사 기록이야 (시각 화자: 대사).
+대화 주제가 바뀌는 지점을 기준으로 챕터를 나눠 줘. 유튜브 챕터처럼.
+- 5분에 1~2개 정도, 한 챕터는 최소 2분
+- 첫 챕터는 0:00
+- time: 챕터가 시작되는 대사의 시각 (아래 기록에 있는 시각 그대로)
+- title: 한국어로 짧고 구체적으로 (예: "영국 악센트가 똑똑해 보이는 이유", 20자 안팎)
+
+대사 기록:
+{script}"""
+
+CHAPTER_SCHEMA = {"type": "OBJECT", "properties": {"chapters": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
+    "time": {"type": "STRING"}, "title": {"type": "STRING"}}, "required": ["time", "title"]}}}, "required": ["chapters"]}
+
+
+def make_ai_chapters(d, key):
+    """유튜브 챕터를 못 가져왔을 때: 지금까지 분석한 대사로 주제별 챕터를 만들어요 (글만 보내서 가벼워요)."""
+    script = "\n".join(f"{l['time']} {l['speaker']}: {l['text'][:160]}" for l in d["lines"])
+    try:
+        r = analyze(None, key, CHAPTER_PROMPT.format(script=script), CHAPTER_SCHEMA)
+    except Exception as e:
+        print(f"  챕터 만들기 실패: {e}", flush=True)
+        return
+    out = []
+    for c in r.get("chapters", []):
+        sc, title = secs(c.get("time", "")), str(c.get("title", "")).strip()
+        if title and sc <= d["done_sec"] and (not out or sc > out[-1]["sec"]):
+            out.append({"sec": sc, "title": title})
+    if out:
+        out[0]["sec"] = 0
+        d["ai_chapters"], d["ai_ch_upto"] = out, d["done_sec"]
+        print(f"  AI 챕터 {len(out)}개", flush=True)
 
 
 def write_detail(path, d, v, db):
@@ -366,7 +430,7 @@ def run_quick(db, key):
         print("새 영상이 없어요")
         return
     for v in todo:
-        dur, title, _ = video_info(v["id"])
+        dur, title, _ = video_info(v["id"], key)
         v["title"] = v["title"] or title or v["id"]
         end = QUICK_LIMIT if dur > QUICK_LIMIT else None
         print(f"분석 중: {v['title']}" + (f" (앞 {QUICK_LIMIT // 60}분만)" if end else ""), flush=True)
