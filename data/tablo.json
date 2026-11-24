@@ -218,6 +218,113 @@
    ],
    "analyzed": "2026-11-22",
    "model": "gemini-flash-lite-latest"
+  },
+  {
+   "id": "ICotPfIDYmM",
+   "title": "Ranking Epik High Members from BEST to WORST | Hey Tablo Ep.47",
+   "date": "2026-11-17",
+   "url": "https://www.youtube.com/watch?v=ICotPfIDYmM",
+   "summary": "타블로가 에픽하이 멤버들을 외모, 지능, 전문성 등 다양한 기준으로 순위를 매기며 만담을 나누는 영상입니다. 타블로 본인이 정한 주관적인 기준에 따라 결국 본인이 1위를 차지하고 투컷과 미쓰라가 공동 꼴찌를 하며 유쾌하게 마무리됩니다.",
+   "expressions": [
+    {
+     "phrase": "I kid you not",
+     "quote": "And I kid you not, we got to the last city...",
+     "ko": "진짜라니까요, 마지막 도시에 도착했을 때...",
+     "meaning": "상대방이 믿기 힘들 정도로 놀라운 사실을 말할 때 '정말이다', '농담 아니다'라는 뜻으로 강조하는 표현입니다.",
+     "example": "I kid you not, I saw a UFO last night.",
+     "example_ko": "진짜라니까, 나 어제 UFO 봤어.",
+     "time": "3:21",
+     "level": "중급",
+     "id": "tb-ICotPfIDYmM-1",
+     "sec": 201
+    },
+    {
+     "phrase": "full of himself",
+     "quote": "That's how full of himself he is.",
+     "ko": "그가 얼마나 자만심에 가득 차 있는지 알 수 있죠.",
+     "meaning": "자기 자신이 최고라고 생각하거나 지나치게 거만하게 행동하는 사람을 묘사할 때 씁니다.",
+     "example": "He's so full of himself since he got promoted.",
+     "example_ko": "그는 승진한 이후로 너무 자만심에 가득 차 있어.",
+     "time": "3:12",
+     "level": "중급",
+     "id": "tb-ICotPfIDYmM-2",
+     "sec": 192
+    },
+    {
+     "phrase": "without a millisecond of thought",
+     "quote": "He would, without a millisecond of thought, choose himself.",
+     "ko": "그는 단 1초의 망설임도 없이 자기 자신을 선택했을 거예요.",
+     "meaning": "아주 조금의 고민이나 주저함도 없이 즉각적으로 무언가를 할 때 사용하는 강조 표현입니다.",
+     "example": "She answered the question without a millisecond of thought.",
+     "example_ko": "그녀는 단 1초의 망설임도 없이 그 질문에 답했다.",
+     "time": "5:18",
+     "level": "고급",
+     "id": "tb-ICotPfIDYmM-3",
+     "sec": 318
+    },
+    {
+     "phrase": "throw out the disclaimer",
+     "quote": "I forgot to throw out the disclaimer.",
+     "ko": "주의 사항을 미리 말씀드리는 걸 깜빡했네요.",
+     "meaning": "오해를 피하기 위해 미리 경고나 면책 조항을 언급할 때 사용하는 구어체 표현입니다.",
+     "example": "Let me throw out a disclaimer before I start my presentation.",
+     "example_ko": "발표를 시작하기 전에 주의 사항 하나 말씀드릴게요.",
+     "time": "8:19",
+     "level": "중급",
+     "id": "tb-ICotPfIDYmM-4",
+     "sec": 499
+    },
+    {
+     "phrase": "live up to it",
+     "quote": "And I will live up to it. I'll work harder.",
+     "ko": "그리고 그 결과에 부응할게요. 더 열심히 하겠습니다.",
+     "meaning": "기대, 명성, 약속 등에 부끄럽지 않게 행동하거나 그만큼의 성과를 낼 때 사용합니다.",
+     "example": "It's hard to live up to your parents' expectations.",
+     "example_ko": "부모님의 기대에 부응하는 것은 어렵다.",
+     "time": "21:13",
+     "level": "중급",
+     "id": "tb-ICotPfIDYmM-5",
+     "sec": 1273
+    },
+    {
+     "phrase": "smack in the middle",
+     "quote": "I am like smack in the middle, but a little slanted to the Tukutz side.",
+     "ko": "저는 딱 중간인데, 투컷 쪽으로 약간 기울어 있어요.",
+     "meaning": "어떤 위치나 상태가 정확히 중간임을 강조할 때 'smack'을 붙여 사용합니다.",
+     "example": "The hotel is smack in the middle of the city.",
+     "example_ko": "그 호텔은 도시의 딱 한복판에 있다.",
+     "time": "15:25",
+     "level": "중급",
+     "id": "tb-ICotPfIDYmM-6",
+     "sec": 925
+    },
+    {
+     "phrase": "night-in, night-out",
+     "quote": "How reliable are they on a night-in, night-out basis?",
+     "ko": "그들이 매일 밤 얼마나 신뢰할 수 있는 모습을 보여주나요?",
+     "meaning": "'밤마다', '매일 밤 계속해서'라는 뜻으로, 반복되는 일상이나 꾸준함을 나타낼 때 씁니다.",
+     "example": "He practices the piano night-in, night-out.",
+     "example_ko": "그는 밤마다 피아노 연습을 한다.",
+     "time": "15:07",
+     "level": "고급",
+     "id": "tb-ICotPfIDYmM-7",
+     "sec": 907
+    },
+    {
+     "phrase": "hold someone back",
+     "quote": "I am like holding you back.",
+     "ko": "제가 여러분의 발목을 잡고 있는 것 같네요.",
+     "meaning": "누군가의 진행이나 발전을 방해하거나 지체하게 만들 때 사용하는 표현입니다.",
+     "example": "Don't let fear hold you back from trying new things.",
+     "example_ko": "두려움 때문에 새로운 시도를 하는 것을 주저하지 마세요.",
+     "time": "13:37",
+     "level": "중급",
+     "id": "tb-ICotPfIDYmM-8",
+     "sec": 817
+    }
+   ],
+   "analyzed": "2026-11-24",
+   "model": "gemini-3-flash-preview"
   }
  ],
  "queue": []
