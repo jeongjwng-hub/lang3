@@ -372,6 +372,77 @@
    ],
    "analyzed": "2026-11-24",
    "model": "gemini-3.5-flash"
+  },
+  {
+   "id": "TESS_MH2puo",
+   "title": "It’s not age..!! I swear! #heytablo #podcast #헤이타블로",
+   "date": "2026-11-11",
+   "url": "https://www.youtube.com/watch?v=TESS_MH2puo",
+   "summary": "나이가 들면서 관절에서 소리가 날 때 주변 사람들이 늙었다고 놀리는 것에 대해 억울함을 토로하는 영상입니다. 이야기 도중 실제로 어깨에서 관절 소리가 나며 자신이 늙었다는 것을 유쾌하게 인정합니다.",
+   "expressions": [
+    {
+     "phrase": "I hate when...",
+     "quote": "I hate when people do that.",
+     "ko": "사람들이 그러는 거 너무 싫어요.",
+     "meaning": "누군가 특정 행동을 할 때 짜증 나거나 싫은 마음을 솔직하게 표현할 때 자주 쓰는 구어체입니다.",
+     "example": "I hate when people talk loudly on the phone in public.",
+     "example_ko": "공공장소에서 사람들이 크게 통화하는 게 정말 싫어요.",
+     "time": "0:01",
+     "level": "중급",
+     "id": "tb-TESS_MH2puo-1",
+     "sec": 1
+    },
+    {
+     "phrase": "be like",
+     "quote": "They have to be like, 'Oh, grandpa.'",
+     "ko": "사람들이 '아이고, 할아버지'라는 식으로 말을 하곤 해요.",
+     "meaning": "누군가가 말하거나 행동한 내용을 전달할 때 '~라고 말하다/반응하다'의 뉘앙스로 원어민들이 매우 자주 쓰는 표현입니다.",
+     "example": "And then she was like, 'Are you serious?'",
+     "example_ko": "그랬더니 그녀가 '너 진짜야?'라고 하더라고요.",
+     "time": "0:17",
+     "level": "중급",
+     "id": "tb-TESS_MH2puo-2",
+     "sec": 17
+    },
+    {
+     "phrase": "pick something up",
+     "quote": "If I'm picking something up and my knees crack...",
+     "ko": "제가 뭘 줍고 있는데 무릎에서 뚝 소리가 나면...",
+     "meaning": "바닥이나 아래에 있는 물건을 집어 올리거나 줍는 동작을 뜻하는 기본 구동사입니다.",
+     "example": "Could you pick up that pencil I dropped?",
+     "example_ko": "제가 떨어뜨린 저 연필 좀 집어 주시겠어요?",
+     "time": "0:13",
+     "level": "중급",
+     "id": "tb-TESS_MH2puo-3",
+     "sec": 13
+    },
+    {
+     "phrase": "Ironically",
+     "quote": "Ironically, did you hear that? My shoulder just cracked.",
+     "ko": "아이러니하게도, 방금 들으셨어요? 제 어깨에서 방금 소리가 났어요.",
+     "meaning": "상황이 얄궂게 돌아가거나 예상과 달리 반대로 일어났을 때 문두에 붙여 '아이러니하게도'라는 뜻으로 사용합니다.",
+     "example": "Ironically, it rained right after we finished washing the car.",
+     "example_ko": "아이러니하게도 우리가 세차를 마치자마자 비가 내렸어요.",
+     "time": "0:23",
+     "level": "중급",
+     "id": "tb-TESS_MH2puo-4",
+     "sec": 23
+    },
+    {
+     "phrase": "for a while",
+     "quote": "My shoulder wasn't moving for a while.",
+     "ko": "제 어깨가 한동안 움직이지 않았거든요.",
+     "meaning": "'한동안', '잠시 동안'이라는 뜻으로 일정 시간 동안 상태가 지속되었음을 말할 때 쓰입니다.",
+     "example": "I think I need to rest for a while.",
+     "example_ko": "나 잠시 동안 쉬어야 할 것 같아.",
+     "time": "0:36",
+     "level": "중급",
+     "id": "tb-TESS_MH2puo-5",
+     "sec": 36
+    }
+   ],
+   "analyzed": "2026-11-24",
+   "model": "gemini-3.5-flash"
   }
  ],
  "queue": []
