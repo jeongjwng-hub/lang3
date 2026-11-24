@@ -325,6 +325,53 @@
    ],
    "analyzed": "2026-11-24",
    "model": "gemini-3-flash-preview"
+  },
+  {
+   "id": "XFDqJsICjPY",
+   "title": "Why we never perform at weddings #heytablo #podcast #헤이타블로",
+   "date": "2026-11-15",
+   "url": "https://www.youtube.com/watch?v=XFDqJsICjPY",
+   "summary": "타블로는 나이가 들면서 결혼식보다는 장례식에 참석할 일이 더 많아졌다고 말합니다. 또한 자신은 힙합 아티스트라 감미로운 축가와는 맞지 않아 남의 결혼식을 망치지 않으려고 축가를 부르지 않는다고 밝힙니다.",
+   "expressions": [
+    {
+     "phrase": "to be honest",
+     "quote": "more funerals than weddings to be honest!",
+     "ko": "솔직히 말하자면 결혼식보다 장례식이 더 많아요!",
+     "meaning": "자신의 솔직한 생각이나 느낌을 덧붙일 때 일상 대화에서 자주 사용하는 구어체 표현입니다.",
+     "example": "To be honest, I didn't really enjoy the movie.",
+     "example_ko": "솔직히 말해서 난 그 영화 그다지 재미없었어.",
+     "time": "0:03",
+     "level": "중급",
+     "id": "tb-XFDqJsICjPY-1",
+     "sec": 3
+    },
+    {
+     "phrase": "get to my age",
+     "quote": "when you get to my age, uh, more funerals than weddings to be honest!",
+     "ko": "내 나이쯤 되면 솔직히 결혼식보다 장례식이 더 많아집니다.",
+     "meaning": "특정 나이나 연령대에 도달하다라는 뜻으로 나이에 따른 변화를 설명할 때 자주 씁니다.",
+     "example": "When you get to my age, you start prioritizing your health.",
+     "example_ko": "내 나이가 되면 건강을 최우선으로 생각하기 시작하게 돼.",
+     "time": "0:00",
+     "level": "중급",
+     "id": "tb-XFDqJsICjPY-2",
+     "sec": 0
+    },
+    {
+     "phrase": "ruin someone's (something)",
+     "quote": "I'm not gonna ruin someone's wedding.",
+     "ko": "남의 결혼식을 엉망으로 만들고 싶진 않아요.",
+     "meaning": "누군가의 특별한 날이나 기분, 계획 따위를 망치다라는 의미의 일상 표현입니다.",
+     "example": "I don't want to ruin your surprise party by telling him.",
+     "example_ko": "그에게 말해서 너의 깜짝 파티를 망치고 싶지 않아.",
+     "time": "0:28",
+     "level": "중급",
+     "id": "tb-XFDqJsICjPY-3",
+     "sec": 28
+    }
+   ],
+   "analyzed": "2026-11-24",
+   "model": "gemini-3.5-flash"
   }
  ],
  "queue": []
