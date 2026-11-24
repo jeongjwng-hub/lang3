@@ -1,0 +1,37 @@
+name: Gemini 점검
+
+# 수동 실행용: 지금 쓸 수 있는 모델과 응답 상태를 확인해요. (키는 출력하지 않아요)
+on:
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 모델 목록과 간단 응답 시험
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+          key = os.environ["GEMINI_API_KEY"]
+          H = {"x-goog-api-key": key, "Content-Type": "application/json"}
+          def call(url, body=None):
+              req = urllib.request.Request(url, data=body, headers=H)
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as r: return r.status, r.read().decode()
+              except urllib.error.HTTPError as e: return e.code, e.read().decode()[:200]
+              except Exception as e: return 0, str(e)[:200]
+          st, txt = call("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200")
+          print("목록 조회:", st)
+          names = []
+          if st == 200:
+              for m in json.loads(txt)["models"]:
+                  if "generateContent" in m.get("supportedGenerationMethods", []) and ("flash" in m["name"] or "pro" in m["name"]):
+                      names.append(m["name"].split("/")[1])
+          for n in names:
+              b = json.dumps({"contents": [{"parts": [{"text": "Say OK"}]}]}).encode()
+              st, txt = call(f"https://generativelanguage.googleapis.com/v1beta/models/{n}:generateContent", b)
+              print(f"{st}  {n}")
+          PY
