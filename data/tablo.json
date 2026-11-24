@@ -107,7 +107,14 @@
     }
    ],
    "analyzed": "2026-11-24",
-   "model": "gemini-3-flash-preview"
+   "model": "gemini-3-flash-preview",
+   "detail": {
+    "status": "running",
+    "done_sec": 1200,
+    "duration": 0,
+    "lines": 102,
+    "notes": 73
+   }
   },
   {
    "id": "yWAsEGYHsvA",
@@ -158,7 +165,14 @@
     }
    ],
    "analyzed": "2026-11-22",
-   "model": "gemini-flash-lite-latest"
+   "model": "gemini-flash-lite-latest",
+   "detail": {
+    "status": "queued",
+    "done_sec": 0,
+    "duration": 0,
+    "lines": 0,
+    "notes": 0
+   }
   },
   {
    "id": "bQl7mM964oA",
@@ -217,7 +231,14 @@
     }
    ],
    "analyzed": "2026-11-22",
-   "model": "gemini-flash-lite-latest"
+   "model": "gemini-flash-lite-latest",
+   "detail": {
+    "status": "queued",
+    "done_sec": 0,
+    "duration": 0,
+    "lines": 0,
+    "notes": 0
+   }
   },
   {
    "id": "ICotPfIDYmM",
@@ -324,7 +345,14 @@
     }
    ],
    "analyzed": "2026-11-24",
-   "model": "gemini-3-flash-preview"
+   "model": "gemini-3-flash-preview",
+   "detail": {
+    "status": "queued",
+    "done_sec": 0,
+    "duration": 0,
+    "lines": 0,
+    "notes": 0
+   }
   },
   {
    "id": "XFDqJsICjPY",
@@ -371,7 +399,14 @@
     }
    ],
    "analyzed": "2026-11-24",
-   "model": "gemini-3.5-flash"
+   "model": "gemini-3.5-flash",
+   "detail": {
+    "status": "queued",
+    "done_sec": 0,
+    "duration": 0,
+    "lines": 0,
+    "notes": 0
+   }
   },
   {
    "id": "TESS_MH2puo",
@@ -442,8 +477,22 @@
     }
    ],
    "analyzed": "2026-11-24",
-   "model": "gemini-3.5-flash"
+   "model": "gemini-3.5-flash",
+   "detail": {
+    "status": "queued",
+    "done_sec": 0,
+    "duration": 0,
+    "lines": 0,
+    "notes": 0
+   }
   }
  ],
- "queue": []
+ "queue": [
+  "x0T96jO_UWI",
+  "ICotPfIDYmM",
+  "0gY_UgQUXfo",
+  "bQl7mM964oA",
+  "XFDqJsICjPY",
+  "TESS_MH2puo"
+ ]
 }
