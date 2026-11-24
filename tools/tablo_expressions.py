@@ -7,12 +7,14 @@
        TABLO_MAX     (한 번에 분석할 새 영상 수, 기본 1)
        TABLO_VIDEOS  (채널 대신 이 영상 URL/ID만 분석, 쉼표로 구분)
        TABLO_DETAIL  (이 영상을 '대사 한 줄씩 자세히' 대기열 맨 앞에 추가, 쉼표로 구분)
+       TABLO_QUICK   (1이면 새 영상을 대사 자세히 대신 핵심 표현만 빠르게 분석)
        TABLO_CHUNKS  (자세히 모드에서 한 번에 분석할 5분 구간 수, 기본 4)
 
 실행할 때마다:
   1) 자세히 대기열(queue)에 영상이 있으면 → 그 영상을 5분씩 이어서 대사 한 줄씩 분석
      (data/tablo/<영상ID>.json, 구간마다 저장해서 중간에 멈춰도 다음에 이어서 해요)
-  2) 대기열이 비었으면 → 채널 새 영상 1개를 핵심 표현 위주로 분석 (긴 영상은 앞 15분만)
+  2) 대기열이 비었으면 → 채널 새 영상 1개를 대기열에 넣고 바로 같은 방식으로 분석 (챕터로 나눠 보여줘요)
+     (TABLO_QUICK=1 또는 TABLO_VIDEOS 를 주면 예전처럼 핵심 표현만 빠르게 분석)
 
 사용법:  GEMINI_API_KEY=... python3 tools/tablo_expressions.py
 이미 분석한 영상은 건너뜁니다. 외부 패키지 없이 파이썬 기본 라이브러리만 씁니다.
@@ -467,9 +469,23 @@ def main():
             e = entry(db, vid)
             e.setdefault("detail", {"status": "queued", "done_sec": 0, "duration": 0, "lines": 0, "notes": 0})
         save(db)
+    if not db["queue"] and not (os.environ.get("TABLO_QUICK") or os.environ.get("TABLO_VIDEOS")):
+        # 새 영상은 처음부터 '대사 한 줄씩 + 챕터'로 분석해요. (TABLO_QUICK=1 이면 예전처럼 핵심 표현만)
+        seen = {v["id"] for v in db["videos"]}
+        new = [v for v in latest_videos(channel_id(HANDLE)) if v["id"] not in seen][:MAX_NEW]
+        if not new:
+            print("새 영상이 없어요")
+        for v in new:
+            e = entry(db, v["id"])
+            e["title"] = e["title"] or v.get("title", "")
+            e["date"] = e["date"] or v.get("date", "")
+            e.setdefault("detail", {"status": "queued", "done_sec": 0, "duration": 0, "lines": 0, "notes": 0})
+            db["queue"].append(v["id"])
+        if new:
+            save(db)
     if db["queue"]:
         run_detail(db, db["queue"][0], key)
-    else:
+    elif os.environ.get("TABLO_QUICK") or os.environ.get("TABLO_VIDEOS"):
         run_quick(db, key)
     print("완료")
 
