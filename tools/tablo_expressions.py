@@ -3,7 +3,7 @@
 외워 둘 만한 영어 표현을 data/tablo.json 에 쌓습니다.
 
 필요:  환경변수 GEMINI_API_KEY  (https://aistudio.google.com/apikey 에서 발급)
-선택:  GEMINI_MODEL  (쉼표로 여러 개, 앞에서부터 시도 · 기본 gemini-flash-latest → gemini-2.5-flash → gemini-flash-lite-latest)
+선택:  GEMINI_MODEL  (쉼표로 여러 개, 앞에서부터 시도 · 기본값은 아래 DEFAULT_MODELS 참고)
        TABLO_MAX     (한 번에 분석할 새 영상 수, 기본 1)
        TABLO_VIDEOS  (채널 대신 이 영상 URL/ID만 분석, 쉼표로 구분)
        TABLO_DETAIL  (이 영상을 '대사 한 줄씩 자세히' 대기열 맨 앞에 추가, 쉼표로 구분)
@@ -24,7 +24,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "tablo.json")
 HANDLE = "heytablo"
 # 앞 모델이 "사용량 많음(503)"이거나 없는 모델(404)이면 다음 모델로 넘어가요
-MODELS = [m.strip() for m in os.environ.get("GEMINI_MODEL", "gemini-flash-latest,gemini-2.5-flash,gemini-flash-lite-latest").split(",") if m.strip()]
+# 2026-11-24 점검: gemini-2.5-* 는 없어졌고(404), flash 계열은 자주 바빠서(503) 가벼운 모델도 함께 시도해요.
+DEFAULT_MODELS = "gemini-3.5-flash-lite,gemini-flash-lite-latest,gemini-flash-latest,gemini-3.5-flash,gemini-3-flash-preview,gemini-3.1-flash-lite"
+MODELS = [m.strip() for m in (os.environ.get("GEMINI_MODEL") or DEFAULT_MODELS).split(",") if m.strip()]
 MODEL = MODELS[0]
 MAX_NEW = int(os.environ.get("TABLO_MAX", "1"))
 CHUNK = 300          # 자세히 모드 구간 길이(초)
@@ -250,7 +252,7 @@ def analyze(video, key, prompt=PROMPT, schema=SCHEMA, start=None, end=None):
                 last.code = e.code
                 if e.code == 404 or e.code in (429, 500, 503):
                     print(f"  {model}: {e.code} → 다음 모델", flush=True)
-                    time.sleep(20)
+                    time.sleep(0 if e.code == 404 else 8)
                     continue
                 raise last  # 400 등은 바로 알려요 (영상 끝을 넘긴 구간 판단에 써요)
             except (TimeoutError, urllib.error.URLError) as e:
