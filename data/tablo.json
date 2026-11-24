@@ -109,9 +109,9 @@
    "analyzed": "2026-11-24",
    "model": "gemini-3-flash-preview",
    "detail": {
-    "status": "running",
+    "status": "done",
     "done_sec": 3600,
-    "duration": 0,
+    "duration": 3446,
     "lines": 345,
     "notes": 218
    }
@@ -488,7 +488,6 @@
   }
  ],
  "queue": [
-  "x0T96jO_UWI",
   "ICotPfIDYmM",
   "0gY_UgQUXfo",
   "bQl7mM964oA",

@@ -4238,8 +4238,121 @@
   }
  ],
  "done_sec": 3600,
- "duration": 0,
- "chapters": [],
+ "duration": 3446,
+ "chapters": [
+  {
+   "sec": 0,
+   "title": "The 3 Biggest Failures of My Life"
+  },
+  {
+   "sec": 57,
+   "title": "Failure #1: Getting Kicked Out of School in 8th Grade"
+  },
+  {
+   "sec": 100,
+   "title": "Life at a Hogwarts-Like Boarding School in Canada"
+  },
+  {
+   "sec": 331,
+   "title": "How Tablo Got Expelled"
+  },
+  {
+   "sec": 405,
+   "title": "Moving Back to Korea as a Complete Failure"
+  },
+  {
+   "sec": 587,
+   "title": "The Test Score That Changed Everything"
+  },
+  {
+   "sec": 660,
+   "title": "The ONE Teacher Who Saw Something in Tablo"
+  },
+  {
+   "sec": 1258,
+   "title": "How One Compliment Turned His Life Around"
+  },
+  {
+   "sec": 1370,
+   "title": "The Teacher Who Led Tablo to Stanford"
+  },
+  {
+   "sec": 1518,
+   "title": "Failure #2: Epik High's First Album Flopped"
+  },
+  {
+   "sec": 1563,
+   "title": "The Album Leak That Ruined Everything"
+  },
+  {
+   "sec": 1792,
+   "title": "The Emergency Meeting That Almost Ended Epik High"
+  },
+  {
+   "sec": 1959,
+   "title": "The Impossible Promise: We'll Produce It Ourselves"
+  },
+  {
+   "sec": 2011,
+   "title": "Making Music With No Money and One Shared Computer"
+  },
+  {
+   "sec": 2186,
+   "title": "How \"Peace Day\" Was Born"
+  },
+  {
+   "sec": 2307,
+   "title": "High Society: The Album That Saved Epik High"
+  },
+  {
+   "sec": 2428,
+   "title": "Why That Failure Made Epik High Who They Are"
+  },
+  {
+   "sec": 2528,
+   "title": "Failure #3: The Road to KSPO Dome"
+  },
+  {
+   "sec": 2642,
+   "title": "The Man Who Laughed at Tablo's Concert Dreams"
+  },
+  {
+   "sec": 2701,
+   "title": "Turning Rejection Into Motivation"
+  },
+  {
+   "sec": 2783,
+   "title": "The Dream Finally Comes True"
+  },
+  {
+   "sec": 2816,
+   "title": "Why Epik High Wanted a December Concert"
+  },
+  {
+   "sec": 2934,
+   "title": "Losing the KSPO Dome Booking"
+  },
+  {
+   "sec": 3000,
+   "title": "Should We Give Up on the Dream?"
+  },
+  {
+   "sec": 3075,
+   "title": "Taking One Last Gamble on January"
+  },
+  {
+   "sec": 3135,
+   "title": "Epik High and the Fans Pull Off the Impossible"
+  },
+  {
+   "sec": 3200,
+   "title": "Why Tablo Is Now Grateful for the Rejection"
+  },
+  {
+   "sec": 3355,
+   "title": "The Real Lesson: Failure Is Fuel"
+  }
+ ],
  "title": "Kicked Out Of School. Failed At My Job. Best Thing Ever | Hey Tablo Ep.48",
  "url": "https://www.youtube.com/watch?v=x0T96jO_UWI",
  "ai_chapters": [
