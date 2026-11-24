@@ -1,116 +1,2181 @@
 {
-  "version": 1,
-  "lessons": [
-    {
-      "id": "d01",
-      "day": 1,
-      "topic": "카페에서 주문",
-      "emoji": "☕",
-      "intro": "도쿄의 카페, 뉴욕의 커피숍, 파리의 카페에서 주문하는 상황이에요.",
-      "ja": {
-        "grammar": { "title": "〜てもいいですか · 〜にします", "desc": "동사 て형 + もいいですか = ~해도 될까요? (허락 구하기)\n명사 + にします = ~로 할게요 (선택·결정)" },
-        "verb": { "dict": "座る", "reading": "すわる", "ko": "앉다", "forms": [["ます형", "座ります"], ["て형", "座って"], ["ない형", "座らない"], ["가능형", "座れる"]] },
-        "items": [
-          { "id": "d01-ja-1", "ruby": "アイスコーヒーを{一|ひと}つお{願|ねが}いします。", "ko": "아이스커피 하나 부탁드려요.", "simple": "アイスコーヒーください。", "note": "ください보다 お願いします가 더 부드럽고 어른스러워요. 개수는 一つ(ひとつ)·二つ(ふたつ).", "kanji": [["願", "원", "ねが(う)"]] },
-          { "id": "d01-ja-2", "ruby": "{店内|てんない}でお{願|ねが}いします。", "ko": "매장에서 먹을게요.", "simple": "ここで食べます。", "note": "점원이 「店内でお召し上がりですか？」(매장에서 드시나요?) 하고 물으면 이렇게 답해요. 포장은 「持ち帰りで」(もちかえりで).", "kanji": [["店内", "점내", "てんない"]] },
-          { "id": "d01-ja-3", "ruby": "{私|わたし}はカフェラテにします。", "ko": "저는 카페라테로 할게요.", "simple": "カフェラテがいいです。", "note": "명사 + にします = ~로 할게요. 메뉴를 고를 때 가장 자연스러운 표현이에요.", "kanji": [["私", "사", "わたし"]] },
-          { "id": "d01-ja-4", "ruby": "{窓側|まどがわ}の{席|せき}に{座|すわ}ってもいいですか。", "ko": "창가 자리에 앉아도 될까요?", "simple": "窓の席、いいですか。", "note": "座る → 座って + もいいですか. 사진 찍어도 되나요? = 写真を撮ってもいいですか。", "kanji": [["窓", "창", "まど"], ["席", "석", "せき"], ["座", "좌", "すわ(る)"]] }
-        ],
-        "task": "〜にします를 써서 내가 좋아하는 메뉴를 주문해 보세요."
-      },
-      "en": {
-        "grammar": { "title": "I was wondering if ~", "desc": "Can I ~?보다 한층 부드럽고 공손한 요청이에요.\n과거진행형이지만 '지금' 부탁하는 말이에요." },
-        "items": [
-          { "id": "d01-en-1", "text": "I was wondering if I could get this to go.", "ko": "이거 포장해 갈 수 있을까요?", "simple": "Can I take this out?", "note": "to go = 포장 (미국식). 영국에서는 to take away." },
-          { "id": "d01-en-2", "text": "Could I get it with oat milk instead of regular milk?", "ko": "일반 우유 대신 귀리 우유로 해주실 수 있나요?", "simple": "Oat milk, please.", "note": "instead of + 명사 = ~ 대신에. 주문을 바꿀 때 꼭 필요한 표현." },
-          { "id": "d01-en-3", "text": "I'll go with the iced Americano, since it's pretty warm today.", "ko": "오늘 꽤 따뜻해서 아이스 아메리카노로 할게요.", "simple": "Iced Americano, please. It's hot.", "note": "I'll go with ~ = ~로 할게요. since + 이유로 짧은 두 문장을 한 문장으로 이어요." }
-        ],
-        "task": "since 또는 instead of를 넣어 나만의 주문 문장을 만들어 보세요."
-      },
-      "fr": {
-        "grammar": { "title": "vouloir → je voudrais", "desc": "je veux(원해)는 직설적이라 가게에서는 je voudrais(~하고 싶은데요)를 써요." },
-        "verb": { "dict": "vouloir", "ko": "원하다", "forms": [["je", "veux"], ["tu", "veux"], ["il/elle", "veut"], ["nous", "voulons"], ["vous", "voulez"], ["ils/elles", "veulent"]] },
-        "items": [
-          { "id": "d01-fr-1", "text": "Je voudrais un café, s'il vous plaît.", "ko": "커피 한 잔 주세요.", "note": "프랑스에서 un café는 에스프레소예요. 우유가 들어간 건 un café crème." },
-          { "id": "d01-fr-2", "text": "À emporter, s'il vous plaît.", "ko": "포장이요.", "note": "점원이 « Sur place ou à emporter ? »(매장에서요, 포장이요?) 하고 물어요. 매장은 « Sur place. »" },
-          { "id": "d01-fr-3", "text": "Je vous dois combien ?", "ko": "얼마 드리면 되나요?", "note": "직역하면 '제가 얼마를 빚졌나요?' 계산할 때 아주 자연스러운 표현이에요." }
-        ],
-        "task": "Je voudrais + 먹고 싶은 것으로 문장 하나를 만들어 보세요."
-      }
+ "version": 1,
+ "lessons": [
+  {
+   "id": "d01",
+   "day": 1,
+   "topic": "카페에서 주문",
+   "emoji": "☕",
+   "intro": "도쿄의 카페, 뉴욕의 커피숍, 파리의 카페에서 주문하는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜てもいいですか · 〜にします",
+     "desc": "동사 て형 + もいいですか = ~해도 될까요? (허락 구하기)\n명사 + にします = ~로 할게요 (선택·결정)"
     },
-    {
-      "id": "d02",
-      "day": 2,
-      "topic": "길 찾기",
-      "emoji": "🗺️",
-      "intro": "역이나 목적지로 가는 길을 묻고, 안내를 알아듣는 상황이에요.",
-      "ja": {
-        "grammar": { "title": "〜ばいいですか · 〜てしまいました", "desc": "동사 ば형 + いいですか = ~하면 되나요?\n동사 て형 + しまいました = ~해 버렸어요 (아쉬움·곤란함)" },
-        "verb": { "dict": "曲がる", "reading": "まがる", "ko": "(길을) 돌다, 꺾다", "forms": [["ます형", "曲がります"], ["て형", "曲がって"], ["ない형", "曲がらない"], ["가능형", "曲がれる"], ["ば형", "曲がれば"]] },
-        "items": [
-          { "id": "d02-ja-1", "ruby": "{駅|えき}までどうやって{行|い}けばいいですか。", "ko": "역까지 어떻게 가면 되나요?", "simple": "駅はどこですか。", "note": "行く → 行けば + いいですか. '어디예요?'보다 훨씬 자연스러운 질문이에요.", "kanji": [["駅", "역", "えき"]] },
-          { "id": "d02-ja-2", "ruby": "まっすぐ{行|い}って、{二|ふた}つ{目|め}の{角|かど}を{右|みぎ}に{曲|ま}がってください。", "ko": "쭉 가서 두 번째 모퉁이에서 오른쪽으로 도세요.", "simple": "まっすぐ、右です。", "note": "て형으로 동작을 이어요: 行って → 曲がって. 길 안내를 알아듣는 데 꼭 필요해요.", "kanji": [["角", "각", "かど"], ["右", "우", "みぎ"], ["曲", "곡", "ま(がる)"]] },
-          { "id": "d02-ja-3", "ruby": "ここから{歩|ある}いてどのくらいかかりますか。", "ko": "여기서 걸어서 얼마나 걸리나요?", "simple": "遠いですか。", "note": "歩いて = 걸어서 (歩く의 て형). かかる = (시간이) 걸리다.", "kanji": [["歩", "보", "ある(く)"]] },
-          { "id": "d02-ja-4", "ruby": "{道|みち}に{迷|まよ}ってしまいました。", "ko": "길을 잃어버렸어요.", "simple": "わかりません。", "note": "迷う → 迷って + しまいました. 도움을 청할 때 첫마디로 좋아요.", "kanji": [["道", "도", "みち"], ["迷", "미", "まよ(う)"]] }
-        ],
-        "task": "〜ばいいですか를 써서 가고 싶은 장소로 가는 길을 물어보세요."
-      },
-      "en": {
-        "grammar": { "title": "간접의문문: tell me + 의문사 + 주어 + 동사", "desc": "Where is the station?을 문장 안에 넣으면 어순이 바뀌어요.\n→ Could you tell me where the station is?" },
-        "items": [
-          { "id": "d02-en-1", "text": "Could you tell me how I can get to the station?", "ko": "역에 어떻게 가는지 알려주실 수 있나요?", "simple": "Where is the station?", "note": "how can I → how I can (어순 주의!)" },
-          { "id": "d02-en-2", "text": "Is it within walking distance, or should I take a taxi?", "ko": "걸어갈 만한 거리인가요, 아니면 택시를 타야 할까요?", "simple": "Is it far?", "note": "within walking distance = 걸어갈 수 있는 거리. A, or should I ~? 로 선택지를 주는 질문." },
-          { "id": "d02-en-3", "text": "I must have taken a wrong turn somewhere.", "ko": "어딘가에서 길을 잘못 든 게 분명해요.", "simple": "I'm lost.", "note": "must have + 과거분사 = ~했던 게 틀림없다 (과거에 대한 추측)." }
-        ],
-        "task": "Could you tell me + 의문사로 길을 묻는 문장을 만들어 보세요."
-      },
-      "fr": {
-        "grammar": { "title": "aller (가다)", "desc": "가장 많이 쓰는 불규칙 동사예요. aller à + 장소, en + 교통수단." },
-        "verb": { "dict": "aller", "ko": "가다", "forms": [["je", "vais"], ["tu", "vas"], ["il/elle", "va"], ["nous", "allons"], ["vous", "allez"], ["ils/elles", "vont"]] },
-        "items": [
-          { "id": "d02-fr-1", "text": "Excusez-moi, où est la gare, s'il vous plaît ?", "ko": "실례합니다, 역이 어디에 있나요?", "note": "길을 물을 땐 항상 Excusez-moi로 시작해요." },
-          { "id": "d02-fr-2", "text": "C'est loin d'ici ?", "ko": "여기서 먼가요?", "note": "가깝다는 près d'ici. 대답 예: « C'est à cinq minutes à pied. »(걸어서 5분이에요)" },
-          { "id": "d02-fr-3", "text": "Je vais à la gare en métro.", "ko": "저는 지하철로 역에 가요.", "note": "en bus, en taxi, en train. 걸어서는 à pied." }
-        ],
-        "task": "Je vais à + 장소 + en + 교통수단으로 오늘 출근길을 말해 보세요."
-      }
+    "verb": {
+     "dict": "座る",
+     "reading": "すわる",
+     "ko": "앉다",
+     "forms": [
+      [
+       "ます형",
+       "座ります"
+      ],
+      [
+       "て형",
+       "座って"
+      ],
+      [
+       "ない형",
+       "座らない"
+      ],
+      [
+       "가능형",
+       "座れる"
+      ]
+     ]
     },
-    {
-      "id": "d03",
-      "day": 3,
-      "topic": "주말 계획 이야기",
-      "emoji": "🌤️",
-      "intro": "동료나 친구와 주말 계획을 묻고 답하는 상황이에요.",
-      "ja": {
-        "grammar": { "title": "〜つもりです · 〜(よ)うと思っています", "desc": "동사 원형 + つもりです = ~할 생각이에요 (정해진 계획)\n의지형 + と思っています = ~하려고 해요 (아직 생각 중)" },
-        "verb": { "dict": "行く", "reading": "いく", "ko": "가다", "forms": [["ます형", "行きます"], ["て형", "行って (예외!)"], ["ない형", "行かない"], ["가능형", "行ける"], ["의지형", "行こう"]] },
-        "items": [
-          { "id": "d03-ja-1", "ruby": "{週末|しゅうまつ}は{友達|ともだち}と{温泉|おんせん}に{行|い}くつもりです。", "ko": "주말에는 친구랑 온천에 갈 생각이에요.", "simple": "週末、温泉に行きます。", "note": "동사 원형 + つもりです. 이미 정한 계획을 말할 때 써요.", "kanji": [["週末", "주말", "しゅうまつ"], ["温泉", "온천", "おんせん"], ["友達", "우달", "ともだち"]] },
-          { "id": "d03-ja-2", "ruby": "{天気|てんき}がよかったら、{海|うみ}に{行|い}こうと{思|おも}っています。", "ko": "날씨가 좋으면 바다에 가려고 해요.", "simple": "天気がいい、海に行きます。", "note": "〜たら = ~하면. 行こう(의지형) + と思っています = ~하려고 생각 중이에요.", "kanji": [["天気", "천기", "てんき"], ["海", "해", "うみ"], ["思", "사", "おも(う)"]] },
-          { "id": "d03-ja-3", "ruby": "{特|とく}に{予定|よてい}はないんですが、{家|いえ}でゆっくりしたいです。", "ko": "특별한 계획은 없는데, 집에서 푹 쉬고 싶어요.", "simple": "予定、ないです。", "note": "〜んですが = ~인데요 (부드럽게 이어 말하기). ゆっくりする = 느긋하게 쉬다.", "kanji": [["特", "특", "とく"], ["予定", "예정", "よてい"], ["家", "가", "いえ"]] },
-          { "id": "d03-ja-4", "ruby": "よかったら、{一緒|いっしょ}に{行|い}きませんか。", "ko": "괜찮으면 같이 가지 않을래요?", "simple": "一緒に行きましょう。", "note": "〜ませんか = ~하지 않을래요? 상대에게 선택권을 주는 부드러운 권유예요.", "kanji": [["一緒", "일서", "いっしょ"]] }
-        ],
-        "task": "〜つもりです 또는 〜と思っています로 이번 주말 계획을 말해 보세요."
-      },
-      "en": {
-        "grammar": { "title": "I'm thinking of ~ing", "desc": "I will ~ 대신 '~할까 생각 중'이라고 여유 있게 말하는 표현이에요.\nif 조건을 붙이면 문장이 자연스럽게 길어져요." },
-        "items": [
-          { "id": "d03-en-1", "text": "I'm thinking of getting out of town this weekend, if the weather holds up.", "ko": "날씨만 괜찮으면 이번 주말에 교외로 나가볼까 생각 중이에요.", "simple": "I will go out this weekend.", "note": "I'm thinking of + ~ing = ~할까 생각 중. hold up = (날씨가) 계속 좋다." },
-          { "id": "d03-en-2", "text": "I don't have anything planned yet, so I'm keeping it open.", "ko": "아직 잡힌 계획이 없어서 일정은 비워두고 있어요.", "simple": "I have no plan.", "note": "have something planned = 계획이 잡혀 있다. keep it open = (일정을) 열어두다." },
-          { "id": "d03-en-3", "text": "It really depends on how tired I am by Friday.", "ko": "금요일쯤 제가 얼마나 피곤한지에 달려 있어요.", "simple": "I don't know. Maybe.", "note": "depends on + 간접의문문(how tired I am). 어제 배운 어순 복습이에요!" }
-        ],
-        "task": "I'm thinking of ~ing, if ~로 이번 주말 계획을 말해 보세요."
-      },
-      "fr": {
-        "grammar": { "title": "futur proche: aller + 동사원형", "desc": "'~할 거예요'라는 가까운 미래. 어제 배운 aller 뒤에 동사원형만 붙이면 돼요." },
-        "verb": { "dict": "faire", "ko": "하다, 만들다", "forms": [["je", "fais"], ["tu", "fais"], ["il/elle", "fait"], ["nous", "faisons"], ["vous", "faites"], ["ils/elles", "font"]] },
-        "items": [
-          { "id": "d03-fr-1", "text": "Qu'est-ce que tu vas faire ce week-end ?", "ko": "이번 주말에 뭐 할 거야?", "note": "vas(aller) + faire(하다). 친구에게 쓰는 tu 형태예요. 존댓말은 vous allez faire." },
-          { "id": "d03-fr-2", "text": "Je vais visiter un musée avec un ami.", "ko": "친구랑 박물관에 갈 거예요.", "note": "visiter는 장소를 방문할 때. 사람을 방문할 땐 rendre visite à." },
-          { "id": "d03-fr-3", "text": "Je vais rester à la maison et me reposer.", "ko": "집에 있으면서 쉴 거예요.", "note": "se reposer(쉬다)는 대명동사라서 je vais me reposer처럼 me가 붙어요." }
-        ],
-        "task": "Je vais + 동사원형으로 이번 주말 계획을 말해 보세요."
-      }
-    }
-  ]
+    "items": [
+     {
+      "id": "d01-ja-1",
+      "ruby": "アイスコーヒーを{一|ひと}つお{願|ねが}いします。",
+      "ko": "아이스커피 하나 부탁드려요.",
+      "simple": "アイスコーヒーください。",
+      "note": "ください보다 お願いします가 더 부드럽고 어른스러워요. 개수는 一つ(ひとつ)·二つ(ふたつ).",
+      "kanji": [
+       [
+        "願",
+        "원",
+        "ねが(う)"
+       ]
+      ]
+     },
+     {
+      "id": "d01-ja-2",
+      "ruby": "{店内|てんない}でお{願|ねが}いします。",
+      "ko": "매장에서 먹을게요.",
+      "simple": "ここで食べます。",
+      "note": "점원이 「店内でお召し上がりですか？」(매장에서 드시나요?) 하고 물으면 이렇게 답해요. 포장은 「持ち帰りで」(もちかえりで).",
+      "kanji": [
+       [
+        "店内",
+        "점내",
+        "てんない"
+       ]
+      ]
+     },
+     {
+      "id": "d01-ja-3",
+      "ruby": "{私|わたし}はカフェラテにします。",
+      "ko": "저는 카페라테로 할게요.",
+      "simple": "カフェラテがいいです。",
+      "note": "명사 + にします = ~로 할게요. 메뉴를 고를 때 가장 자연스러운 표현이에요.",
+      "kanji": [
+       [
+        "私",
+        "사",
+        "わたし"
+       ]
+      ]
+     },
+     {
+      "id": "d01-ja-4",
+      "ruby": "{窓側|まどがわ}の{席|せき}に{座|すわ}ってもいいですか。",
+      "ko": "창가 자리에 앉아도 될까요?",
+      "simple": "窓の席、いいですか。",
+      "note": "座る → 座って + もいいですか. 사진 찍어도 되나요? = 写真を撮ってもいいですか。",
+      "kanji": [
+       [
+        "窓",
+        "창",
+        "まど"
+       ],
+       [
+        "席",
+        "석",
+        "せき"
+       ],
+       [
+        "座",
+        "좌",
+        "すわ(る)"
+       ]
+      ]
+     }
+    ],
+    "task": "〜にします를 써서 내가 좋아하는 메뉴를 주문해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "I was wondering if ~",
+     "desc": "Can I ~?보다 한층 부드럽고 공손한 요청이에요.\n과거진행형이지만 '지금' 부탁하는 말이에요."
+    },
+    "items": [
+     {
+      "id": "d01-en-1",
+      "text": "I was wondering if I could get this to go.",
+      "ko": "이거 포장해 갈 수 있을까요?",
+      "simple": "Can I take this out?",
+      "note": "to go = 포장 (미국식). 영국에서는 to take away."
+     },
+     {
+      "id": "d01-en-2",
+      "text": "Could I get it with oat milk instead of regular milk?",
+      "ko": "일반 우유 대신 귀리 우유로 해주실 수 있나요?",
+      "simple": "Oat milk, please.",
+      "note": "instead of + 명사 = ~ 대신에. 주문을 바꿀 때 꼭 필요한 표현."
+     },
+     {
+      "id": "d01-en-3",
+      "text": "I'll go with the iced Americano, since it's pretty warm today.",
+      "ko": "오늘 꽤 따뜻해서 아이스 아메리카노로 할게요.",
+      "simple": "Iced Americano, please. It's hot.",
+      "note": "I'll go with ~ = ~로 할게요. since + 이유로 짧은 두 문장을 한 문장으로 이어요."
+     }
+    ],
+    "task": "since 또는 instead of를 넣어 나만의 주문 문장을 만들어 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "vouloir → je voudrais",
+     "desc": "je veux(원해)는 직설적이라 가게에서는 je voudrais(~하고 싶은데요)를 써요."
+    },
+    "verb": {
+     "dict": "vouloir",
+     "ko": "원하다",
+     "forms": [
+      [
+       "je",
+       "veux"
+      ],
+      [
+       "tu",
+       "veux"
+      ],
+      [
+       "il/elle",
+       "veut"
+      ],
+      [
+       "nous",
+       "voulons"
+      ],
+      [
+       "vous",
+       "voulez"
+      ],
+      [
+       "ils/elles",
+       "veulent"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d01-fr-1",
+      "text": "Je voudrais un café, s'il vous plaît.",
+      "ko": "커피 한 잔 주세요.",
+      "note": "프랑스에서 un café는 에스프레소예요. 우유가 들어간 건 un café crème."
+     },
+     {
+      "id": "d01-fr-2",
+      "text": "À emporter, s'il vous plaît.",
+      "ko": "포장이요.",
+      "note": "점원이 « Sur place ou à emporter ? »(매장에서요, 포장이요?) 하고 물어요. 매장은 « Sur place. »"
+     },
+     {
+      "id": "d01-fr-3",
+      "text": "Je vous dois combien ?",
+      "ko": "얼마 드리면 되나요?",
+      "note": "직역하면 '제가 얼마를 빚졌나요?' 계산할 때 아주 자연스러운 표현이에요."
+     }
+    ],
+    "task": "Je voudrais + 먹고 싶은 것으로 문장 하나를 만들어 보세요."
+   }
+  },
+  {
+   "id": "d02",
+   "day": 2,
+   "topic": "길 찾기",
+   "emoji": "🗺️",
+   "intro": "역이나 목적지로 가는 길을 묻고, 안내를 알아듣는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜ばいいですか · 〜てしまいました",
+     "desc": "동사 ば형 + いいですか = ~하면 되나요?\n동사 て형 + しまいました = ~해 버렸어요 (아쉬움·곤란함)"
+    },
+    "verb": {
+     "dict": "曲がる",
+     "reading": "まがる",
+     "ko": "(길을) 돌다, 꺾다",
+     "forms": [
+      [
+       "ます형",
+       "曲がります"
+      ],
+      [
+       "て형",
+       "曲がって"
+      ],
+      [
+       "ない형",
+       "曲がらない"
+      ],
+      [
+       "가능형",
+       "曲がれる"
+      ],
+      [
+       "ば형",
+       "曲がれば"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d02-ja-1",
+      "ruby": "{駅|えき}までどうやって{行|い}けばいいですか。",
+      "ko": "역까지 어떻게 가면 되나요?",
+      "simple": "駅はどこですか。",
+      "note": "行く → 行けば + いいですか. '어디예요?'보다 훨씬 자연스러운 질문이에요.",
+      "kanji": [
+       [
+        "駅",
+        "역",
+        "えき"
+       ]
+      ]
+     },
+     {
+      "id": "d02-ja-2",
+      "ruby": "まっすぐ{行|い}って、{二|ふた}つ{目|め}の{角|かど}を{右|みぎ}に{曲|ま}がってください。",
+      "ko": "쭉 가서 두 번째 모퉁이에서 오른쪽으로 도세요.",
+      "simple": "まっすぐ、右です。",
+      "note": "て형으로 동작을 이어요: 行って → 曲がって. 길 안내를 알아듣는 데 꼭 필요해요.",
+      "kanji": [
+       [
+        "角",
+        "각",
+        "かど"
+       ],
+       [
+        "右",
+        "우",
+        "みぎ"
+       ],
+       [
+        "曲",
+        "곡",
+        "ま(がる)"
+       ]
+      ]
+     },
+     {
+      "id": "d02-ja-3",
+      "ruby": "ここから{歩|ある}いてどのくらいかかりますか。",
+      "ko": "여기서 걸어서 얼마나 걸리나요?",
+      "simple": "遠いですか。",
+      "note": "歩いて = 걸어서 (歩く의 て형). かかる = (시간이) 걸리다.",
+      "kanji": [
+       [
+        "歩",
+        "보",
+        "ある(く)"
+       ]
+      ]
+     },
+     {
+      "id": "d02-ja-4",
+      "ruby": "{道|みち}に{迷|まよ}ってしまいました。",
+      "ko": "길을 잃어버렸어요.",
+      "simple": "わかりません。",
+      "note": "迷う → 迷って + しまいました. 도움을 청할 때 첫마디로 좋아요.",
+      "kanji": [
+       [
+        "道",
+        "도",
+        "みち"
+       ],
+       [
+        "迷",
+        "미",
+        "まよ(う)"
+       ]
+      ]
+     }
+    ],
+    "task": "〜ばいいですか를 써서 가고 싶은 장소로 가는 길을 물어보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "간접의문문: tell me + 의문사 + 주어 + 동사",
+     "desc": "Where is the station?을 문장 안에 넣으면 어순이 바뀌어요.\n→ Could you tell me where the station is?"
+    },
+    "items": [
+     {
+      "id": "d02-en-1",
+      "text": "Could you tell me how I can get to the station?",
+      "ko": "역에 어떻게 가는지 알려주실 수 있나요?",
+      "simple": "Where is the station?",
+      "note": "how can I → how I can (어순 주의!)"
+     },
+     {
+      "id": "d02-en-2",
+      "text": "Is it within walking distance, or should I take a taxi?",
+      "ko": "걸어갈 만한 거리인가요, 아니면 택시를 타야 할까요?",
+      "simple": "Is it far?",
+      "note": "within walking distance = 걸어갈 수 있는 거리. A, or should I ~? 로 선택지를 주는 질문."
+     },
+     {
+      "id": "d02-en-3",
+      "text": "I must have taken a wrong turn somewhere.",
+      "ko": "어딘가에서 길을 잘못 든 게 분명해요.",
+      "simple": "I'm lost.",
+      "note": "must have + 과거분사 = ~했던 게 틀림없다 (과거에 대한 추측)."
+     }
+    ],
+    "task": "Could you tell me + 의문사로 길을 묻는 문장을 만들어 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "aller (가다)",
+     "desc": "가장 많이 쓰는 불규칙 동사예요. aller à + 장소, en + 교통수단."
+    },
+    "verb": {
+     "dict": "aller",
+     "ko": "가다",
+     "forms": [
+      [
+       "je",
+       "vais"
+      ],
+      [
+       "tu",
+       "vas"
+      ],
+      [
+       "il/elle",
+       "va"
+      ],
+      [
+       "nous",
+       "allons"
+      ],
+      [
+       "vous",
+       "allez"
+      ],
+      [
+       "ils/elles",
+       "vont"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d02-fr-1",
+      "text": "Excusez-moi, où est la gare, s'il vous plaît ?",
+      "ko": "실례합니다, 역이 어디에 있나요?",
+      "note": "길을 물을 땐 항상 Excusez-moi로 시작해요."
+     },
+     {
+      "id": "d02-fr-2",
+      "text": "C'est loin d'ici ?",
+      "ko": "여기서 먼가요?",
+      "note": "가깝다는 près d'ici. 대답 예: « C'est à cinq minutes à pied. »(걸어서 5분이에요)"
+     },
+     {
+      "id": "d02-fr-3",
+      "text": "Je vais à la gare en métro.",
+      "ko": "저는 지하철로 역에 가요.",
+      "note": "en bus, en taxi, en train. 걸어서는 à pied."
+     }
+    ],
+    "task": "Je vais à + 장소 + en + 교통수단으로 오늘 출근길을 말해 보세요."
+   }
+  },
+  {
+   "id": "d03",
+   "day": 3,
+   "topic": "주말 계획 이야기",
+   "emoji": "🌤️",
+   "intro": "동료나 친구와 주말 계획을 묻고 답하는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜つもりです · 〜(よ)うと思っています",
+     "desc": "동사 원형 + つもりです = ~할 생각이에요 (정해진 계획)\n의지형 + と思っています = ~하려고 해요 (아직 생각 중)"
+    },
+    "verb": {
+     "dict": "行く",
+     "reading": "いく",
+     "ko": "가다",
+     "forms": [
+      [
+       "ます형",
+       "行きます"
+      ],
+      [
+       "て형",
+       "行って (예외!)"
+      ],
+      [
+       "ない형",
+       "行かない"
+      ],
+      [
+       "가능형",
+       "行ける"
+      ],
+      [
+       "의지형",
+       "行こう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d03-ja-1",
+      "ruby": "{週末|しゅうまつ}は{友達|ともだち}と{温泉|おんせん}に{行|い}くつもりです。",
+      "ko": "주말에는 친구랑 온천에 갈 생각이에요.",
+      "simple": "週末、温泉に行きます。",
+      "note": "동사 원형 + つもりです. 이미 정한 계획을 말할 때 써요.",
+      "kanji": [
+       [
+        "週末",
+        "주말",
+        "しゅうまつ"
+       ],
+       [
+        "温泉",
+        "온천",
+        "おんせん"
+       ],
+       [
+        "友達",
+        "우달",
+        "ともだち"
+       ]
+      ]
+     },
+     {
+      "id": "d03-ja-2",
+      "ruby": "{天気|てんき}がよかったら、{海|うみ}に{行|い}こうと{思|おも}っています。",
+      "ko": "날씨가 좋으면 바다에 가려고 해요.",
+      "simple": "天気がいい、海に行きます。",
+      "note": "〜たら = ~하면. 行こう(의지형) + と思っています = ~하려고 생각 중이에요.",
+      "kanji": [
+       [
+        "天気",
+        "천기",
+        "てんき"
+       ],
+       [
+        "海",
+        "해",
+        "うみ"
+       ],
+       [
+        "思",
+        "사",
+        "おも(う)"
+       ]
+      ]
+     },
+     {
+      "id": "d03-ja-3",
+      "ruby": "{特|とく}に{予定|よてい}はないんですが、{家|いえ}でゆっくりしたいです。",
+      "ko": "특별한 계획은 없는데, 집에서 푹 쉬고 싶어요.",
+      "simple": "予定、ないです。",
+      "note": "〜んですが = ~인데요 (부드럽게 이어 말하기). ゆっくりする = 느긋하게 쉬다.",
+      "kanji": [
+       [
+        "特",
+        "특",
+        "とく"
+       ],
+       [
+        "予定",
+        "예정",
+        "よてい"
+       ],
+       [
+        "家",
+        "가",
+        "いえ"
+       ]
+      ]
+     },
+     {
+      "id": "d03-ja-4",
+      "ruby": "よかったら、{一緒|いっしょ}に{行|い}きませんか。",
+      "ko": "괜찮으면 같이 가지 않을래요?",
+      "simple": "一緒に行きましょう。",
+      "note": "〜ませんか = ~하지 않을래요? 상대에게 선택권을 주는 부드러운 권유예요.",
+      "kanji": [
+       [
+        "一緒",
+        "일서",
+        "いっしょ"
+       ]
+      ]
+     }
+    ],
+    "task": "〜つもりです 또는 〜と思っています로 이번 주말 계획을 말해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "I'm thinking of ~ing",
+     "desc": "I will ~ 대신 '~할까 생각 중'이라고 여유 있게 말하는 표현이에요.\nif 조건을 붙이면 문장이 자연스럽게 길어져요."
+    },
+    "items": [
+     {
+      "id": "d03-en-1",
+      "text": "I'm thinking of getting out of town this weekend, if the weather holds up.",
+      "ko": "날씨만 괜찮으면 이번 주말에 교외로 나가볼까 생각 중이에요.",
+      "simple": "I will go out this weekend.",
+      "note": "I'm thinking of + ~ing = ~할까 생각 중. hold up = (날씨가) 계속 좋다."
+     },
+     {
+      "id": "d03-en-2",
+      "text": "I don't have anything planned yet, so I'm keeping it open.",
+      "ko": "아직 잡힌 계획이 없어서 일정은 비워두고 있어요.",
+      "simple": "I have no plan.",
+      "note": "have something planned = 계획이 잡혀 있다. keep it open = (일정을) 열어두다."
+     },
+     {
+      "id": "d03-en-3",
+      "text": "It really depends on how tired I am by Friday.",
+      "ko": "금요일쯤 제가 얼마나 피곤한지에 달려 있어요.",
+      "simple": "I don't know. Maybe.",
+      "note": "depends on + 간접의문문(how tired I am). 어제 배운 어순 복습이에요!"
+     }
+    ],
+    "task": "I'm thinking of ~ing, if ~로 이번 주말 계획을 말해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "futur proche: aller + 동사원형",
+     "desc": "'~할 거예요'라는 가까운 미래. 어제 배운 aller 뒤에 동사원형만 붙이면 돼요."
+    },
+    "verb": {
+     "dict": "faire",
+     "ko": "하다, 만들다",
+     "forms": [
+      [
+       "je",
+       "fais"
+      ],
+      [
+       "tu",
+       "fais"
+      ],
+      [
+       "il/elle",
+       "fait"
+      ],
+      [
+       "nous",
+       "faisons"
+      ],
+      [
+       "vous",
+       "faites"
+      ],
+      [
+       "ils/elles",
+       "font"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d03-fr-1",
+      "text": "Qu'est-ce que tu vas faire ce week-end ?",
+      "ko": "이번 주말에 뭐 할 거야?",
+      "note": "vas(aller) + faire(하다). 친구에게 쓰는 tu 형태예요. 존댓말은 vous allez faire."
+     },
+     {
+      "id": "d03-fr-2",
+      "text": "Je vais visiter un musée avec un ami.",
+      "ko": "친구랑 박물관에 갈 거예요.",
+      "note": "visiter는 장소를 방문할 때. 사람을 방문할 땐 rendre visite à."
+     },
+     {
+      "id": "d03-fr-3",
+      "text": "Je vais rester à la maison et me reposer.",
+      "ko": "집에 있으면서 쉴 거예요.",
+      "note": "se reposer(쉬다)는 대명동사라서 je vais me reposer처럼 me가 붙어요."
+     }
+    ],
+    "task": "Je vais + 동사원형으로 이번 주말 계획을 말해 보세요."
+   }
+  },
+  {
+   "id": "d04",
+   "day": 4,
+   "topic": "옷 가게에서 쇼핑",
+   "emoji": "🛍️",
+   "intro": "옷 가게에서 사이즈와 색을 묻고, 입어 보고, 고르는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜てみてもいいですか · 〜すぎる",
+     "desc": "동사 て형 + みる = ~해 보다. 〜てもいいですか = ~해도 될까요?\nい형용사 어간 + すぎる = 너무 ~하다 (大きい → 大きすぎる)"
+    },
+    "verb": {
+     "dict": "着る",
+     "reading": "きる",
+     "ko": "입다",
+     "forms": [
+      [
+       "ます형",
+       "着ます"
+      ],
+      [
+       "て형",
+       "着て"
+      ],
+      [
+       "ない형",
+       "着ない"
+      ],
+      [
+       "가능형",
+       "着られる"
+      ],
+      [
+       "의지형",
+       "着よう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d04-ja-1",
+      "ruby": "{試着|しちゃく}してみてもいいですか。",
+      "ko": "입어 봐도 될까요?",
+      "simple": "着てもいいですか。",
+      "note": "〜てみる = 시도해 보다. 試着する = 입어 보다(시착). 가게에서 가장 먼저 쓰는 말이에요.",
+      "kanji": [
+       [
+        "試着",
+        "시착",
+        "しちゃく"
+       ]
+      ]
+     },
+     {
+      "id": "d04-ja-2",
+      "ruby": "この{服|ふく}は{少|すこ}し{大|おお}きすぎるようです。",
+      "ko": "이 옷은 조금 너무 큰 것 같아요.",
+      "simple": "大きいです。",
+      "note": "大きい → 大きすぎる (너무 크다). 〜ようです = ~인 것 같아요(추측).",
+      "kanji": [
+       [
+        "服",
+        "복",
+        "ふく"
+       ],
+       [
+        "少",
+        "소",
+        "すこ(し)"
+       ],
+       [
+        "大",
+        "대",
+        "おお(きい)"
+       ]
+      ]
+     },
+     {
+      "id": "d04-ja-3",
+      "ruby": "もう{少|すこ}し{小|ちい}さいサイズはありますか。",
+      "ko": "조금 더 작은 사이즈는 있나요?",
+      "simple": "小さいの、ありますか。",
+      "note": "もう少し = 조금 더. 사이즈나 가격을 조정해 달라고 할 때 만능이에요.",
+      "kanji": [
+       [
+        "小",
+        "소",
+        "ちい(さい)"
+       ],
+       [
+        "少",
+        "소",
+        "すこ(し)"
+       ]
+      ]
+     },
+     {
+      "id": "d04-ja-4",
+      "ruby": "{色違|いろちが}いがあれば、{見|み}せていただけますか。",
+      "ko": "다른 색이 있으면 보여 주실 수 있을까요?",
+      "simple": "他の色、見せて。",
+      "note": "〜ていただけますか = 아주 정중한 부탁. 〜ば = 만약 ~이면.",
+      "kanji": [
+       [
+        "色違",
+        "색위",
+        "いろちが(い)"
+       ],
+       [
+        "見",
+        "견",
+        "み(る)"
+       ]
+      ]
+     }
+    ],
+    "task": "〜てみてもいいですか를 써서 점원에게 말해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "too ~ for me · would suit",
+     "desc": "too + 형용사 + for me = 나한테는 너무 ~하다.\n'It's not quite me'처럼 돌려서 거절하는 말도 익혀요."
+    },
+    "items": [
+     {
+      "id": "d04-en-1",
+      "text": "Would it be all right if I tried this on in a different size?",
+      "ko": "다른 사이즈로 입어 봐도 괜찮을까요?",
+      "simple": "Can I try this?",
+      "note": "Would it be all right if I + 과거형 = 아주 공손한 허락 요청. try on = 입어 보다."
+     },
+     {
+      "id": "d04-en-2",
+      "text": "It's a little too snug around the shoulders, but I do like the colour.",
+      "ko": "어깨가 조금 끼긴 하는데, 색은 정말 마음에 들어요.",
+      "simple": "It is small. I like it.",
+      "note": "snug = 꼭 끼는. I do like = do로 '정말' 강조. A, but B 구조로 문장을 길게 만들어요."
+     },
+     {
+      "id": "d04-en-3",
+      "text": "I'll think it over and come back, if that's okay.",
+      "ko": "생각해 보고 다시 올게요, 괜찮다면요.",
+      "simple": "I don't buy now.",
+      "note": "think it over = 곰곰이 생각하다. 점원에게 부담 없이 거절하는 가장 자연스러운 말이에요."
+     }
+    ],
+    "task": "too ~ for me를 써서 옷이 어떤지 말해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "avoir (가지다) + 사이즈 묻기",
+     "desc": "avoir = 가지고 있다. '~ 있나요?'는 Vous avez ~ ? 로 물어요. 억양만 올리면 질문이 돼요."
+    },
+    "verb": {
+     "dict": "avoir",
+     "ko": "가지다",
+     "forms": [
+      [
+       "je",
+       "j'ai"
+      ],
+      [
+       "tu",
+       "tu as"
+      ],
+      [
+       "il/elle",
+       "il/elle a"
+      ],
+      [
+       "nous",
+       "nous avons"
+      ],
+      [
+       "vous",
+       "vous avez"
+      ],
+      [
+       "ils/elles",
+       "ils/elles ont"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d04-fr-1",
+      "text": "Vous avez cette veste en taille M ?",
+      "ko": "이 재킷 M 사이즈 있나요?",
+      "note": "Vous avez ~ ? = ~ 있나요? en taille M = M 사이즈로. veste = 재킷."
+     },
+     {
+      "id": "d04-fr-2",
+      "text": "Je peux l'essayer, s'il vous plaît ?",
+      "ko": "입어 봐도 될까요?",
+      "note": "essayer = 입어 보다. l' = la veste. Je peux ~ ? = ~해도 되나요? 지금은 통째로 외워요."
+     },
+     {
+      "id": "d04-fr-3",
+      "text": "Elle est trop grande pour moi, je prends la petite.",
+      "ko": "저한테는 너무 커요, 작은 걸로 할게요.",
+      "note": "trop + 형용사 = 너무 ~하다. prendre = 고르다, 사다. 다음 주제에서 prendre를 자세히 배워요."
+     }
+    ],
+    "task": "Vous avez ~ ? 로 갖고 싶은 물건이 있는지 물어 보세요."
+   }
+  },
+  {
+   "id": "d05",
+   "day": 5,
+   "topic": "식당 예약과 주문",
+   "emoji": "🍽️",
+   "intro": "식당에 예약하고, 자리를 정하고, 메뉴를 고르는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜たいんですが · 〜をお願いします",
+     "desc": "〜たいんですが = ~하고 싶은데요 (부드럽게 용건을 꺼내는 말)\n〜でお願いします = ~로 부탁해요"
+    },
+    "verb": {
+     "dict": "頼む",
+     "reading": "たのむ",
+     "ko": "주문하다, 부탁하다",
+     "forms": [
+      [
+       "ます형",
+       "頼みます"
+      ],
+      [
+       "て형",
+       "頼んで"
+      ],
+      [
+       "ない형",
+       "頼まない"
+      ],
+      [
+       "가능형",
+       "頼める"
+      ],
+      [
+       "의지형",
+       "頼もう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d05-ja-1",
+      "ruby": "{今晩|こんばん}{七時|しちじ}に{二人|ふたり}で{予約|よやく}したいんですが。",
+      "ko": "오늘 밤 7시에 두 명으로 예약하고 싶은데요.",
+      "simple": "予約、したいです。",
+      "note": "〜たいんですが = 용건을 부드럽게 시작하는 말. 日時 + に + 人数 + で 순서예요.",
+      "kanji": [
+       [
+        "今晩",
+        "금만",
+        "こんばん"
+       ],
+       [
+        "予約",
+        "예약",
+        "よやく"
+       ],
+       [
+        "二人",
+        "이인",
+        "ふたり"
+       ]
+      ]
+     },
+     {
+      "id": "d05-ja-2",
+      "ruby": "{窓際|まどぎわ}の{席|せき}はあいていますか。",
+      "ko": "창가 자리는 비어 있나요?",
+      "simple": "窓の席、ありますか。",
+      "note": "あいている = 비어 있다(상태). 窓際 = 창가.",
+      "kanji": [
+       [
+        "窓際",
+        "창제",
+        "まどぎわ"
+       ],
+       [
+        "席",
+        "석",
+        "せき"
+       ]
+      ]
+     },
+     {
+      "id": "d05-ja-3",
+      "ruby": "おすすめは{何|なん}ですか。じゃあ、それを{頼|たの}んでみます。",
+      "ko": "추천 메뉴가 뭐예요? 그럼 그걸 시켜 볼게요.",
+      "simple": "おすすめ、何?",
+      "note": "頼む → 頼んで (む → んで). 〜てみます = ~해 볼게요.",
+      "kanji": [
+       [
+        "何",
+        "하",
+        "なん"
+       ],
+       [
+        "頼",
+        "뢰",
+        "たの(む)"
+       ]
+      ]
+     },
+     {
+      "id": "d05-ja-4",
+      "ruby": "{辛|から}いものが{苦手|にがて}なので、{辛|から}くないのをお{願|ねが}いします。",
+      "ko": "매운 걸 잘 못 먹어서, 안 매운 걸로 부탁드려요.",
+      "simple": "辛いの、だめです。",
+      "note": "苦手 = 잘 못하다. 〜ので = ~이라서(이유). 〜の = 것(辛くないの = 안 매운 것).",
+      "kanji": [
+       [
+        "辛",
+        "신",
+        "から(い)"
+       ],
+       [
+        "苦手",
+        "고수",
+        "にがて"
+       ],
+       [
+        "願",
+        "원",
+        "ねが(う)"
+       ]
+      ]
+     }
+    ],
+    "task": "〜たいんですが로 식당에 예약 전화하는 말을 해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "I was hoping to ~ · Do you happen to ~",
+     "desc": "I was hoping to + 동사 = ~하고 싶었는데요 (돌려 말하기)\nDo you happen to ~ = 혹시 ~하나요?"
+    },
+    "items": [
+     {
+      "id": "d05-en-1",
+      "text": "I was hoping to book a table for two at around seven tonight.",
+      "ko": "오늘 밤 7시쯤 두 명 자리를 예약하고 싶었는데요.",
+      "simple": "I want a table.",
+      "note": "I was hoping to = want to를 부드럽게 바꾼 말. book a table = 자리를 예약하다. at around = ~쯤."
+     },
+     {
+      "id": "d05-en-2",
+      "text": "Do you happen to have anything that's vegetarian-friendly?",
+      "ko": "혹시 채식하는 사람도 먹을 만한 메뉴가 있나요?",
+      "simple": "Do you have vegetable food?",
+      "note": "Do you happen to ~ = 혹시 ~? ~-friendly = ~에 맞는, ~하기 좋은."
+     },
+     {
+      "id": "d05-en-3",
+      "text": "Could we get the bill whenever you get a chance?",
+      "ko": "시간 되실 때 계산서 좀 주시겠어요?",
+      "simple": "Bill, please.",
+      "note": "get the bill = 계산서를 받다(영국식, 미국은 check). whenever you get a chance = 여유 되실 때."
+     }
+    ],
+    "task": "I was hoping to ~로 식당에서 부탁하는 말을 해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "prendre (고르다, 먹다) + du / de la",
+     "desc": "prendre = 가지다, 먹다, 타다. 주문할 때 Je prends ~ 라고 해요.\n'오늘의 메뉴' = le menu du jour"
+    },
+    "verb": {
+     "dict": "prendre",
+     "ko": "고르다, 먹다, 타다",
+     "forms": [
+      [
+       "je",
+       "je prends"
+      ],
+      [
+       "tu",
+       "tu prends"
+      ],
+      [
+       "il/elle",
+       "il/elle prend"
+      ],
+      [
+       "nous",
+       "nous prenons"
+      ],
+      [
+       "vous",
+       "vous prenez"
+      ],
+      [
+       "ils/elles",
+       "ils/elles prennent"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d05-fr-1",
+      "text": "Bonsoir, j'ai réservé une table pour deux au nom de Kim.",
+      "ko": "안녕하세요, 김 이름으로 두 명 예약했어요.",
+      "note": "j'ai réservé = 예약했어요(과거, 지금은 통째로). au nom de = ~의 이름으로."
+     },
+     {
+      "id": "d05-fr-2",
+      "text": "Je prends le menu du jour, et mon ami prend la soupe.",
+      "ko": "저는 오늘의 메뉴로 할게요, 친구는 수프로요.",
+      "note": "je prends / il prend: s는 발음하지 않아요. menu du jour = 오늘의 정식."
+     },
+     {
+      "id": "d05-fr-3",
+      "text": "L'addition, s'il vous plaît.",
+      "ko": "계산서 부탁합니다.",
+      "note": "프랑스 식당에서는 손을 가볍게 들고 이렇게 말해요. 서비스료가 포함돼 있어서 팁은 필수가 아니에요."
+     }
+    ],
+    "task": "Je prends ~로 먹고 싶은 걸 주문해 보세요."
+   }
+  },
+  {
+   "id": "d06",
+   "day": 6,
+   "topic": "몸이 안 좋을 때",
+   "emoji": "🤒",
+   "intro": "병원이나 약국에서 증상을 설명하고 약 먹는 법을 듣는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜んです · 〜みたいです · 〜そうにない",
+     "desc": "〜んです = 증상을 설명할 때 붙이는 말투\n〜みたいです = ~인 것 같아요\n〜そうにありません = ~할 것 같지 않아요"
+    },
+    "verb": {
+     "dict": "出る",
+     "reading": "でる",
+     "ko": "나다, 나오다",
+     "forms": [
+      [
+       "ます형",
+       "出ます"
+      ],
+      [
+       "て형",
+       "出て"
+      ],
+      [
+       "ない형",
+       "出ない"
+      ],
+      [
+       "가능형",
+       "出られる"
+      ],
+      [
+       "의지형",
+       "出よう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d06-ja-1",
+      "ruby": "{昨日|きのう}から{熱|ねつ}が{出|で}て、{頭|あたま}も{痛|いた}いんです。",
+      "ko": "어제부터 열이 나고 머리도 아파요.",
+      "simple": "熱です。頭、痛い。",
+      "note": "熱が出る = 열이 나다. 〜んです = 이유나 상황을 설명하는 느낌. 出る는 て형이 出て.",
+      "kanji": [
+       [
+        "昨日",
+        "작일",
+        "きのう"
+       ],
+       [
+        "熱",
+        "열",
+        "ねつ"
+       ],
+       [
+        "頭",
+        "두",
+        "あたま"
+       ],
+       [
+        "痛",
+        "통",
+        "いた(い)"
+       ]
+      ]
+     },
+     {
+      "id": "d06-ja-2",
+      "ruby": "{風邪|かぜ}をひいたみたいで、{喉|のど}がとても{痛|いた}いです。",
+      "ko": "감기에 걸린 것 같아요, 목이 아주 아파요.",
+      "simple": "風邪です。",
+      "note": "風邪をひく = 감기에 걸리다. 〜みたいで = ~인 것 같아서.",
+      "kanji": [
+       [
+        "風邪",
+        "풍사",
+        "かぜ"
+       ],
+       [
+        "喉",
+        "후",
+        "のど"
+       ]
+      ]
+     },
+     {
+      "id": "d06-ja-3",
+      "ruby": "{薬|くすり}を{飲|の}んでも、なかなか{治|なお}りそうにありません。",
+      "ko": "약을 먹어도 좀처럼 나을 것 같지 않아요.",
+      "simple": "薬、きかないです。",
+      "note": "なかなか〜ない = 좀처럼 ~않다. 〜そうにない = ~할 것 같지 않다. 飲む → 飲んで.",
+      "kanji": [
+       [
+        "薬",
+        "약",
+        "くすり"
+       ],
+       [
+        "飲",
+        "음",
+        "の(む)"
+       ],
+       [
+        "治",
+        "치",
+        "なお(る)"
+       ]
+      ]
+     },
+     {
+      "id": "d06-ja-4",
+      "ruby": "{食後|しょくご}に{一日|いちにち}{三回|さんかい}{飲|の}んでください。",
+      "ko": "식후에 하루 세 번 드세요.",
+      "simple": "ごはんのあとで、飲んで。",
+      "note": "〜てください = ~해 주세요. 약국에서 꼭 듣는 문장이에요. 食後 = 식후.",
+      "kanji": [
+       [
+        "食後",
+        "식후",
+        "しょくご"
+       ],
+       [
+        "一日",
+        "일일",
+        "いちにち"
+       ],
+       [
+        "三回",
+        "삼회",
+        "さんかい"
+       ]
+      ]
+     }
+    ],
+    "task": "〜んです로 어디가 아픈지 말해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "have been + ~ing · I seem to have ~",
+     "desc": "have been + ~ing = 계속 ~해 오고 있다 (증상이 이어짐)\nI seem to have ~ = ~에 걸린 것 같아요"
+    },
+    "items": [
+     {
+      "id": "d06-en-1",
+      "text": "I've been running a slight fever since last night, and my throat is killing me.",
+      "ko": "어젯밤부터 미열이 있고 목이 너무 아파요.",
+      "simple": "I have fever. My throat hurts.",
+      "note": "run a fever = 열이 나다. since + 시점. ~ is killing me = 몹시 아프다(구어)."
+     },
+     {
+      "id": "d06-en-2",
+      "text": "I seem to have caught a cold, but it's not bad enough to miss work.",
+      "ko": "감기에 걸린 것 같은데, 일을 쉴 정도로 심하진 않아요.",
+      "simple": "I'm sick, but I can work.",
+      "note": "not bad enough to ~ = ~할 만큼 심하진 않다. miss work = 결근하다."
+     },
+     {
+      "id": "d06-en-3",
+      "text": "Is there anything I should avoid while I'm taking this medicine?",
+      "ko": "이 약을 먹는 동안 피해야 할 게 있나요?",
+      "simple": "Can I drink alcohol?",
+      "note": "while I'm taking = ~하는 동안. anything (that) I should avoid에서 that이 생략됐어요."
+     }
+    ],
+    "task": "I've been ~ing since ~ 로 증상을 말해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "avoir mal à + 신체 부위",
+     "desc": "avoir mal à + 부위 = ~가 아프다. à la tête(머리), au dos(등), à l'estomac(위).\n남성 le → au, 여성 la → à la"
+    },
+    "verb": {
+     "dict": "pouvoir",
+     "ko": "~할 수 있다",
+     "forms": [
+      [
+       "je",
+       "je peux"
+      ],
+      [
+       "tu",
+       "tu peux"
+      ],
+      [
+       "il/elle",
+       "il/elle peut"
+      ],
+      [
+       "nous",
+       "nous pouvons"
+      ],
+      [
+       "vous",
+       "vous pouvez"
+      ],
+      [
+       "ils/elles",
+       "ils/elles peuvent"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d06-fr-1",
+      "text": "J'ai mal à la tête et j'ai un peu de fièvre.",
+      "ko": "머리가 아프고 열이 조금 있어요.",
+      "note": "avoir mal à + 부위. un peu de = 조금의. fièvre = 열."
+     },
+     {
+      "id": "d06-fr-2",
+      "text": "Vous pouvez me donner quelque chose contre la toux ?",
+      "ko": "기침약 좀 주실 수 있나요?",
+      "note": "Vous pouvez + 동사원형 = ~해 주실 수 있나요? contre = ~에 대한(약). toux = 기침."
+     },
+     {
+      "id": "d06-fr-3",
+      "text": "Je dois prendre ce médicament combien de fois par jour ?",
+      "ko": "이 약은 하루에 몇 번 먹어야 하나요?",
+      "note": "devoir = ~해야 하다. combien de fois = 몇 번. par jour = 하루에. 어제 배운 prendre가 또 나왔어요."
+     }
+    ],
+    "task": "J'ai mal à ~ 로 아픈 곳을 말해 보세요."
+   }
+  },
+  {
+   "id": "d07",
+   "day": 7,
+   "topic": "호텔 체크인",
+   "emoji": "🏨",
+   "intro": "호텔에서 체크인하고, 짐을 맡기고, 방 문제를 말하는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜ておく · 가능형",
+     "desc": "て형 + おく = ~해 두다 (미리 해 놓기)\n가능형: 一段 동사는 ら + れる (食べる → 食べられる), 五段은 え단 (行く → 行ける)"
+    },
+    "verb": {
+     "dict": "預ける",
+     "reading": "あずける",
+     "ko": "맡기다",
+     "forms": [
+      [
+       "ます형",
+       "預けます"
+      ],
+      [
+       "て형",
+       "預けて"
+      ],
+      [
+       "ない형",
+       "預けない"
+      ],
+      [
+       "가능형",
+       "預けられる"
+      ],
+      [
+       "의지형",
+       "預けよう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d07-ja-1",
+      "ruby": "{予約|よやく}していた{山田|やまだ}ですが、チェックインをお{願|ねが}いします。",
+      "ko": "예약한 야마다인데요, 체크인 부탁드려요.",
+      "simple": "予約した山田です。",
+      "note": "〜ていた = ~해 두었던. 〜ですが = 이름을 말하며 용건을 꺼내는 말.",
+      "kanji": [
+       [
+        "予約",
+        "예약",
+        "よやく"
+       ],
+       [
+        "山田",
+        "산전",
+        "やまだ"
+       ],
+       [
+        "願",
+        "원",
+        "ねが(う)"
+       ]
+      ]
+     },
+     {
+      "id": "d07-ja-2",
+      "ruby": "{荷物|にもつ}を{先|さき}に{預|あず}けておいてもいいですか。",
+      "ko": "짐을 먼저 맡겨 둬도 될까요?",
+      "simple": "荷物、置いてもいいですか。",
+      "note": "預ける + ておく = 맡겨 두다. 〜てもいいですか = ~해도 될까요?",
+      "kanji": [
+       [
+        "荷物",
+        "하물",
+        "にもつ"
+       ],
+       [
+        "先",
+        "선",
+        "さき"
+       ],
+       [
+        "預",
+        "예",
+        "あず(ける)"
+       ]
+      ]
+     },
+     {
+      "id": "d07-ja-3",
+      "ruby": "{朝食|ちょうしょく}は{何時|なんじ}から{食|た}べられますか。",
+      "ko": "조식은 몇 시부터 먹을 수 있나요?",
+      "simple": "朝ごはん、何時?",
+      "note": "食べられる = 食べる의 가능형 (一段: ら + れる). 朝食 = 조식.",
+      "kanji": [
+       [
+        "朝食",
+        "조식",
+        "ちょうしょく"
+       ],
+       [
+        "何時",
+        "하시",
+        "なんじ"
+       ],
+       [
+        "食",
+        "식",
+        "た(べる)"
+       ]
+      ]
+     },
+     {
+      "id": "d07-ja-4",
+      "ruby": "{部屋|へや}のエアコンが{動|うご}かないので、{見|み}に{来|き}ていただけますか。",
+      "ko": "방 에어컨이 작동하지 않아서, 와서 봐 주실 수 있을까요?",
+      "simple": "エアコン、こわれました。",
+      "note": "動く = 움직이다, 작동하다. 〜ない + ので = ~않아서. 〜に来る = ~하러 오다.",
+      "kanji": [
+       [
+        "部屋",
+        "부옥",
+        "へや"
+       ],
+       [
+        "動",
+        "동",
+        "うご(く)"
+       ],
+       [
+        "来",
+        "래",
+        "く(る)"
+       ]
+      ]
+     }
+    ],
+    "task": "〜ておいてもいいですか로 부탁할 말을 해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "Would it be possible to ~ · I'm afraid ~",
+     "desc": "Would it be possible to + 동사 = ~하는 게 가능할까요? (정중)\nI'm afraid + 문장 = 유감이지만 ~예요 (나쁜 소식을 완곡하게)"
+    },
+    "items": [
+     {
+      "id": "d07-en-1",
+      "text": "Would it be possible to check in a little earlier than usual?",
+      "ko": "평소보다 조금 일찍 체크인하는 게 가능할까요?",
+      "simple": "Can I come early?",
+      "note": "Would it be possible to ~ = 가장 공손한 가능 여부 문의. a little earlier than usual = 평소보다 조금 일찍."
+     },
+     {
+      "id": "d07-en-2",
+      "text": "I'm afraid the air conditioning in my room doesn't seem to be working.",
+      "ko": "죄송하지만 제 방 에어컨이 작동하지 않는 것 같아요.",
+      "simple": "My air conditioner is broken.",
+      "note": "I'm afraid = 유감스럽게도. doesn't seem to be working = 단정을 피하는 완곡한 표현."
+     },
+     {
+      "id": "d07-en-3",
+      "text": "Could you have someone bring up an extra pillow, please?",
+      "ko": "베개를 하나 더 가져다 주실 수 있나요?",
+      "simple": "I need a pillow.",
+      "note": "have someone + 동사원형 = 누군가에게 ~하게 하다. bring up = (방으로) 가져다 주다."
+     }
+    ],
+    "task": "I'm afraid ~로 호텔에 문제를 말해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "Est-ce que ~ ? (의문문 만들기)",
+     "desc": "문장 앞에 Est-ce que를 붙이면 바로 질문이 돼요.\n정중하게 요청할 때는 Je voudrais ~ (1일차에서 배웠어요)."
+    },
+    "verb": {
+     "dict": "venir",
+     "ko": "오다",
+     "forms": [
+      [
+       "je",
+       "je viens"
+      ],
+      [
+       "tu",
+       "tu viens"
+      ],
+      [
+       "il/elle",
+       "il/elle vient"
+      ],
+      [
+       "nous",
+       "nous venons"
+      ],
+      [
+       "vous",
+       "vous venez"
+      ],
+      [
+       "ils/elles",
+       "ils/elles viennent"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d07-fr-1",
+      "text": "Bonjour, j'ai une réservation au nom de Yamada.",
+      "ko": "안녕하세요, 야마다 이름으로 예약했어요.",
+      "note": "avoir une réservation = 예약이 있다. 호텔·식당 어디서나 쓰는 첫마디예요."
+     },
+     {
+      "id": "d07-fr-2",
+      "text": "Est-ce que le petit-déjeuner est compris dans le prix ?",
+      "ko": "조식이 가격에 포함되어 있나요?",
+      "note": "Est-ce que ~ ? = 질문 만들기. compris = 포함된. petit-déjeuner = 아침 식사."
+     },
+     {
+      "id": "d07-fr-3",
+      "text": "À quelle heure est-ce que je dois libérer la chambre ?",
+      "ko": "몇 시까지 방을 비워야 하나요?",
+      "note": "libérer la chambre = 체크아웃하다. à quelle heure = 몇 시에. dois는 devoir(~해야 하다)예요."
+     }
+    ],
+    "task": "Est-ce que ~ ? 로 호텔에 궁금한 걸 물어 보세요."
+   }
+  },
+  {
+   "id": "d08",
+   "day": 8,
+   "topic": "일과 직장 이야기",
+   "emoji": "💼",
+   "intro": "동료와 일, 야근, 회의 일정에 대해 이야기하는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜ながら · 〜ようにしています",
+     "desc": "동사 ます형 + ながら = ~하면서\n〜ようにしている = ~하도록 (습관적으로) 노력하고 있다\n〜なければならない = ~해야 한다"
+    },
+    "verb": {
+     "dict": "働く",
+     "reading": "はたらく",
+     "ko": "일하다",
+     "forms": [
+      [
+       "ます형",
+       "働きます"
+      ],
+      [
+       "て형",
+       "働いて"
+      ],
+      [
+       "ない형",
+       "働かない"
+      ],
+      [
+       "가능형",
+       "働ける"
+      ],
+      [
+       "의지형",
+       "働こう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d08-ja-1",
+      "ruby": "{毎朝|まいあさ}コーヒーを{飲|の}みながら、メールを{確認|かくにん}します。",
+      "ko": "매일 아침 커피를 마시면서 메일을 확인해요.",
+      "simple": "コーヒーを飲みます。メールを見ます。",
+      "note": "飲みます → 飲みながら (ます형 + ながら). 두 동작을 동시에 한다는 뜻이에요.",
+      "kanji": [
+       [
+        "毎朝",
+        "매조",
+        "まいあさ"
+       ],
+       [
+        "確認",
+        "확인",
+        "かくにん"
+       ],
+       [
+        "飲",
+        "음",
+        "の(む)"
+       ]
+      ]
+     },
+     {
+      "id": "d08-ja-2",
+      "ruby": "{残業|ざんぎょう}を{減|へ}らすように、{早|はや}く{帰|かえ}るようにしています。",
+      "ko": "야근을 줄이려고 일찍 퇴근하도록 하고 있어요.",
+      "simple": "早く帰ります。",
+      "note": "〜ように = ~하도록(목적). 〜ようにしている = 습관처럼 신경 쓰고 있다.",
+      "kanji": [
+       [
+        "残業",
+        "잔업",
+        "ざんぎょう"
+       ],
+       [
+        "減",
+        "감",
+        "へ(らす)"
+       ],
+       [
+        "早",
+        "조",
+        "はや(く)"
+       ],
+       [
+        "帰",
+        "귀",
+        "かえ(る)"
+       ]
+      ]
+     },
+     {
+      "id": "d08-ja-3",
+      "ruby": "{会議|かいぎ}の{資料|しりょう}を{準備|じゅんび}しておかなければなりません。",
+      "ko": "회의 자료를 준비해 두어야 해요.",
+      "simple": "資料、作ります。",
+      "note": "〜なければなりません = ~해야 합니다. 어제 배운 〜ておく가 여기서 또 나왔어요.",
+      "kanji": [
+       [
+        "会議",
+        "회의",
+        "かいぎ"
+       ],
+       [
+        "資料",
+        "자료",
+        "しりょう"
+       ],
+       [
+        "準備",
+        "준비",
+        "じゅんび"
+       ]
+      ]
+     },
+     {
+      "id": "d08-ja-4",
+      "ruby": "{最近|さいきん}{忙|いそが}しくて、なかなか{休|やす}みが{取|と}れないんです。",
+      "ko": "요즘 바빠서 좀처럼 쉬지를 못해요.",
+      "simple": "忙しいです。休みません。",
+      "note": "休みを取る = 휴가를 내다. 取れる = 取る의 가능형. なかなか〜ない = 좀처럼 ~않다.",
+      "kanji": [
+       [
+        "最近",
+        "최근",
+        "さいきん"
+       ],
+       [
+        "忙",
+        "망",
+        "いそが(しい)"
+       ],
+       [
+        "休",
+        "휴",
+        "やす(み)"
+       ],
+       [
+        "取",
+        "취",
+        "と(る)"
+       ]
+      ]
+     }
+    ],
+    "task": "〜ながら 또는 〜ようにしています로 평소 습관을 말해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "have a lot on my plate · manage to",
+     "desc": "have a lot on my plate = 할 일이 산더미다\nmanage to + 동사 = 어떻게든 ~해내다 (쉽지 않았다는 뜻)"
+    },
+    "items": [
+     {
+      "id": "d08-en-1",
+      "text": "I've got a lot on my plate this week, so I'm barely keeping up.",
+      "ko": "이번 주는 할 일이 산더미라 겨우 따라가고 있어요.",
+      "simple": "I am very busy.",
+      "note": "have a lot on my plate = 해야 할 일이 많다. barely = 간신히. keep up = 뒤처지지 않다."
+     },
+     {
+      "id": "d08-en-2",
+      "text": "I managed to finish the report before the deadline, though it was tight.",
+      "ko": "빠듯했지만 마감 전에 보고서를 어떻게든 끝냈어요.",
+      "simple": "I finished the report.",
+      "note": "manage to = 어렵게 해냈다. though = ~이긴 하지만. tight = 빠듯한."
+     },
+     {
+      "id": "d08-en-3",
+      "text": "Do you mind if we push the meeting back by half an hour?",
+      "ko": "회의를 30분 미뤄도 괜찮을까요?",
+      "simple": "Can we meet later?",
+      "note": "Do you mind if + 현재형 = ~해도 괜찮을까요? 괜찮으면 No, not at all. push back = 미루다."
+     }
+    ],
+    "task": "have a lot on my plate로 요즘 바쁜 일을 말해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "passé composé (avoir + 과거분사)",
+     "desc": "j'ai + 과거분사 = ~했어요\ntravailler → j'ai travaillé / finir → j'ai fini / prendre → j'ai pris\n부정: je n'ai pas + 과거분사"
+    },
+    "verb": {
+     "dict": "finir",
+     "ko": "끝내다",
+     "forms": [
+      [
+       "je",
+       "je finis"
+      ],
+      [
+       "tu",
+       "tu finis"
+      ],
+      [
+       "il/elle",
+       "il/elle finit"
+      ],
+      [
+       "nous",
+       "nous finissons"
+      ],
+      [
+       "vous",
+       "vous finissez"
+      ],
+      [
+       "ils/elles",
+       "ils/elles finissent"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d08-fr-1",
+      "text": "Aujourd'hui, j'ai travaillé jusqu'à dix-huit heures.",
+      "ko": "오늘은 18시까지 일했어요.",
+      "note": "j'ai travaillé: -er 동사는 과거분사가 -é. jusqu'à = ~까지."
+     },
+     {
+      "id": "d08-fr-2",
+      "text": "On a une réunion demain matin à neuf heures.",
+      "ko": "내일 아침 9시에 회의가 있어요.",
+      "note": "on = 우리(구어에서 nous 대신). avoir une réunion = 회의가 있다."
+     },
+     {
+      "id": "d08-fr-3",
+      "text": "J'ai fini le rapport, mais je n'ai pas encore envoyé le mail.",
+      "ko": "보고서는 끝냈지만 메일은 아직 안 보냈어요.",
+      "note": "ne ... pas encore = 아직 ~않다. passé composé 부정은 ai를 ne와 pas로 감싸요."
+     }
+    ],
+    "task": "j'ai + 과거분사로 오늘 한 일을 말해 보세요."
+   }
+  },
+  {
+   "id": "d09",
+   "day": 9,
+   "topic": "날씨와 계절 이야기",
+   "emoji": "☔",
+   "intro": "가벼운 인사로 날씨와 계절 이야기를 나누는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜そうです(전해 들은 말) · 〜たほうがいい",
+     "desc": "보통체 + そうです = ~라고 해요 (전해 들은 말)\n〜によると = ~에 따르면\n〜たほうがいい = ~하는 편이 좋다"
+    },
+    "verb": {
+     "dict": "降る",
+     "reading": "ふる",
+     "ko": "(비·눈이) 내리다",
+     "forms": [
+      [
+       "ます형",
+       "降ります"
+      ],
+      [
+       "て형",
+       "降って"
+      ],
+      [
+       "ない형",
+       "降らない"
+      ],
+      [
+       "가능형",
+       "降れる"
+      ],
+      [
+       "의지형",
+       "降ろう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d09-ja-1",
+      "ruby": "{天気予報|てんきよほう}によると、{明日|あした}は{雨|あめ}が{降|ふ}るそうです。",
+      "ko": "일기예보에 따르면 내일은 비가 온대요.",
+      "simple": "明日、雨です。",
+      "note": "〜によると + 〜そうです = ~에 따르면 ~라고 해요. 雨が降る = 비가 내리다.",
+      "kanji": [
+       [
+        "天気予報",
+        "천기예보",
+        "てんきよほう"
+       ],
+       [
+        "明日",
+        "명일",
+        "あした"
+       ],
+       [
+        "雨",
+        "우",
+        "あめ"
+       ],
+       [
+        "降",
+        "강",
+        "ふ(る)"
+       ]
+      ]
+     },
+     {
+      "id": "d09-ja-2",
+      "ruby": "{最近|さいきん}は{朝晩|あさばん}がだいぶ{涼|すず}しくなってきましたね。",
+      "ko": "요즘은 아침저녁이 꽤 선선해졌네요.",
+      "simple": "朝は少し寒いです。",
+      "note": "〜てくる = 변화가 점점 진행되다. だいぶ = 꽤. 涼しい = 선선하다.",
+      "kanji": [
+       [
+        "朝晩",
+        "조만",
+        "あさばん"
+       ],
+       [
+        "涼",
+        "량",
+        "すず(しい)"
+       ]
+      ]
+     },
+     {
+      "id": "d09-ja-3",
+      "ruby": "{傘|かさ}を{持|も}っていったほうがいいと{思|おも}いますよ。",
+      "ko": "우산을 가지고 가는 편이 좋을 것 같아요.",
+      "simple": "傘を持ってください。",
+      "note": "〜たほうがいい = ~하는 편이 좋다. 持っていく = 가지고 가다. 〜と思います로 부드럽게 조언해요.",
+      "kanji": [
+       [
+        "傘",
+        "산",
+        "かさ"
+       ],
+       [
+        "持",
+        "지",
+        "も(つ)"
+       ],
+       [
+        "思",
+        "사",
+        "おも(う)"
+       ]
+      ]
+     },
+     {
+      "id": "d09-ja-4",
+      "ruby": "{去年|きょねん}の{夏|なつ}より、{今年|ことし}のほうが{暑|あつ}いですね。",
+      "ko": "작년 여름보다 올해가 더 덥네요.",
+      "simple": "今年は去年より暑いです。",
+      "note": "AよりBのほうが~ = A보다 B가 더 ~. 날씨 대화의 기본 틀이에요.",
+      "kanji": [
+       [
+        "去年",
+        "거년",
+        "きょねん"
+       ],
+       [
+        "夏",
+        "하",
+        "なつ"
+       ],
+       [
+        "今年",
+        "금년",
+        "ことし"
+       ],
+       [
+        "暑",
+        "서",
+        "あつ(い)"
+       ]
+      ]
+     }
+    ],
+    "task": "〜そうです로 오늘 들은 날씨 소식을 말해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "be supposed to · It looks like ~",
+     "desc": "be supposed to + 동사 = ~라고들 한다, ~할 예정이다\nIt looks like + 문장 = ~할 것 같다 (눈에 보이는 근거)"
+    },
+    "items": [
+     {
+      "id": "d09-en-1",
+      "text": "It's supposed to rain all weekend, so I might just stay in.",
+      "ko": "주말 내내 비가 온다고 해서 그냥 집에 있을까 해요.",
+      "simple": "It rains. I stay home.",
+      "note": "be supposed to = ~라고들 한다. stay in = 집에 머물다. might = 아마 ~할지도."
+     },
+     {
+      "id": "d09-en-2",
+      "text": "It looks like the weather is finally starting to clear up.",
+      "ko": "날씨가 드디어 개기 시작하는 것 같아요.",
+      "simple": "The weather is good now.",
+      "note": "clear up = (날씨가) 개다. start to + 동사 = ~하기 시작하다. finally = 드디어."
+     },
+     {
+      "id": "d09-en-3",
+      "text": "Honestly, I'd take a cold winter over a humid summer any day.",
+      "ko": "솔직히 습한 여름보다는 추운 겨울이 언제든 낫죠.",
+      "simple": "I like winter more than summer.",
+      "note": "I'd take A over B = B보다 A를 택하겠다. any day = 언제라도. humid = 습한."
+     }
+    ],
+    "task": "It's supposed to ~로 이번 주 날씨를 말해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "Il fait ~ (날씨 표현)",
+     "desc": "날씨는 il fait + 형용사: il fait beau(맑다), il fait froid(춥다), il fait chaud(덥다)\n비와 눈은 il pleut / il neige"
+    },
+    "verb": {
+     "dict": "être",
+     "ko": "~이다",
+     "forms": [
+      [
+       "je",
+       "je suis"
+      ],
+      [
+       "tu",
+       "tu es"
+      ],
+      [
+       "il/elle",
+       "il/elle est"
+      ],
+      [
+       "nous",
+       "nous sommes"
+      ],
+      [
+       "vous",
+       "vous êtes"
+      ],
+      [
+       "ils/elles",
+       "ils/elles sont"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d09-fr-1",
+      "text": "Aujourd'hui, il fait très beau, mais il fait encore froid le matin.",
+      "ko": "오늘은 날씨가 아주 좋은데, 아침엔 아직 추워요.",
+      "note": "il fait beau/froid. encore = 아직. le matin = 아침에(습관적으로)."
+     },
+     {
+      "id": "d09-fr-2",
+      "text": "Demain, il va pleuvoir, donc je reste à la maison.",
+      "ko": "내일은 비가 올 거라서 집에 있을 거예요.",
+      "note": "il va pleuvoir = futur proche(3일차에 배운 aller + 동사원형). donc = 그래서."
+     },
+     {
+      "id": "d09-fr-3",
+      "text": "Je suis toujours fatigué quand il fait trop chaud.",
+      "ko": "너무 더우면 저는 늘 피곤해요.",
+      "note": "être 활용: je suis. toujours = 늘. quand = ~할 때. 여자가 말하면 fatiguée."
+     }
+    ],
+    "task": "Il fait ~ 로 오늘 날씨를 말해 보세요."
+   }
+  },
+  {
+   "id": "d10",
+   "day": 10,
+   "topic": "취미 이야기",
+   "emoji": "🎸",
+   "intro": "여가 시간과 취미, 가 본 곳에 대해 편하게 이야기하는 상황이에요.",
+   "ja": {
+    "grammar": {
+     "title": "〜たことがある · 〜ことがある",
+     "desc": "た형 + ことがある = ~한 적이 있다 (경험)\n보통형 + ことがある = ~할 때가 있다 (빈도)\n〜始める = ~하기 시작하다"
+    },
+    "verb": {
+     "dict": "習う",
+     "reading": "ならう",
+     "ko": "배우다",
+     "forms": [
+      [
+       "ます형",
+       "習います"
+      ],
+      [
+       "て형",
+       "習って"
+      ],
+      [
+       "ない형",
+       "習わない"
+      ],
+      [
+       "가능형",
+       "習える"
+      ],
+      [
+       "의지형",
+       "習おう"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d10-ja-1",
+      "ruby": "{最近|さいきん}、{週末|しゅうまつ}にギターを{習|なら}い{始|はじ}めたんです。",
+      "ko": "요즘 주말에 기타를 배우기 시작했어요.",
+      "simple": "ギターを習っています。",
+      "note": "習う → 習い + 始める (ます형 어간 + 始める). 習う의 ない형은 習わない(う → わ).",
+      "kanji": [
+       [
+        "習",
+        "습",
+        "なら(う)"
+       ],
+       [
+        "始",
+        "시",
+        "はじ(める)"
+       ],
+       [
+        "週末",
+        "주말",
+        "しゅうまつ"
+       ]
+      ]
+     },
+     {
+      "id": "d10-ja-2",
+      "ruby": "{京都|きょうと}には{三回|さんかい}{行|い}ったことがあります。",
+      "ko": "교토에는 세 번 간 적이 있어요.",
+      "simple": "京都に行きました。",
+      "note": "た형 + ことがある = 경험. 行く의 た형은 行った(예외).",
+      "kanji": [
+       [
+        "京都",
+        "경도",
+        "きょうと"
+       ],
+       [
+        "三回",
+        "삼회",
+        "さんかい"
+       ]
+      ]
+     },
+     {
+      "id": "d10-ja-3",
+      "ruby": "{時々|ときどき}、{夜中|よなか}まで{映画|えいが}を{見|み}てしまうことがあります。",
+      "ko": "가끔 한밤중까지 영화를 보고 말 때가 있어요.",
+      "simple": "夜、映画を見ます。",
+      "note": "〜てしまう = ~해 버리다. 〜ことがある = ~할 때가 있다.",
+      "kanji": [
+       [
+        "時々",
+        "시시",
+        "ときどき"
+       ],
+       [
+        "夜中",
+        "야중",
+        "よなか"
+       ],
+       [
+        "映画",
+        "영화",
+        "えいが"
+       ]
+      ]
+     },
+     {
+      "id": "d10-ja-4",
+      "ruby": "{気分転換|きぶんてんかん}に、{近|ちか}くの{公園|こうえん}を{散歩|さんぽ}しています。",
+      "ko": "기분 전환으로 근처 공원을 산책하고 있어요.",
+      "simple": "公園を歩きます。",
+      "note": "〜に = ~을 위해(목적). 気分転換 = 기분 전환. 〜ている = 습관적으로 하고 있다.",
+      "kanji": [
+       [
+        "気分転換",
+        "기분전환",
+        "きぶんてんかん"
+       ],
+       [
+        "近",
+        "근",
+        "ちか(く)"
+       ],
+       [
+        "公園",
+        "공원",
+        "こうえん"
+       ],
+       [
+        "散歩",
+        "산보",
+        "さんぽ"
+       ]
+      ]
+     }
+    ],
+    "task": "〜たことがあります로 가 본 곳을 말해 보세요."
+   },
+   "en": {
+    "grammar": {
+     "title": "be into ~ · used to ~",
+     "desc": "I've been into ~ lately = 요즘 ~에 빠졌어요\nused to + 동사 = 예전엔 ~하곤 했다 (지금은 아님)"
+    },
+    "items": [
+     {
+      "id": "d10-en-1",
+      "text": "I've been really into hiking lately; it's a good way to clear my head.",
+      "ko": "요즘 등산에 푹 빠졌어요. 머리를 비우기에 좋거든요.",
+      "simple": "I like hiking.",
+      "note": "be into = ~에 빠져 있다. clear my head = 머리를 맑게 하다. ; 뒤에 이유를 이어요."
+     },
+     {
+      "id": "d10-en-2",
+      "text": "I used to play the piano as a kid, but I've lost touch with it.",
+      "ko": "어릴 땐 피아노를 쳤는데, 지금은 손을 놓았어요.",
+      "simple": "I played piano before. Not now.",
+      "note": "used to = 과거의 습관. as a kid = 어릴 때. lose touch with = ~와 멀어지다."
+     },
+     {
+      "id": "d10-en-3",
+      "text": "If you ever feel like trying it, I'd be happy to show you the ropes.",
+      "ko": "혹시 해 보고 싶으면 기꺼이 요령을 알려 줄게요.",
+      "simple": "I can teach you.",
+      "note": "feel like ~ing = ~하고 싶은 기분이 들다. show someone the ropes = 요령을 가르쳐 주다."
+     }
+    ],
+    "task": "I've been into ~ 로 요즘 빠진 걸 말해 보세요."
+   },
+   "fr": {
+    "grammar": {
+     "title": "faire du / de la + 취미",
+     "desc": "faire du sport, faire de la musique, faire de la randonnée = ~을 하다\n좋아하는 건 aimer + 동사원형"
+    },
+    "verb": {
+     "dict": "aimer",
+     "ko": "좋아하다",
+     "forms": [
+      [
+       "je",
+       "j'aime"
+      ],
+      [
+       "tu",
+       "tu aimes"
+      ],
+      [
+       "il/elle",
+       "il/elle aime"
+      ],
+      [
+       "nous",
+       "nous aimons"
+      ],
+      [
+       "vous",
+       "vous aimez"
+      ],
+      [
+       "ils/elles",
+       "ils/elles aiment"
+      ]
+     ]
+    },
+    "items": [
+     {
+      "id": "d10-fr-1",
+      "text": "Qu'est-ce que tu aimes faire pendant ton temps libre ?",
+      "ko": "여가 시간에 뭐 하는 걸 좋아해?",
+      "note": "aimer + 동사원형 = ~하는 걸 좋아하다. temps libre = 여가. pendant = ~동안."
+     },
+     {
+      "id": "d10-fr-2",
+      "text": "Je fais de la randonnée presque tous les week-ends.",
+      "ko": "거의 매 주말마다 하이킹을 해요.",
+      "note": "faire de la + 여성 활동 / du + 남성 활동. presque tous les = 거의 모든."
+     },
+     {
+      "id": "d10-fr-3",
+      "text": "J'ai déjà visité Kyoto, et j'adore la cuisine japonaise.",
+      "ko": "교토는 이미 가 봤고, 일본 요리를 정말 좋아해요.",
+      "note": "déjà = 이미. j'ai visité = passé composé. adorer = 몹시 좋아하다."
+     }
+    ],
+    "task": "J'aime ~ 또는 Je fais ~ 로 취미를 말해 보세요."
+   }
+  }
+ ]
 }
