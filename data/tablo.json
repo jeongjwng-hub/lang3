@@ -494,16 +494,14 @@
    "summary": "타블로가 자신의 유튜브, 스포티파이, 애플 팟캐스트 채널 'hey tablo'의 댓글을 읽고 청취자들의 반응과 사연을 유쾌하게 나누는 영상입니다.",
    "expressions": [],
    "detail": {
-    "status": "running",
-    "done_sec": 1200,
-    "duration": 0,
-    "lines": 160,
-    "notes": 85
+    "status": "done",
+    "done_sec": 2100,
+    "duration": 2100,
+    "lines": 240,
+    "notes": 144
    },
    "analyzed": "2026-11-25"
   }
  ],
- "queue": [
-  "_c_2NsYL3ic"
- ]
+ "queue": []
 }
