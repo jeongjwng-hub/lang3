@@ -533,7 +533,25 @@
     "notes": 7
    },
    "analyzed": "2026-11-25"
+  },
+  {
+   "id": "Hlp84BX5cCY",
+   "title": "Hi! Nice to meet you. So this is my first time telling anyone about this… #heytablo #podcast #헤이타블로",
+   "date": "2026-11-03",
+   "url": "https://www.youtube.com/watch?v=Hlp84BX5cCY",
+   "summary": "",
+   "expressions": [],
+   "detail": {
+    "status": "running",
+    "done_sec": 0,
+    "duration": 0,
+    "lines": 0,
+    "notes": 0
+   },
+   "analyzed": "2026-11-25"
   }
  ],
- "queue": []
+ "queue": [
+  "Hlp84BX5cCY"
+ ]
 }
