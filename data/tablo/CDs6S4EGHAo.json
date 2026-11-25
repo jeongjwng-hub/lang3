@@ -1,0 +1,157 @@
+{
+ "id": "CDs6S4EGHAo",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "Is this Joaquin Phoenix's new movie? I think it's a new movie trailer.",
+   "lang": "en",
+   "tr": "이거 호아킨 피닉스 신작 영화인가? 새 영화 트레일러 같은데.",
+   "notes": []
+  },
+  {
+   "sec": 19,
+   "time": "0:19",
+   "speaker": "Tablo",
+   "text": "I don't know if it's horror or like surrealist, but...",
+   "lang": "en",
+   "tr": "공포 영화인지 초현실주의 같은 건지 모르겠지만...",
+   "notes": [
+    {
+     "phrase": "surrealist",
+     "meaning": "초현실주의적인. 기이하고 꿈같은 예술적 스타일이나 느낌을 표현할 때 씁니다."
+    }
+   ]
+  },
+  {
+   "sec": 23,
+   "time": "0:23",
+   "speaker": "Tablo",
+   "text": "Joaquin Phoenix is obviously acting his ass off, and...",
+   "lang": "en",
+   "tr": "호아킨 피닉스는 당연하게도 연기를 엄청나게 잘하고 있고...",
+   "notes": [
+    {
+     "phrase": "act one's ass off",
+     "meaning": "'몸이 부서져라 연기하다', '열정적으로 미친 듯이 연기하다'라는 뜻의 강한 구어체 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 28,
+   "time": "0:28",
+   "speaker": "Tablo",
+   "text": "the mise-en-scène is perfect.",
+   "lang": "en",
+   "tr": "미장센도 완벽해.",
+   "notes": [
+    {
+     "phrase": "mise-en-scène",
+     "meaning": "화면 속 무대 장치, 조명, 인물 배치 등 시각적 연출 요소를 뜻하는 영화 용어입니다."
+    }
+   ]
+  },
+  {
+   "sec": 30,
+   "time": "0:30",
+   "speaker": "Tablo",
+   "text": "The colors in this trailer, ad, movie, short film... it's really good.",
+   "lang": "en",
+   "tr": "이 트레일러인지, 광고인지, 영화인지, 단편 영화인지 색감이 정말 좋네요.",
+   "notes": []
+  },
+  {
+   "sec": 40,
+   "time": "0:40",
+   "speaker": "Tablo",
+   "text": "Gentle Monster?! Oh, it's something with Gentle Monster.",
+   "lang": "en",
+   "tr": "젠틀몬스터?! 아, 젠틀몬스터 제품이구나.",
+   "notes": []
+  },
+  {
+   "sec": 45,
+   "time": "0:45",
+   "speaker": "Tablo",
+   "text": "Wait, wait, what did he say? What did he say? Ah, translate for me.",
+   "lang": "en",
+   "tr": "잠깐만, 방금 뭐라고 한 거야? 뭐라고 했지? 아, '나한테 번역해 줘'.",
+   "notes": []
+  },
+  {
+   "sec": 50,
+   "time": "0:50",
+   "speaker": "Tablo",
+   "text": "With Joaquin Phoenix, you never know what he's really saying, because he's always like...",
+   "lang": "en",
+   "tr": "호아킨 피닉스는 항상 웅얼거리듯 연기해서 무슨 말을 하는지 알 수가 없는데...",
+   "notes": []
+  },
+  {
+   "sec": 55,
+   "time": "0:55",
+   "speaker": "Tablo",
+   "text": "Oh, it's like intelligent eyewear that translates, I guess. So this is an ad? This is a Gentle Monster ad? It's like a movie trailer.",
+   "lang": "en",
+   "tr": "아, 번역해 주는 스마트 안경 같은 건가 봐요. 그럼 이게 광고라고? 젠틀몬스터 광고라고? 영화 트레일러 같은데.",
+   "notes": [
+    {
+     "phrase": "eyewear",
+     "meaning": "안경, 선글라스 등을 통틀어 부르는 단어입니다."
+    }
+   ]
+  },
+  {
+   "sec": 63,
+   "time": "1:03",
+   "speaker": "Tablo",
+   "text": "So you're saying people can watch Hey Tablo now with these glasses, and it'll translate into Korean?",
+   "lang": "en",
+   "tr": "그럼 사람들이 이 안경을 쓰고 '헤이 타블로'를 보면 한국어로 번역된다는 말이죠?",
+   "notes": [
+    {
+     "phrase": "So you're saying...",
+     "meaning": "'그러니까 ~라는 말씀이시죠?'라며 상대의 말을 다시 확인하거나 요약할 때 쓰는 구어체 패턴입니다."
+    }
+   ]
+  },
+  {
+   "sec": 69,
+   "time": "1:09",
+   "speaker": "Tablo",
+   "text": "So Joaquin Phoenix can finally listen to Hey Tablo? Amazing!",
+   "lang": "en",
+   "tr": "그럼 호아킨 피닉스도 드디어 '헤이 타블로'를 들을 수 있겠네요? 대박!",
+   "notes": []
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 77,
+   "summary": "호아킨 피닉스가 출연한 젠틀몬스터의 스마트 아이웨어 광고 트레일러를 감상하며 타블로가 뛰어난 미장센과 연기력에 감탄하고, 제품의 실시간 번역 기능에 대해 유쾌하게 소감을 전하는 장면입니다.",
+   "model": "gemini-3.5-flash"
+  }
+ ],
+ "done_sec": 77,
+ "duration": 77,
+ "chapters": [],
+ "title": "Honestly thought this was a movie trailer @gentlemonster",
+ "url": "https://www.youtube.com/watch?v=CDs6S4EGHAo",
+ "ai_chapters": [
+  {
+   "sec": 0,
+   "title": "호아킨 피닉스의 신작 영화 같은 예고편 감상"
+  },
+  {
+   "sec": 40,
+   "title": "젠틀몬스터와 호아킨 피닉스의 콜라보 광고"
+  },
+  {
+   "sec": 63,
+   "title": "안경을 통한 번역 기능과 타블로 쇼 시청"
+  }
+ ],
+ "ai_ch_upto": 77
+}

@@ -501,6 +501,22 @@
     "notes": 144
    },
    "analyzed": "2026-11-25"
+  },
+  {
+   "id": "CDs6S4EGHAo",
+   "title": "Honestly thought this was a movie trailer @gentlemonster",
+   "date": "2026-11-08",
+   "url": "https://www.youtube.com/watch?v=CDs6S4EGHAo",
+   "summary": "호아킨 피닉스가 출연한 젠틀몬스터의 스마트 아이웨어 광고 트레일러를 감상하며 타블로가 뛰어난 미장센과 연기력에 감탄하고, 제품의 실시간 번역 기능에 대해 유쾌하게 소감을 전하는 장면입니다.",
+   "expressions": [],
+   "detail": {
+    "status": "done",
+    "done_sec": 77,
+    "duration": 77,
+    "lines": 11,
+    "notes": 5
+   },
+   "analyzed": "2026-11-25"
   }
  ],
  "queue": []
