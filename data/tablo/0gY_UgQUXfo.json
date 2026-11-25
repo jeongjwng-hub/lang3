@@ -1,0 +1,67 @@
+{
+ "id": "0gY_UgQUXfo",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "I saw... once on stage, I saw Tukutz, trying to shed a tear.",
+   "lang": "en",
+   "tr": "내가 봤어... 언젠가 무대 위에서 투컷이 눈물을 흘리려고 애쓰는 걸 봤지.",
+   "notes": [
+    {
+     "phrase": "shed a tear",
+     "meaning": "눈물을 흘리다"
+    }
+   ]
+  },
+  {
+   "sec": 4,
+   "time": "0:04",
+   "speaker": "Tablo",
+   "text": "Because I think, because he saw me and Mithra with tears in our eyes,",
+   "lang": "en",
+   "tr": "내 생각엔, 그가 나와 미쓰라가 눈물이 고인 채 있는 걸 봤기 때문이야.",
+   "notes": [
+    {
+     "phrase": "with tears in our eyes",
+     "meaning": "눈에 눈물이 고인 채로"
+    }
+   ]
+  },
+  {
+   "sec": 21,
+   "time": "0:21",
+   "speaker": "Tablo",
+   "text": "and then I look at Tukutz, he's like poking his eye, trying to squeeze one drop out of there.",
+   "lang": "en",
+   "tr": "그리고 투컷을 봤더니, 눈을 찌르면서 그곳에서 눈물 한 방울이라도 짜내려고 하더라고.",
+   "notes": [
+    {
+     "phrase": "squeeze one out",
+     "meaning": "쥐어짜다 (여기서는 억지로 눈물을 짜내려 한다는 뉘앙스)"
+    }
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 300,
+   "summary": "타블로가 무대 위에서 눈물을 흘리려 애쓰던 투컷의 모습을 재미있게 회상하며 폭소하는 장면입니다.",
+   "model": "gemini-3.5-flash-lite"
+  }
+ ],
+ "done_sec": 300,
+ "duration": 300,
+ "chapters": [],
+ "title": "Has anybody seen him cry?! #heytablo #podcast #헤이타블로",
+ "url": "https://www.youtube.com/watch?v=0gY_UgQUXfo",
+ "ai_chapters": [
+  {
+   "sec": 0,
+   "title": "투컷츠의 눈물 시도 목격담"
+  }
+ ],
+ "ai_ch_upto": 300
+}
