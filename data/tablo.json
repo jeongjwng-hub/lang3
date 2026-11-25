@@ -348,10 +348,10 @@
    "model": "gemini-3-flash-preview",
    "detail": {
     "status": "running",
-    "done_sec": 1200,
-    "duration": 0,
-    "lines": 137,
-    "notes": 69
+    "done_sec": 2400,
+    "duration": 2626,
+    "lines": 301,
+    "notes": 140
    }
   },
   {
