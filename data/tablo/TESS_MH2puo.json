@@ -1,0 +1,154 @@
+{
+ "id": "TESS_MH2puo",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "I hate when people do that.",
+   "lang": "en",
+   "tr": "사람들이 그러는 거 정말 싫어요.",
+   "notes": []
+  },
+  {
+   "sec": 1,
+   "time": "0:01",
+   "speaker": "Tablo",
+   "text": "Even in my 20s, if I sat down or did squats for a long time and then suddenly got up, my knees cracked.",
+   "lang": "en",
+   "tr": "20대 때도 오래 앉아 있거나 스쿼트를 오래 하다가 갑자기 일어나면 무릎에서 뚝 소리가 났어요.",
+   "notes": [
+    {
+     "phrase": "knees cracked",
+     "meaning": "무릎 관절에서 뚝 하는 소리가 났다는 의미입니다."
+    }
+   ]
+  },
+  {
+   "sec": 10,
+   "time": "0:10",
+   "speaker": "Tablo",
+   "text": "But now if it happens, if I'm picking something up and my knees crack, someone has to say it.",
+   "lang": "en",
+   "tr": "하지만 지금은 뭘 줍다가 무릎에서 소리가 나면, 꼭 누가 한마디를 해요.",
+   "notes": [
+    {
+     "phrase": "pick something up",
+     "meaning": "바닥 등에 있는 물건을 줍거나 올려 집다라는 뜻의 구동사입니다."
+    }
+   ]
+  },
+  {
+   "sec": 16,
+   "time": "0:16",
+   "speaker": "Tablo",
+   "text": "They have to be like, \"Oh, grandpa.\"",
+   "lang": "en",
+   "tr": "꼭 \"아이고, 할아버지\" 이런 식으로 말한다니까요.",
+   "notes": [
+    {
+     "phrase": "be like",
+     "meaning": "구어체에서 '~라고 말하다', '~라는 반응을 보이다'라는 뜻으로 매우 자주 쓰입니다."
+    }
+   ]
+  },
+  {
+   "sec": 19,
+   "time": "0:19",
+   "speaker": "Tablo",
+   "text": "Knees crack! That's what they do, okay?",
+   "lang": "en",
+   "tr": "무릎은 원래 소리가 나는 거예요! 원래 다 그렇다고요, 아셨죠?",
+   "notes": [
+    {
+     "phrase": "That's what they do",
+     "meaning": "대상(무릎)의 원래 성질이나 당연한 생태를 설명할 때 쓰는 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 22,
+   "time": "0:22",
+   "speaker": "Tablo",
+   "text": "Ironically, did you hear that? My shoulder just cracked.",
+   "lang": "en",
+   "tr": "아이러니하게도, 방금 소리 들으셨어요? 제 어깨에서 방금 '뚝' 소리가 났어요.",
+   "notes": [
+    {
+     "phrase": "Ironically",
+     "meaning": "'역설적이게도', '아이러니하게도'라는 뜻으로 예상 밖의 상황을 언급할 때 쓰입니다."
+    }
+   ]
+  },
+  {
+   "sec": 29,
+   "time": "0:29",
+   "speaker": "Tablo",
+   "text": "Damn it, I'm old.",
+   "lang": "en",
+   "tr": "제길, 나 늙었나 봐요.",
+   "notes": []
+  },
+  {
+   "sec": 30,
+   "time": "0:30",
+   "speaker": "Rosemary",
+   "text": "You were just pointing...",
+   "lang": "en",
+   "tr": "손가락으로 가리키기만 하셨는데...",
+   "notes": []
+  },
+  {
+   "sec": 33,
+   "time": "0:33",
+   "speaker": "Tablo",
+   "text": "My hand was down like... my shoulder wasn't moving for a while. That's why when I moved it, when I pointed, it cracked, okay?",
+   "lang": "en",
+   "tr": "손을 이렇게 내리고 있어서 어깨를 한동안 안 움직였잖아요. 그래서 움직일 때, 가리킬 때 소리가 난 거예요, 아시겠어요?",
+   "notes": []
+  },
+  {
+   "sec": 42,
+   "time": "0:42",
+   "speaker": "Tablo",
+   "text": "\"You were just pointing\" is so mean!",
+   "lang": "en",
+   "tr": "\"가리키기만 했는데\"라니 너무하시네요!",
+   "notes": [
+    {
+     "phrase": "so mean",
+     "meaning": "'너무 짓궂다', '못됐다', '야박하다'라는 뉘앙스의 구어 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 45,
+   "time": "0:45",
+   "speaker": "Tablo",
+   "text": "See, you're doing the thing. You're doing the \"Oh my, you were just pointing. Uncle Tablo, you were just pointing!\"",
+   "lang": "en",
+   "tr": "봐요, 지금 또 그러시네. \"어머나, 가리키기만 했는데. 타블로 삼촌, 가리키기만 했는데!\" 이러는 거잖아요.",
+   "notes": []
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 300,
+   "summary": "타블로가 나이가 들면서 관절에서 소리가 날 때 주변 사람들이 놀리는 경험에 대해 이야기하며, 실제로 어깨 소리가 나자 변명하는 유쾌한 상황입니다.",
+   "model": "gemini-3.5-flash"
+  }
+ ],
+ "done_sec": 300,
+ "duration": 300,
+ "chapters": [],
+ "title": "It’s not age..!! I swear! #heytablo #podcast #헤이타블로",
+ "url": "https://www.youtube.com/watch?v=TESS_MH2puo",
+ "ai_chapters": [
+  {
+   "sec": 0,
+   "title": "관절 소리 때문에 늙었다고 놀림받는 타블로"
+  }
+ ],
+ "ai_ch_upto": 300
+}
