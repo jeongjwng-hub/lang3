@@ -1,0 +1,95 @@
+{
+ "id": "bQl7mM964oA",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "Okay, aliens are attacking, or zombies have taken over.",
+   "lang": "en",
+   "tr": "자, 외계인이 침공하거나 좀비가 세상을 점령했다고 쳐봐요.",
+   "notes": [
+    {
+     "phrase": "take over",
+     "meaning": "어떤 지역, 조직, 상황 등을 '점령하다, 제어권을 쥐다'라는 뜻의 구동사입니다."
+    }
+   ]
+  },
+  {
+   "sec": 3,
+   "time": "0:03",
+   "speaker": "Tablo",
+   "text": "Who would I go to, Tukutz or Mithra? Who would I call first for help? I think I would call Tukutz.",
+   "lang": "en",
+   "tr": "저는 누구한테 갈까요, 투컷 아니면 미쓰라? 누구한테 먼저 도움을 요청할까요? 저는 투컷한테 전화할 것 같아요.",
+   "notes": [
+    {
+     "phrase": "call for help",
+     "meaning": "도움을 청하려고 전화하거나 외치는 행동을 뜻합니다."
+    }
+   ]
+  },
+  {
+   "sec": 9,
+   "time": "0:09",
+   "speaker": "Tablo",
+   "text": "Who would Tukutz call first, Mithra or me, in a crisis situation? He would definitely call me.",
+   "lang": "en",
+   "tr": "위기 상황에서 투컷은 미쓰라와 저 중 누구한테 먼저 전화할까요? 무조건 저한테 전화할 거예요.",
+   "notes": [
+    {
+     "phrase": "in a crisis situation",
+     "meaning": "위기 상황, 비상 상황에서를 뜻하는 전치사구 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 15,
+   "time": "0:15",
+   "speaker": "Tablo",
+   "text": "Mithra, who would he call first, Tukutz or Tablo? The answer is neither.",
+   "lang": "en",
+   "tr": "미쓰라는 누구한테 먼저 전화할까요, 투컷 아니면 타블로? 정답은 둘 다 아니에요.",
+   "notes": [
+    {
+     "phrase": "neither",
+     "meaning": "둘 중 어느 쪽도 아니라는 의미의 부정 대명사/부사입니다."
+    }
+   ]
+  },
+  {
+   "sec": 22,
+   "time": "0:22",
+   "speaker": "Tablo",
+   "text": "He wouldn't call us in a crisis situation. Are you kidding me? We are the crisis situation.",
+   "lang": "en",
+   "tr": "그 위기 상황에 미쓰라가 저희한테 전화할 리가 없죠. 장난해요? 저희가 바로 그 위기 상황인데요.",
+   "notes": [
+    {
+     "phrase": "Are you kidding me?",
+     "meaning": "상대방의 전제나 질문이 터무니없을 때 '장난해?', '말도 안 돼'의 뉘앙스로 쓰는 대표적인 구어체 표현입니다."
+    }
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 300,
+   "summary": "타블로가 외계인 침공이나 좀비 아포칼립스 같은 위기 상황에서 에픽하이 멤버들이 누구에게 먼저 연락할지 유쾌하게 설명하는 영상입니다.",
+   "model": "gemini-3.5-flash"
+  }
+ ],
+ "done_sec": 300,
+ "duration": 300,
+ "chapters": [],
+ "title": "Let’s be honest here…😂 #heytablo #podcast #헤이타블로",
+ "url": "https://www.youtube.com/watch?v=bQl7mM964oA",
+ "ai_chapters": [
+  {
+   "sec": 0,
+   "title": "외계인 침공 시 타블로의 선택"
+  }
+ ],
+ "ai_ch_upto": 300
+}
