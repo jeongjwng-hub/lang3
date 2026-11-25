@@ -485,7 +485,25 @@
     "lines": 11,
     "notes": 6
    }
+  },
+  {
+   "id": "_c_2NsYL3ic",
+   "title": "Rage bait can't stop me | Hey Tablo Ep.46",
+   "date": "2026-11-10",
+   "url": "https://www.youtube.com/watch?v=_c_2NsYL3ic",
+   "summary": "타블로가 자신의 유튜브, 스포티파이, 애플 팟캐스트 채널 'hey tablo'의 댓글을 읽고 청취자들의 반응과 사연을 유쾌하게 나누는 영상입니다.",
+   "expressions": [],
+   "detail": {
+    "status": "running",
+    "done_sec": 1200,
+    "duration": 0,
+    "lines": 160,
+    "notes": 85
+   },
+   "analyzed": "2026-11-25"
   }
  ],
- "queue": []
+ "queue": [
+  "_c_2NsYL3ic"
+ ]
 }
