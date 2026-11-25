@@ -347,11 +347,11 @@
    "analyzed": "2026-11-24",
    "model": "gemini-3-flash-preview",
    "detail": {
-    "status": "running",
-    "done_sec": 2400,
+    "status": "done",
+    "done_sec": 2626,
     "duration": 2626,
-    "lines": 301,
-    "notes": 140
+    "lines": 338,
+    "notes": 152
    }
   },
   {
@@ -488,7 +488,6 @@
   }
  ],
  "queue": [
-  "ICotPfIDYmM",
   "0gY_UgQUXfo",
   "bQl7mM964oA",
   "XFDqJsICjPY",
