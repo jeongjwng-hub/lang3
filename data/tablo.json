@@ -401,11 +401,11 @@
    "analyzed": "2026-11-24",
    "model": "gemini-3.5-flash",
    "detail": {
-    "status": "queued",
-    "done_sec": 0,
-    "duration": 0,
-    "lines": 0,
-    "notes": 0
+    "status": "done",
+    "done_sec": 300,
+    "duration": 300,
+    "lines": 5,
+    "notes": 3
    }
   },
   {
@@ -488,7 +488,6 @@
   }
  ],
  "queue": [
-  "XFDqJsICjPY",
   "TESS_MH2puo"
  ]
 }

@@ -1,0 +1,89 @@
+{
+ "id": "XFDqJsICjPY",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "When you get to my age, more funerals than weddings, to be honest.",
+   "lang": "en",
+   "tr": "제 나이가 되면 솔직히 결혼식보다 장례식에 갈 일이 더 많아요.",
+   "notes": [
+    {
+     "phrase": "get to my age",
+     "meaning": "'내 나이쯤 되면'이라는 뜻으로, 특정 연령대에 다다랐을 때 겪는 경험을 설명할 때 자주 쓰이는 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 5,
+   "time": "0:05",
+   "speaker": "Tablo",
+   "text": "They don't invite me for weddings if they want me to sing for their wedding, which I don't do.",
+   "lang": "en",
+   "tr": "결혼식에서 노래를 불러달라고 저를 초대하진 않아요. 저는 그런 걸 안 하거든요.",
+   "notes": []
+  },
+  {
+   "sec": 13,
+   "time": "0:13",
+   "speaker": "Tablo",
+   "text": "That's called '축가' in Korean. Sometimes couples will invite a famous singer to sing,",
+   "lang": "en",
+   "tr": "한국어로는 그걸 '축가'라고 하는데요. 가끔 커플들이 유명한 가수를 초대해서 축가를 부탁하곤 해요.",
+   "notes": [
+    {
+     "phrase": "축가",
+     "meaning": "결혼식을 축하하기 위해 부르는 노래를 의미하는 한국어 표현입니다."
+    }
+   ]
+  },
+  {
+   "sec": 20,
+   "time": "0:20",
+   "speaker": "Tablo",
+   "text": "and usually they're like ballad singers or R&B singers, but what the fuck am I gonna do there?",
+   "lang": "en",
+   "tr": "보통은 발라드 가수나 R&B 가수를 부르는데, 제가 거기 가서 대체 뭘 하겠어요?",
+   "notes": []
+  },
+  {
+   "sec": 26,
+   "time": "0:26",
+   "speaker": "Tablo",
+   "text": "I'm a Born Hater. I'm not gonna ruin someone's wedding.",
+   "lang": "en",
+   "tr": "저는 'Born Hater'를 부른 사람인데, 남의 결혼식을 망칠 순 없잖아요.",
+   "notes": [
+    {
+     "phrase": "ruin someone's wedding",
+     "meaning": "'누군가의 결혼식을 망치다'라는 뜻으로, 축가에 어울리지 않는 힙합 곡으로 분위기를 망친다는 비유적 표현입니다."
+    }
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 300,
+   "summary": "타블로가 솔직하게 제 나이 또래에는 결혼식보다 장례식에 갈 일이 많고, 자신은 힙합 가수라 결혼식 분위기를 망치지 않기 위해 축가를 부르지 않는다고 밝히는 영상입니다.",
+   "model": "gemini-3.5-flash"
+  }
+ ],
+ "done_sec": 300,
+ "duration": 300,
+ "chapters": [],
+ "title": "Why we never perform at weddings #heytablo #podcast #헤이타블로",
+ "url": "https://www.youtube.com/watch?v=XFDqJsICjPY",
+ "ai_chapters": [
+  {
+   "sec": 0,
+   "title": "나이가 들면서 장례식에 더 자주 가게 되는 이유"
+  },
+  {
+   "sec": 13,
+   "title": "결혼식 축가와 힙합 뮤지션의 현실"
+  }
+ ],
+ "ai_ch_upto": 300
+}
