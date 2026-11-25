@@ -347,11 +347,11 @@
    "analyzed": "2026-11-24",
    "model": "gemini-3-flash-preview",
    "detail": {
-    "status": "queued",
-    "done_sec": 0,
+    "status": "running",
+    "done_sec": 1200,
     "duration": 0,
-    "lines": 0,
-    "notes": 0
+    "lines": 137,
+    "notes": 69
    }
   },
   {
