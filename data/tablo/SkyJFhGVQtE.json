@@ -1,0 +1,79 @@
+{
+ "id": "SkyJFhGVQtE",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "I believe home food is whatever you eat with the people you care about and the people that care about you.",
+   "lang": "en",
+   "tr": "내가 생각하는 집밥은 당신이 아끼는 사람들, 그리고 당신을 아껴주는 사람들과 함께 먹는 그 어떤 음식이에요.",
+   "notes": [
+    {
+     "phrase": "home food",
+     "meaning": "직역하면 집밥이지만, 여기서는 따뜻하고 편안하게 함께 먹는 음식을 의미합니다."
+    },
+    {
+     "phrase": "care about",
+     "meaning": "관심을 가지다, 소중히 여기다 또는 아끼다는 뜻으로 쓰입니다."
+    }
+   ]
+  },
+  {
+   "sec": 7,
+   "time": "0:07",
+   "speaker": "Tablo",
+   "text": "Like it can be the worst fucking thing for you, but if you're eating it with the best people, I don't know, my theory is that it's actually good for you.",
+   "lang": "en",
+   "tr": "몸에 엄청 안 좋은 최악의 음식일 수도 있지만, 최고의 사람들과 함께 먹는다면 제 생각엔 그게 오히려 몸에 더 좋은 것 같아요.",
+   "notes": [
+    {
+     "phrase": "the worst fucking thing",
+     "meaning": "강한 강조를 위해 욕설을 사용하여 최악임을 강조한 표현입니다."
+    },
+    {
+     "phrase": "my theory is that",
+     "meaning": "내 생각에는 ~하다, 내 이론은 이렇다는 의미로 의견을 피력할 때 자주 쓰입니다."
+    }
+   ]
+  },
+  {
+   "sec": 15,
+   "time": "0:15",
+   "speaker": "Tablo",
+   "text": "It's much better than eating really healthy great like for your body kind of food with the shittest people.",
+   "lang": "en",
+   "tr": "몸에 정말 좋은 건강한 음식을 최악의 사람들과 먹는 것보다 훨씬 나아요.",
+   "notes": [
+    {
+     "phrase": "great like for your body kind of food",
+     "meaning": "몸에 좋다고 여겨지는 소위 건강식을 묘사하기 위해 구어체로 길게 늘여 표현한 부분입니다."
+    },
+    {
+     "phrase": "shittest people",
+     "meaning": "가장 끔찍하거나 성격이 나쁜 사람들을 비속어를 섞어 표현한 말입니다."
+    }
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 300,
+   "summary": "타블로는 몸에 나쁜 음식이라도 좋은 사람들과 함께 먹는 것이 건강에 가장 좋은 음식을 끔찍한 사람들과 먹는 것보다 낫다고 말한다.",
+   "model": "gemini-flash-lite-latest"
+  }
+ ],
+ "done_sec": 300,
+ "duration": 300,
+ "chapters": [],
+ "title": "The BEST kind of food is whatever you share with your loved ones #heytablo #podcast #헤이타블로",
+ "url": "https://www.youtube.com/watch?v=SkyJFhGVQtE",
+ "ai_chapters": [
+  {
+   "sec": 0,
+   "title": "소중한 사람과 먹는 집밥의 의미"
+  }
+ ],
+ "ai_ch_upto": 300
+}
