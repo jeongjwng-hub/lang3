@@ -590,16 +590,14 @@
    "summary": "타블로가 북미 투어 중 겪은 식습관의 어려움을 이야기하며, 아티스트들의 백스테이지 '라이더(요구 사항 목록)'에 담긴 음식과 음료 요청의 진실을 유머러스하게 폭로합니다.",
    "expressions": [],
    "detail": {
-    "status": "running",
+    "status": "done",
     "done_sec": 2400,
-    "duration": 0,
+    "duration": 2400,
     "lines": 272,
     "notes": 130
    },
    "analyzed": "2026-11-26"
   }
  ],
- "queue": [
-  "L_cQ8exTTvM"
- ]
+ "queue": []
 }
