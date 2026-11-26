@@ -597,6 +597,22 @@
     "notes": 130
    },
    "analyzed": "2026-11-26"
+  },
+  {
+   "id": "B6NYhBAsKA8",
+   "title": "Dear @Apple please bring back the mini. #heytablo #podcast #헤이타블로",
+   "date": "2026-10-26",
+   "url": "https://www.youtube.com/watch?v=B6NYhBAsKA8",
+   "summary": "타블로는 아이폰 미니의 단종에 강한 불만을 드러내며 미니가 부활할 때까지 스마트폰을 업그레이드하지 않겠다고 선언한다.",
+   "expressions": [],
+   "detail": {
+    "status": "done",
+    "done_sec": 300,
+    "duration": 300,
+    "lines": 12,
+    "notes": 11
+   },
+   "analyzed": "2026-11-26"
   }
  ],
  "queue": []
