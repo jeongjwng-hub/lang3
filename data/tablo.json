@@ -591,10 +591,10 @@
    "expressions": [],
    "detail": {
     "status": "running",
-    "done_sec": 1200,
+    "done_sec": 2400,
     "duration": 0,
-    "lines": 155,
-    "notes": 81
+    "lines": 272,
+    "notes": 130
    },
    "analyzed": "2026-11-26"
   }
