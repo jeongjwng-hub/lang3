@@ -559,10 +559,10 @@
    "expressions": [],
    "detail": {
     "status": "running",
-    "done_sec": 1200,
+    "done_sec": 2400,
     "duration": 0,
-    "lines": 131,
-    "notes": 71
+    "lines": 268,
+    "notes": 176
    },
    "analyzed": "2026-11-26"
   }
