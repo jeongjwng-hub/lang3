@@ -549,7 +549,25 @@
     "notes": 0
    },
    "analyzed": "2026-11-25"
+  },
+  {
+   "id": "7g6TpUhZQJ0",
+   "title": "9 Questions That Will Reveal Who You Really Are | Hey Tablo Ep. 45",
+   "date": "2026-11-03",
+   "url": "https://www.youtube.com/watch?v=7g6TpUhZQJ0",
+   "summary": "타블로는 가을과 함께 찾아온 감기 속에서 2026년이 두 달 남았음을 깨닫고, 2027년을 위한 자기 성찰과 일본 교수 리서치에 얽힌 일화를 소개합니다.",
+   "expressions": [],
+   "detail": {
+    "status": "running",
+    "done_sec": 1200,
+    "duration": 0,
+    "lines": 131,
+    "notes": 71
+   },
+   "analyzed": "2026-11-26"
   }
  ],
- "queue": []
+ "queue": [
+  "7g6TpUhZQJ0"
+ ]
 }
