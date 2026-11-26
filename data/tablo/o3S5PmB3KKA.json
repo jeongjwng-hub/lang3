@@ -1,0 +1,99 @@
+{
+ "id": "o3S5PmB3KKA",
+ "lines": [
+  {
+   "sec": 0,
+   "time": "0:00",
+   "speaker": "Tablo",
+   "text": "When the first iPhone mini came out, I was like, 'Finally...' You were able to reach every corner of the screen.",
+   "lang": "en",
+   "tr": "처음 아이폰 미니가 나왔을 때 나는 '드디어…'라고 생각했어. 화면의 모든 구석에 손이 닿았거든.",
+   "notes": [
+    {
+     "phrase": "reach every corner",
+     "meaning": "화면이나 공간의 모든 구석구석에 닿다."
+    }
+   ]
+  },
+  {
+   "sec": 7,
+   "time": "0:07",
+   "speaker": "Tablo",
+   "text": "This is the only phone where my, the inside, you know right here, like your thumb, the inside of your palm—",
+   "lang": "en",
+   "tr": "이건 엄지손가락 안쪽, 손바닥 안쪽이 유일하게 닿는 폰이야.",
+   "notes": []
+  },
+  {
+   "sec": 11,
+   "time": "0:11",
+   "speaker": "Tablo",
+   "text": "You know, if this starts hurting, your wrist starts hurting, and then your arm, your upper arm starts hurting,",
+   "lang": "en",
+   "tr": "알잖아, 여기가 아프기 시작하면 손목이 아프고, 그다음에 팔, 위팔이 아프기 시작해.",
+   "notes": [
+    {
+     "phrase": "upper arm",
+     "meaning": "팔꿈치 위쪽의 어깨 사이 부위인 위팔(상완)."
+    }
+   ]
+  },
+  {
+   "sec": 19,
+   "time": "0:19",
+   "speaker": "Tablo",
+   "text": "And then it's connected to your shoulder, so your shoulder starts hurting, and then your neck hurts obviously.",
+   "lang": "en",
+   "tr": "그리고 그게 어깨랑 연결되어 있으니까 어깨가 아프고, 당연히 목도 아프지.",
+   "notes": []
+  },
+  {
+   "sec": 24,
+   "time": "0:24",
+   "speaker": "Tablo",
+   "text": "And then that affects your spine, which affects your brain, makes you stupid!",
+   "lang": "en",
+   "tr": "그리고 그게 척추에 영향을 주고, 그게 뇌에 영향을 미쳐서 널 멍청하게 만들어!",
+   "notes": [
+    {
+     "phrase": "affects your spine",
+     "meaning": "척추에 무리를 주거나 영향을 미치다."
+    }
+   ]
+  },
+  {
+   "sec": 29,
+   "time": "0:29",
+   "speaker": "Tablo",
+   "text": "And then goes down your spine, goes down your spine to your waist, and gives you kidney stones!",
+   "lang": "en",
+   "tr": "그리고 척추를 타고 내려가서, 허리까지 내려가서 요로결석을 생기게 해!",
+   "notes": [
+    {
+     "phrase": "kidney stones",
+     "meaning": "신장에 생기는 돌 같은 결석인 요로결석."
+    }
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "start": 0,
+   "end": 300,
+   "summary": "타블로가 큰 스마트폰 사용이 손목과 팔을 거쳐 전신 건강과 신체 통증에 미치는 영향을 과장되고 유머러스하게 설명합니다.",
+   "model": "gemini-3.5-flash-lite"
+  }
+ ],
+ "done_sec": 300,
+ "duration": 300,
+ "chapters": [],
+ "title": "Why do they keep making the phones bigger??!! #heytablo #podcast #헤이타블로",
+ "url": "https://www.youtube.com/watch?v=o3S5PmB3KKA",
+ "ai_chapters": [
+  {
+   "sec": 0,
+   "title": "아이폰 미니와 손목 통증의 시작"
+  }
+ ],
+ "ai_ch_upto": 300
+}
